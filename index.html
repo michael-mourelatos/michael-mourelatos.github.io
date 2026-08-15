@@ -30,7 +30,7 @@
   --sheet:#FBF8F0;
   --ink:#1C1913;
   --ink-soft:#5C5442;
-  --red:#D71E1E;
+  --red:#C81818;
   --blue:#1E4BD7;
   --blue-faint:rgba(30,75,215,.14);
 
@@ -51,6 +51,7 @@ body{
   font-size:1rem;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
 }
 
 ::selection{background:var(--blue);color:var(--sheet)}
@@ -237,7 +238,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
   font-weight:600;
   letter-spacing:.13em;
   text-transform:uppercase;
-  color:#6E5F3D;
+  color:#554728;
   background:var(--manila-deep);
   padding:.62rem 1.15rem .5rem;
   clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 100%,0 100%);
@@ -407,8 +408,15 @@ footer{
   .tab,.field .v a,.panel a{transition:none}
 }
 
+@media (max-width:920px){
+  .stamp{position:static;display:inline-block;margin:0 0 1.1rem;transform:rotate(-4deg)}
+}
+
 @media (max-width:760px){
   .cover{grid-template-columns:1fr;gap:2rem;padding-top:2.5rem}
+  .drawer-in{flex-wrap:wrap;justify-content:center;gap:.15rem 1rem;text-align:center}
+  .attachment::before{left:-1rem}
+  .attachment::after{right:-1rem}
   .attachment{max-width:9.5rem}
   .stamp{position:static;display:inline-block;margin:0 0 1.2rem;transform:rotate(-4deg)}
   .cover h1{font-size:clamp(2.1rem,10vw,2.9rem)}
@@ -435,14 +443,13 @@ footer{
 </div>
 
 <header class="cover">
-  <span class="stamp lift d1" aria-hidden="true">Active file</span>
-
   <figure class="attachment lift d1">
     <img src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
     <figcaption>Subject — Calgary, AB · 51.04°N</figcaption>
   </figure>
 
   <div>
+    <span class="stamp lift d1" aria-hidden="true">Active file</span>
     <h1 class="lift d2">Mourelatos<span class="comma">,</span><br>Michael</h1>
 
     <div class="fields lift d3">
