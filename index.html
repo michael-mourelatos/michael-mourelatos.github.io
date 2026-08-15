@@ -156,7 +156,17 @@ section{position:relative}
 .ring-stage .aside{justify-self:start}
 .face-ring{position:relative;width:min(42vh,30vw);aspect-ratio:4/5;margin:0;justify-self:end}
 .face-ring img{width:100%;height:100%;object-fit:cover;border:2px solid var(--cream);box-shadow:16px 16px 0 var(--blue);filter:contrast(1.06) saturate(1.05);display:block}
-.face-ring figcaption{position:absolute;left:50%;bottom:-3.2rem;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.face-ring figcaption{position:absolute;left:50%;bottom:-3.2rem;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);display:grid;justify-items:center}
+.face-ring .fr-alt{position:absolute;inset:0;opacity:0}
+.face-ring .fc{grid-area:1/1}
+.face-ring .fc-1,.face-ring .fc-2{opacity:0}
+.exhibits{padding:16vh 0 14vh;overflow:hidden}
+.strip{display:flex;flex-wrap:wrap;gap:2.4rem;justify-content:center;align-items:center;margin-top:3.4rem}
+.xplate{margin:0;background:var(--cream);padding:.5rem .5rem 1.5rem;box-shadow:10px 10px 0 var(--blue);transform:rotate(-2deg);transition:transform .25s cubic-bezier(.2,.7,.3,1)}
+.xplate:nth-child(2n){transform:rotate(1.6deg)}
+.xplate:hover{transform:rotate(0) translateY(-8px)}
+.xplate img{display:block;height:15rem;width:auto;max-width:100%;object-fit:cover}
+.xplate figcaption{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--black);text-align:center;padding-top:.7rem}
 .sk-stage{position:relative;z-index:1;height:100vh;display:grid;place-items:center;overflow:hidden}
 .gate{position:absolute;width:min(44vw,32rem);height:58vh;border:3px solid var(--ink2);display:grid;place-items:center;will-change:transform}
 .gate span{font-family:var(--mono);font-size:.8rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink2)}
@@ -173,6 +183,8 @@ section{position:relative}
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none}
   .cue{animation:none}
+  .face-ring .fr-alt{display:none}
+  .face-ring .fc-1,.face-ring .fc-2{display:none}
   .about .line{position:static;opacity:1;margin-bottom:8vh}
   .about .fx{display:none}
   .gate{display:none}
@@ -197,6 +209,9 @@ section{position:relative}
   .face-ring img{box-shadow:10px 10px 0 var(--blue)}
   .face-ring figcaption{position:static;transform:none;white-space:normal;margin-top:.8rem}
   .quick a,.alts a{display:inline-block;padding:.45rem .2rem;margin:-.45rem -.2rem}
+  .strip{gap:1.8rem}
+  .xplate{width:min(84vw,24rem)}
+  .xplate img{width:100%;height:auto}
 }
 </style>
 </head>
@@ -238,9 +253,25 @@ section{position:relative}
           <p class="aside">Six years across <b>industrial operations,<br>ed-tech and IoT.</b><br>Economics brain, builder's hands.<br><br>Off the clock: rugby coach since 2018,<br>fluent in Greek, one <b>unimpressed dog.</b></p>
           <figure class="face-ring">
             <img src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
-            <figcaption>Fig. 01 · The subject · 51.04°N</figcaption>
+            <img class="fr-alt fr-1" src="photos/suit.jpg" alt="Michael in a suit, jacket over one shoulder, on a garden path" width="720" height="900" loading="lazy">
+            <img class="fr-alt fr-2" src="photos/dog.jpg" alt="Michael and his partner by the river with one unimpressed dog and a bottle of champagne" width="720" height="900" loading="lazy">
+            <figcaption><span class="fc fc-0">Fig. 01 · The subject · 51.04°N</span><span class="fc fc-1">Fig. 01b · Formal configuration</span><span class="fc fc-2">Fig. 01c · The unimpressed dog · +2</span></figcaption>
           </figure>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="exhibits dark" data-sec="01a — Exhibits">
+    <p class="bn" style="top:5vh;left:2vw" aria-hidden="true">01a</p>
+    <div class="wrap">
+      <p class="kick rv">01a · Off the clock</p>
+      <p class="big rv">Supporting exhibits. <em>Life beyond the dashboard.</em></p>
+      <div class="strip">
+        <figure class="xplate rv"><img src="photos/rugby.jpg" alt="Michael carrying the rugby ball through two tacklers on a snowy pitch" width="1100" height="581" loading="lazy"><figcaption>Exh. A · Ball in hand · club rugby</figcaption></figure>
+        <figure class="xplate rv"><img src="photos/pasta.jpg" alt="Michael holding fresh handmade pasta in an Italian kitchen" width="640" height="800" loading="lazy"><figcaption>Exh. B · Fresh pasta · Italy</figcaption></figure>
+        <figure class="xplate rv"><img src="photos/golf.jpg" alt="Michael on a golf green with the Rockies behind" width="640" height="800" loading="lazy"><figcaption>Exh. C · Foothills golf · AB</figcaption></figure>
+        <figure class="xplate rv"><img src="photos/stampede.jpg" alt="Michael in a cowboy hat and western shirt" width="640" height="800" loading="lazy"><figcaption>Exh. D · Stampede protocol · YYC</figcaption></figure>
       </div>
     </div>
   </section>
@@ -504,12 +535,19 @@ section{position:relative}
 
   gsap.to('.hero',{opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 35%',scrub:true}});
 
-  var atl=gsap.timeline({scrollTrigger:{trigger:'.about',start:'top top',end:'+=260%',pin:true,scrub:0.6}});
+  var atl=gsap.timeline({scrollTrigger:{trigger:'.about',start:'top top',end:'+=360%',pin:true,scrub:0.6}});
   atl.fromTo('.about .l1',{opacity:0,y:40},{opacity:1,y:0,duration:1})
      .to('.about .l1',{opacity:0,y:-40,duration:1},'+=0.6')
      .fromTo('.about .l2',{opacity:0,y:40},{opacity:1,y:0,duration:1})
      .to('.about .l2',{opacity:0,y:-40,duration:1},'+=0.6')
      .fromTo('.about .l3',{opacity:0,y:40},{opacity:1,y:0,duration:1});
+  atl.to('.fr-1',{opacity:1,duration:.7},7)
+     .to('.fc-0',{opacity:0,duration:.7},7)
+     .to('.fc-1',{opacity:1,duration:.7},7)
+     .to('.fr-2',{opacity:1,duration:.7},8.4)
+     .to('.fc-1',{opacity:0,duration:.7},8.4)
+     .to('.fc-2',{opacity:1,duration:.7},8.4)
+     .to({},{duration:.6},9.1);
   atl.fromTo('.fx-dots circle',{opacity:0,scale:0,transformOrigin:'center'},{opacity:.9,scale:1,duration:1,stagger:0.03},0)
      .fromTo('.fx-links line',{strokeDashoffset:1},{strokeDashoffset:0,duration:1.2,stagger:0.08},1.2)
      .fromTo('.fx-line',{strokeDashoffset:1},{strokeDashoffset:0,duration:1.6},2.8)
