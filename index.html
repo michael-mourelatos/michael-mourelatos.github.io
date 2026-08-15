@@ -32,7 +32,8 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 body{
   margin:0;
@@ -125,7 +126,15 @@ section{position:relative}
 
 .skills{padding:20vh 0;overflow:hidden}
 
-.contact{padding:22vh 1.5rem 16vh;text-align:center}
+.contact{position:relative;overflow:hidden;padding:24vh 1.5rem 20vh;text-align:center}
+.mq{position:absolute;left:0;right:0;white-space:nowrap;font-family:var(--mono);font-weight:600;font-size:clamp(1.3rem,3.6vw,2.4rem);letter-spacing:.14em;color:transparent;-webkit-text-stroke:1.5px rgba(30,75,215,.6);pointer-events:none;z-index:1}
+.mq-top{top:7vh}.mq-bot{bottom:7vh}
+.mq span{display:inline-block;padding-right:4rem;animation:mqL 30s linear infinite}
+.mq-bot span{animation-name:mqR}
+@keyframes mqL{to{transform:translateX(-100%)}}
+@keyframes mqR{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+.contact-core{position:relative;z-index:2}
+.flash{position:absolute;inset:0;background:var(--blue);opacity:0;pointer-events:none;z-index:3}
 .stamp{display:inline-block;margin-top:8vh;font-family:var(--mono);font-weight:600;font-size:clamp(.95rem,2vw,1.2rem);letter-spacing:.3em;text-transform:uppercase;color:var(--red);border:4px double var(--red);padding:1.2rem 2rem 1.05rem;text-decoration:none;transform:rotate(-4deg);transition:transform .25s cubic-bezier(.2,.7,.3,1),background .25s ease,color .25s ease}
 .stamp:hover,.stamp:focus-visible{transform:rotate(0deg) scale(1.05);background:var(--red);color:var(--black)}
 .alts{margin-top:8vh;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
@@ -135,17 +144,25 @@ section{position:relative}
 .dark .bn{-webkit-text-stroke:2px rgba(251,248,240,.12)}
 .lets{position:fixed;right:22px;bottom:20px;z-index:80;font-family:var(--mono);font-weight:600;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red);background:var(--black);border:3px double var(--red);padding:.75rem 1.05rem .68rem;text-decoration:none;transform:rotate(-2deg);transition:transform .2s ease,background .2s ease,color .2s ease}
 .lets:hover,.lets:focus-visible{transform:rotate(0) scale(1.05);background:var(--red);color:var(--black)}
-.l3-stage{position:relative;min-height:78vh}
-.face{position:absolute;right:-4vw;bottom:-14vh;height:92vh;width:auto;filter:grayscale(1) brightness(.92) contrast(1.1);z-index:1}
-.facefade{position:absolute;right:-4vw;bottom:-14vh;height:92vh;aspect-ratio:720/900;z-index:2;background:linear-gradient(90deg,var(--black) 0%,rgba(14,11,8,0) 45%),linear-gradient(0deg,rgba(30,75,215,.28),rgba(30,75,215,.28))}
-.ghostname{position:absolute;left:-2vw;bottom:2vh;margin:0;font-family:var(--mono);font-weight:600;font-size:clamp(4rem,11vw,9rem);letter-spacing:.04em;color:transparent;-webkit-text-stroke:2px rgba(251,248,240,.2);z-index:3;pointer-events:none}
-.l3-stage .aside{position:absolute;left:0;top:18%;z-index:4;text-align:left}
-.l3-stage .kick2{position:absolute;left:0;top:8%;z-index:4;font-family:var(--mono);font-size:.6875rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--blue)}
-.sk-row{position:relative;margin:0 0 4.5rem;z-index:1}
-.sk-main{position:relative;font-weight:400;font-size:clamp(1.7rem,4.2vw,3.2rem);line-height:1.2;margin:0;z-index:2}
+.about .fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.95;pointer-events:none}
+.ring-stage{position:relative;min-height:70vh;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4rem;text-align:left}
+.ring-stage .aside{justify-self:start}
+.face-ring{position:relative;width:min(46vh,38vw);aspect-ratio:1;margin:0;justify-self:end}
+.face-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:2px solid var(--cream);filter:grayscale(1) contrast(1.08);display:block}
+.face-ring::before{content:"";position:absolute;inset:-12%;border:1px dashed rgba(251,248,240,.4);border-radius:50%;animation:orbit 46s linear infinite}
+.face-ring::after{content:"";position:absolute;left:-18%;right:-18%;top:50%;height:1px;background:rgba(251,248,240,.22)}
+.face-ring .tick{position:absolute;left:50%;top:-16%;bottom:-16%;width:1px;background:rgba(251,248,240,.22)}
+.face-ring .dot{position:absolute;right:-12%;top:50%;width:9px;height:9px;border-radius:50%;background:var(--red);transform:translateY(-50%)}
+.face-ring figcaption{position:absolute;left:50%;bottom:-3.2rem;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.sk-stage{position:relative;height:100vh;display:grid;place-items:center;overflow:hidden}
+.gate{position:absolute;width:min(44vw,32rem);height:58vh;border:3px solid var(--black);display:grid;place-items:center;will-change:transform}
+.gate span{font-family:var(--mono);font-size:.8rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase}
+.sk-slide{position:absolute;text-align:center;max-width:58rem;padding:0 1.5rem;opacity:0;will-change:transform}
+.sk-main{position:relative;font-weight:400;font-size:clamp(1.9rem,4.6vw,3.6rem);line-height:1.2;margin:0;z-index:2}
 .sk-main em{font-style:italic}
-.sk-ghost{position:absolute;left:.35em;top:.35em;right:-.35em;font-weight:400;font-size:clamp(1.7rem,4.2vw,3.2rem);line-height:1.2;margin:0;color:transparent;-webkit-text-stroke:1.5px rgba(14,11,8,.3);z-index:1;pointer-events:none}
-.sk-lbl{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.55rem}
+.sk-ghost{position:absolute;left:50%;top:.4em;width:100%;transform:translateX(-49%) translateY(.35em);font-weight:400;font-size:clamp(1.9rem,4.6vw,3.6rem);line-height:1.2;margin:0;color:transparent;-webkit-text-stroke:1.5px rgba(14,11,8,.28);z-index:1;pointer-events:none}
+.sk-lbl{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.8rem}
 .thumb svg{display:block;width:100%;height:100%}
 .eot{text-align:center;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--blue);padding:0 1.5rem 3.2rem;margin:0;background:var(--black)}
 
@@ -156,6 +173,11 @@ section{position:relative}
   .rv{opacity:1;transform:none}
   .cue{animation:none}
   .about .line{position:static;opacity:1;margin-bottom:8vh}
+  .about .fx{display:none}
+  .gate{display:none}
+  .sk-slide{position:static;opacity:1;margin:6vh 0}
+  .sk-stage{height:auto;display:block;padding:10vh 0}
+  .mq span{animation:none}
   .role{position:static;opacity:1;visibility:visible;margin-bottom:10vh}
 }
 
@@ -194,16 +216,23 @@ section{position:relative}
 
   <section class="about dark" id="about" data-sec="01 — About">
     <p class="bn" style="top:4vh;right:2vw" aria-hidden="true">01</p>
+    <svg class="fx" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="fx-dots" fill="#1E4BD7"><circle cx="80" cy="120" r="4"/><circle cx="180" cy="80" r="4"/><circle cx="300" cy="150" r="4"/><circle cx="420" cy="90" r="4"/><circle cx="560" cy="140" r="4"/><circle cx="700" cy="70" r="4"/><circle cx="840" cy="130" r="4"/><circle cx="140" cy="260" r="4"/><circle cx="260" cy="300" r="4"/><circle cx="400" cy="260" r="4"/><circle cx="540" cy="300" r="4"/><circle cx="680" cy="250" r="4"/><circle cx="820" cy="300" r="4"/><circle cx="120" cy="430" r="4"/><circle cx="240" cy="470" r="4"/><circle cx="380" cy="420" r="4"/><circle cx="520" cy="470" r="4"/><circle cx="660" cy="430" r="4"/><circle cx="800" cy="470" r="4"/><circle cx="920" cy="400" r="4"/><circle cx="90" cy="540" r="4"/><circle cx="930" cy="220" r="4"/></g>
+      <g class="fx-links" stroke="#FBF8F0" stroke-width="1" opacity=".45"><line x1="80" y1="120" x2="260" y2="300" pathLength="1" stroke-dasharray="1"/><line x1="180" y1="80" x2="400" y2="260" pathLength="1" stroke-dasharray="1"/><line x1="300" y1="150" x2="540" y2="300" pathLength="1" stroke-dasharray="1"/><line x1="420" y1="90" x2="680" y2="250" pathLength="1" stroke-dasharray="1"/><line x1="560" y1="140" x2="820" y2="300" pathLength="1" stroke-dasharray="1"/><line x1="140" y1="260" x2="380" y2="420" pathLength="1" stroke-dasharray="1"/><line x1="260" y1="300" x2="520" y2="470" pathLength="1" stroke-dasharray="1"/><line x1="400" y1="260" x2="660" y2="430" pathLength="1" stroke-dasharray="1"/><line x1="540" y1="300" x2="800" y2="470" pathLength="1" stroke-dasharray="1"/><line x1="700" y1="70" x2="930" y2="220" pathLength="1" stroke-dasharray="1"/></g>
+      <path class="fx-line" d="M60,520 C 250,480 380,545 520,360 S 800,180 950,110" fill="none" stroke="#E4342B" stroke-width="3.5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+    </svg>
     <div class="wrap stage">
       <div class="line l1"><p class="kick">01 · About</p><p class="big">I build data products <b>end to end</b> — the pipeline, the model, the application, the adoption.</p></div>
       <div class="line l2"><p class="big">The part people hire twice is the <em>translation:</em> operations into requirements, data into decisions.</p></div>
       <div class="line l3">
-        <div class="l3-stage">
-          <img class="face" src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
-          <div class="facefade" aria-hidden="true"></div>
-          <p class="ghostname" aria-hidden="true">MOURELATOS</p>
-          <span class="kick2">The subject · 51.04°N</span>
+        <div class="ring-stage">
           <p class="aside">Six years across <b>industrial operations,<br>ed-tech and IoT.</b><br>Economics brain, builder's hands.<br><br>Off the clock: rugby coach since 2018,<br>fluent in Greek, one <b>unimpressed dog.</b></p>
+          <figure class="face-ring">
+            <span class="tick" aria-hidden="true"></span>
+            <span class="dot" aria-hidden="true"></span>
+            <img src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
+            <figcaption>Fig. 01 · The subject · 51.04°N</figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -279,25 +308,30 @@ section{position:relative}
 
   <section class="skills" data-sec="04 — Skills">
     <p class="bn" style="top:8vh;right:3vw" aria-hidden="true">04</p>
-    <div class="wrap">
-      <p class="kick rv">04 · Skills</p>
-      <div class="sk-row rv"><span class="sk-lbl">Build</span><p class="sk-main">Python — Dash, Streamlit, pandas — SQL, <em>AI-assisted development.</em></p><p class="sk-ghost" aria-hidden="true">Python — Dash, Streamlit, pandas — SQL, AI-assisted development.</p></div>
-      <div class="sk-row rv"><span class="sk-lbl">Platform</span><p class="sk-main">Databricks, Power BI — DAX, M — Snowflake, Fabric, dbt, <em>semantic models.</em></p><p class="sk-ghost" aria-hidden="true">Databricks, Power BI — DAX, M — Snowflake, Fabric, dbt, semantic models.</p></div>
-      <div class="sk-row rv"><span class="sk-lbl">Ship</span><p class="sk-main">Git, dev → UAT → prod, Azure DevOps, Agile, <em>stakeholder translation.</em></p><p class="sk-ghost" aria-hidden="true">Git, dev → UAT → prod, Azure DevOps, Agile, stakeholder translation.</p></div>
+    <div class="sk-stage">
+      <div class="gate" aria-hidden="true"><span>04 · Skills</span></div>
+      <div class="sk-slide s0"><span class="sk-lbl">Build</span><p class="sk-main">Python — Dash, Streamlit, pandas — SQL, <em>AI-assisted development.</em></p><p class="sk-ghost" aria-hidden="true">Python — Dash, Streamlit, pandas — SQL, AI-assisted development.</p></div>
+      <div class="sk-slide s1"><span class="sk-lbl">Platform</span><p class="sk-main">Databricks, Power BI — DAX, M — Snowflake, Fabric, dbt, <em>semantic models.</em></p><p class="sk-ghost" aria-hidden="true">Databricks, Power BI — DAX, M — Snowflake, Fabric, dbt, semantic models.</p></div>
+      <div class="sk-slide s2"><span class="sk-lbl">Ship</span><p class="sk-main">Git, dev → UAT → prod, Azure DevOps, Agile, <em>stakeholder translation.</em></p><p class="sk-ghost" aria-hidden="true">Git, dev → UAT → prod, Azure DevOps, Agile, stakeholder translation.</p></div>
     </div>
   </section>
 
   <section class="contact dark" data-sec="05 — Contact">
     <p class="bn" style="bottom:4vh;left:3vw" aria-hidden="true">05</p>
-    <p class="kick rv">05 · Contact</p>
-    <p class="big rv">Have a messy dataset<br>and a <b>deadline?</b></p>
-    <a class="stamp rv" href="mailto:michaelmourelatos99@gmail.com">Email me</a>
-    <p class="alts rv">
-      <a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">LinkedIn</a> &nbsp;·&nbsp;
-      <a href="resume.pdf">Resume (PDF)</a> &nbsp;·&nbsp;
-      <a href="https://github.com/michaelmourelatos99-commits">GitHub</a> &nbsp;·&nbsp;
-      <a href="file.html">The full file</a>
-    </p>
+    <div class="mq mq-top"><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span></div>
+    <div class="contact-core">
+      <p class="kick rv">05 · Contact</p>
+      <p class="big rv">Have a messy dataset<br>and a <b>deadline?</b></p>
+      <a class="stamp" href="mailto:michaelmourelatos99@gmail.com">Email me</a>
+      <p class="alts rv">
+        <a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">LinkedIn</a> &nbsp;·&nbsp;
+        <a href="resume.pdf">Resume (PDF)</a> &nbsp;·&nbsp;
+        <a href="https://github.com/michaelmourelatos99-commits">GitHub</a> &nbsp;·&nbsp;
+        <a href="file.html">The full file</a>
+      </p>
+    </div>
+    <div class="mq mq-bot"><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span></div>
+    <div class="flash" aria-hidden="true"></div>
   </section>
 
   <p class="eot">End of transmission</p>
@@ -467,6 +501,10 @@ section{position:relative}
      .fromTo('.about .l2',{opacity:0,y:40},{opacity:1,y:0,duration:1})
      .to('.about .l2',{opacity:0,y:-40,duration:1},'+=0.6')
      .fromTo('.about .l3',{opacity:0,y:40},{opacity:1,y:0,duration:1});
+  atl.fromTo('.fx-dots circle',{opacity:0,scale:0,transformOrigin:'center'},{opacity:.9,scale:1,duration:1,stagger:0.03},0)
+     .fromTo('.fx-links line',{strokeDashoffset:1},{strokeDashoffset:0,duration:1.2,stagger:0.08},1.2)
+     .fromTo('.fx-line',{strokeDashoffset:1},{strokeDashoffset:0,duration:1.6},2.8)
+     .to('.fx',{opacity:.12,duration:.8},4.6);
 
   gsap.set('.role',{visibility:'visible'});
   var etl=gsap.timeline({scrollTrigger:{trigger:'.exp',start:'top top',end:'+=320%',pin:true,scrub:0.6}});
@@ -487,13 +525,18 @@ section{position:relative}
     gsap.fromTo(el,{yPercent:18},{yPercent:-18,ease:'none',
       scrollTrigger:{trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
   });
-  document.querySelectorAll('.sk-row').forEach(function(el,i){
-    gsap.fromTo(el,{xPercent:(i%2?4:-4)},{xPercent:0,ease:'none',
-      scrollTrigger:{trigger:el,start:'top bottom',end:'top 40%',scrub:true}});
+  var stl=gsap.timeline({scrollTrigger:{trigger:'.skills',start:'top top',end:'+=300%',pin:true,scrub:0.6}});
+  stl.to('.gate',{scale:16,opacity:0,ease:'power2.in',duration:2},0);
+  ['.s0','.s1','.s2'].forEach(function(sel,i){
+    var at=1.1+i*2.1;
+    stl.fromTo(sel,{scale:.7,opacity:0},{scale:1,opacity:1,duration:1},at)
+       .to(sel,{scale:2.6,opacity:0,duration:1},at+1.35);
   });
 
-  gsap.fromTo('.stamp',{scale:0.5,rotate:-18,opacity:0},{scale:1,rotate:-4,opacity:1,ease:'back.out(1.6)',
-    scrollTrigger:{trigger:'.contact',start:'top 60%'}});
+  var slam=gsap.timeline({scrollTrigger:{trigger:'.contact',start:'top 55%'}});
+  slam.fromTo('.stamp',{scale:7,rotate:-35,opacity:0},{scale:1,rotate:-4,opacity:1,duration:.55,ease:'power4.in'})
+      .fromTo('.flash',{opacity:.35},{opacity:0,duration:.5,ease:'power2.out'},'-=0.06')
+      .fromTo('.contact-core',{y:-10},{y:0,duration:.4,ease:'bounce.out'},'-=0.45');
 })();
 </script>
 </body>
