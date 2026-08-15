@@ -4,40 +4,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Michael Mourelatos — Data &amp; Analytics</title>
-<meta name="description" content="Data and analytics professional in Calgary. Python applications, enterprise semantic models and Databricks pipelines for industrial operations.">
-<meta name="theme-color" content="#F0EBDF">
+<title>Michael Mourelatos — A Life in Six Chapters</title>
+<meta name="description" content="Michael Mourelatos. Calgary, rugby, the old country, one unimpressed dog, and a career in data. Scroll through.">
+<meta name="theme-color" content="#1E4BD7">
 
-<meta property="og:title" content="Michael Mourelatos — Data &amp; Analytics">
-<meta property="og:description" content="Personnel file MM-2026: data products built end to end, for operations that run on messy, high-volume data.">
+<meta property="og:title" content="Michael Mourelatos — A Life in Six Chapters">
+<meta property="og:description" content="Scroll through. The file is at the end.">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://michaelmourelatos99-commits.github.io">
 <meta property="og:image" content="https://michaelmourelatos99-commits.github.io/portrait.jpg">
 <meta name="twitter:card" content="summary">
 
-<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="%231E4BD7"/><text x="32" y="45" font-family="Arial,sans-serif" font-weight="900" font-size="36" fill="%23FBF8F0" text-anchor="middle">M</text></svg>'>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%231E4BD7"/><text x="32" y="45" font-family="Georgia,serif" font-style="italic" font-size="38" fill="%23FBF8F0" text-anchor="middle">M</text></svg>'>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --paper:#F0EBDF;
-  --manila:#1E4BD7;
-  --manila-deep:#1234A3;
-  --manila-shade:#0E2B87;
-  --sheet:#FBF8F0;
-  --ink:#1839A8;
-  --ink-soft:#4759A8;
-  --red:#C81818;
   --blue:#1E4BD7;
-  --blue-faint:rgba(30,75,215,.14);
+  --blue-deep:#1638A8;
+  --black:#0E0B08;
+  --cream:#FBF8F0;
+  --red:#E4342B;
 
-  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
-
-  --maxw:62rem;
+  --serif:"Newsreader",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -45,651 +38,403 @@ html{-webkit-text-size-adjust:100%}
 
 body{
   margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--sans);
-  font-size:1rem;
-  line-height:1.65;
-  -webkit-font-smoothing:antialiased;
+  background:var(--blue);
+  color:var(--black);
+  font-family:var(--serif);
+  font-optical-sizing:auto;
+  line-height:1.55;
   overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
 }
 
-::selection{background:var(--red);color:var(--sheet)}
+::selection{background:var(--black);color:var(--cream)}
 
-a{color:var(--ink)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--black);outline-offset:3px}
 
 .skip{position:absolute;left:-9999px}
-.skip:focus{left:1rem;top:1rem;background:var(--sheet);padding:.6rem 1rem;z-index:50}
+.skip:focus{left:1.5rem;top:1.5rem;background:var(--cream);padding:.6rem 1rem;z-index:99}
 
-.drawer{
-  border-bottom:2px solid var(--ink);
-  background:var(--paper);
-}
-.drawer-in{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:.55rem 1.25rem;
-  display:flex;
-  justify-content:space-between;
-  gap:1rem;
-  font-family:var(--mono);
-  font-size:.6875rem;
-  font-weight:500;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-.drawer .no{color:var(--red)}
-.drawer .date{color:var(--ink-soft)}
-
-.cover{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:3.5rem 1.25rem 3rem;
-  display:grid;
-  grid-template-columns:12rem 1fr;
-  gap:2.5rem;
-  align-items:start;
-  position:relative;
+.frame{
+  position:fixed;
+  inset:10px;
+  border:2px solid var(--black);
+  pointer-events:none;
+  z-index:60;
 }
 
-.attachment{
-  position:relative;
-  margin:0;
-  transform:rotate(-2deg);
-}
-.attachment img{
-  display:block;
+#terrain{
+  position:fixed;
+  inset:0;
   width:100%;
-  height:auto;
-  aspect-ratio:4/5;
-  object-fit:cover;
-  border:6px solid var(--sheet);
-  box-shadow:0 2px 4px rgba(28,25,19,.18),0 10px 24px -12px rgba(28,25,19,.35);
-  filter:saturate(.85) contrast(1.03);
-}
-.attachment::before,.attachment::after{
-  content:"";
-  position:absolute;
-  width:5.5rem;height:1.6rem;
-  background:rgba(250,247,238,.55);
-  box-shadow:0 1px 2px rgba(28,25,19,.15);
-  border-left:1px dashed rgba(28,25,19,.12);
-  border-right:1px dashed rgba(28,25,19,.12);
-}
-.attachment::before{top:-.8rem;left:-2rem;transform:rotate(-38deg)}
-.attachment::after{bottom:-.7rem;right:-1.9rem;transform:rotate(-40deg)}
-
-.attachment figcaption{
-  font-family:var(--mono);
-  font-size:.625rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--blue);
-  text-align:center;
-  padding-top:.6rem;
-}
-
-.cover h1{
-  font-family:var(--sans);
-  font-stretch:118%;
-  font-weight:900;
-  font-size:clamp(2.3rem,6.2vw,4.1rem);
-  line-height:.96;
-  letter-spacing:-.015em;
-  text-transform:uppercase;
-  margin:0 0 1.6rem;
-}
-.cover h1 .comma{color:var(--red)}
-
-.fields{margin:0 0 1.6rem;max-width:34rem}
-.field{
-  display:flex;
-  align-items:baseline;
-  gap:.75rem;
-  padding:.42rem 0;
-}
-.field .k{
-  font-family:var(--mono);
-  font-size:.6875rem;
-  font-weight:600;
-  letter-spacing:.13em;
-  color:var(--red);
-  white-space:nowrap;
-  text-transform:uppercase;
-}
-.field .leader{
-  flex:1;
-  border-bottom:2px dotted rgba(28,25,19,.3);
-  transform:translateY(-.28em);
-}
-.field .v{
-  font-family:var(--mono);
-  font-size:.8125rem;
-  text-align:right;
-}
-.field .v a{
-  text-decoration:none;
-  border-bottom:2px solid var(--blue);
-  color:var(--ink);
-  transition:color .18s ease,background .18s ease;
-}
-.field .v a:hover{background:var(--blue);color:var(--sheet)}
-
-.brief{
-  font-size:1.0625rem;
-  line-height:1.6;
-  max-width:34rem;
-  margin:0;
-  color:var(--ink);
-}
-.brief .lead-in{
-  font-family:var(--mono);
-  font-size:.6875rem;
-  font-weight:600;
-  letter-spacing:.13em;
-  color:var(--blue);
-  display:block;
-  margin-bottom:.35rem;
-  text-transform:uppercase;
-}
-.brief em{font-style:italic;color:var(--red)}
-
-.stamp{
-  position:absolute;
-  top:2.2rem;
-  right:1rem;
-  font-family:var(--mono);
-  font-weight:600;
-  font-size:.8125rem;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--red);
-  border:3px double var(--red);
-  padding:.5rem .9rem .45rem;
-  transform:rotate(7deg);
-  opacity:.82;
+  height:100%;
+  z-index:0;
   pointer-events:none;
 }
 
-.filing{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:0 1.25rem 4rem;
-}
-
-.tabs{
-  display:flex;
-  gap:.4rem;
-  padding:0 1rem;
-  position:relative;
-  z-index:2;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
-.tabs::-webkit-scrollbar{display:none}
-
-.tab{
-  appearance:none;
-  border:0;
-  cursor:pointer;
+.hud{
+  position:fixed;
+  z-index:55;
   font-family:var(--mono);
   font-size:.6875rem;
   font-weight:600;
-  letter-spacing:.13em;
+  letter-spacing:.16em;
   text-transform:uppercase;
-  color:#D9E0F9;
-  background:var(--manila-deep);
-  padding:.62rem 1.15rem .5rem;
-  clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 100%,0 100%);
-  transform:translateY(3px);
-  transition:transform .18s ease,background .18s ease,color .18s ease;
-  white-space:nowrap;
 }
-.tab:hover{transform:translateY(0);background:var(--manila)}
-.tab[aria-selected="true"]{
-  background:var(--manila);
-  color:var(--sheet);
-  transform:translateY(0);
-  padding-bottom:.62rem;
-}
+.hud.tl{top:24px;left:26px}
+.hud.tr{top:24px;right:26px;text-align:right}
+.hud.bl{bottom:24px;left:26px}
+.hud.br{bottom:24px;right:26px;text-align:right}
+.hud a{text-decoration:none;border-bottom:2px solid var(--black)}
+.hud a:hover{background:var(--black);color:var(--blue)}
 
-.folder{
-  background:var(--manila);
-  border-radius:0 10px 10px 10px;
-  box-shadow:0 2px 3px rgba(28,25,19,.14),0 16px 34px -18px rgba(28,25,19,.4);
-  padding:1.1rem;
-  position:relative;
-}
-.folder::before{
-  content:"";
-  position:absolute;
-  left:0;right:0;bottom:-7px;
-  height:14px;
-  background:var(--manila-shade);
-  border-radius:0 0 10px 10px;
-  z-index:-1;
-}
+main{position:relative;z-index:1}
 
-.sheet{
-  background:
-    linear-gradient(var(--red),var(--red)) no-repeat 3.2rem 0/2px 100%,
-    repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--blue-faint) 31px,var(--blue-faint) 32px),
-    var(--sheet);
-  min-height:26rem;
-  padding:2.2rem 2.4rem 2.6rem 4.6rem;
-  box-shadow:inset 0 1px 3px rgba(28,25,19,.1);
+.hero{
+  min-height:100vh;
+  display:grid;
+  place-content:center;
+  text-align:center;
+  padding:0 1.5rem;
 }
-
-.js .panel[hidden]{display:none}
-.panel[hidden]{display:block}
-.js .panel{animation:pull .4s cubic-bezier(.2,.7,.3,1) both}
-@keyframes pull{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-
-.sheet-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  gap:1rem;
-  margin-bottom:1.8rem;
-  border-bottom:2px solid var(--ink);
-  padding-bottom:.5rem;
-}
-h2{
-  font-family:var(--sans);
-  font-stretch:115%;
-  font-weight:800;
-  font-size:1.55rem;
-  letter-spacing:.005em;
+.kicker{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:600;
+  letter-spacing:.24em;
   text-transform:uppercase;
+  margin:0 0 1.4rem;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(3rem,10.5vw,8.2rem);
+  line-height:.98;
+  letter-spacing:-.02em;
   margin:0;
 }
-.ref{
+.hero h1 em{font-style:italic;font-weight:300}
+.hero .sub{
+  font-family:var(--mono);
+  font-size:.75rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin:2.2rem 0 0;
+}
+.cue{
+  margin:3.2rem auto 0;
+  width:2px;
+  height:64px;
+  background:var(--black);
+  animation:cue 1.6s cubic-bezier(.6,0,.4,1) infinite;
+  transform-origin:top;
+}
+@keyframes cue{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
+.chapter{
+  position:relative;
+  padding:22vh 1.5rem;
+  max-width:64rem;
+  margin:0 auto;
+}
+.ch-label{
   font-family:var(--mono);
   font-size:.6875rem;
   font-weight:600;
-  letter-spacing:.13em;
-  color:var(--red);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  text-align:center;
+  margin:0 0 1.1rem;
+}
+.ch-label::before,.ch-label::after{content:" — "}
+.beat{
+  font-size:clamp(1.6rem,3.6vw,2.7rem);
+  line-height:1.28;
+  font-weight:400;
+  text-align:center;
+  max-width:26ch;
+  margin:0 auto;
+}
+.beat em{font-style:italic}
+.beat + .beat{margin-top:8vh}
+
+.strip{
+  display:flex;
+  justify-content:center;
+  gap:2.2rem;
+  flex-wrap:wrap;
+  margin:10vh auto 0;
+}
+.slot{
+  width:min(15rem,38vw);
+  border:2px solid var(--black);
+  background:
+    repeating-linear-gradient(45deg,transparent 0 7px,rgba(14,11,8,.8) 7px 9px);
+  aspect-ratio:4/5;
+  position:relative;
+  box-shadow:8px 8px 0 rgba(14,11,8,.9);
+}
+.slot.wide{aspect-ratio:3/2;width:min(21rem,72vw)}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08)}
+.slot figcaption{
+  position:absolute;
+  left:-2px;
+  bottom:-2.4rem;
+  font-family:var(--mono);
+  font-size:.625rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
   white-space:nowrap;
 }
+.slot{margin:0 0 3rem}
 
-p{margin:0 0 1rem;max-width:36rem}
-p:last-child{margin-bottom:0}
+.tilt-l{transform:rotate(-2deg)}
+.tilt-r{transform:rotate(1.6deg)}
 
-.panel a{
-  text-decoration:none;
-  border-bottom:2px solid var(--blue);
-  transition:background .18s ease,color .18s ease;
-}
-.panel a:hover{background:var(--blue);color:var(--sheet)}
-
-.entry{margin-top:2rem;padding-top:1.6rem;border-top:1px dashed rgba(28,25,19,.35)}
-
-.when{
-  font-family:var(--mono);
-  font-size:.6875rem;
-  font-weight:600;
-  letter-spacing:.13em;
-  color:var(--red);
-  margin:0 0 .3rem;
-}
-h3{
-  font-family:var(--sans);
-  font-stretch:112%;
-  font-weight:800;
-  font-size:1.125rem;
-  line-height:1.3;
-  margin:0 0 .1rem;
-}
-.org{
-  font-family:var(--mono);
-  font-size:.6875rem;
-  letter-spacing:.1em;
-  text-transform:uppercase;
+.work{
+  position:relative;
+  z-index:1;
+  background:var(--black);
   color:var(--blue);
-  margin:0 0 .7rem;
+  margin:14vh 0 0;
+  padding:18vh 1.5rem 20vh;
+  text-align:center;
 }
-.stack{
-  font-family:var(--mono);
-  font-size:.6875rem;
-  letter-spacing:.04em;
-  color:var(--ink-soft);
-  margin:.7rem 0 0;
-}
-.stack::before{content:"TOOLS — ";color:var(--red);font-weight:600}
+.work .ch-label{color:var(--blue)}
+.work .beat{color:var(--cream);max-width:30ch}
+.work .beat b{color:var(--blue);font-weight:500}
 
-.skills{margin:0}
-.skills dt{
+.stamp{
+  display:inline-block;
+  margin-top:9vh;
   font-family:var(--mono);
-  font-size:.6875rem;
   font-weight:600;
-  letter-spacing:.13em;
-  text-transform:uppercase;
-  color:var(--red);
-  margin-bottom:.3rem;
-}
-.skills dd{margin:0 0 1.4rem;max-width:36rem}
-.skills dd:last-child{margin-bottom:0}
-
-.plain{list-style:none;margin:0;padding:0;max-width:30rem}
-.plain .field{padding:.35rem 0}
-
-.interim{
-  font-style:italic;
-  color:var(--ink-soft);
-  border-left:3px solid var(--manila-deep);
-  padding-left:1rem;
-}
-
-footer{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:0 1.25rem 3rem;
-}
-.eof{
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  font-family:var(--mono);
-  font-size:.6875rem;
-  font-weight:600;
+  font-size:clamp(.9rem,2vw,1.15rem);
   letter-spacing:.3em;
   text-transform:uppercase;
-  color:var(--ink-soft);
+  color:var(--red);
+  border:4px double var(--red);
+  padding:1.1rem 1.9rem 1rem;
+  text-decoration:none;
+  transform:rotate(-4deg);
+  transition:transform .25s cubic-bezier(.2,.7,.3,1),background .25s ease,color .25s ease;
 }
-.eof::before,.eof::after{content:"";flex:1;border-top:2px solid var(--ink)}
+.stamp:hover,.stamp:focus-visible{
+  transform:rotate(0deg) scale(1.04);
+  background:var(--red);
+  color:var(--black);
+}
+.work .links{
+  margin-top:9vh;
+  font-family:var(--mono);
+  font-size:.6875rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--cream);
+}
+.work .links a{text-decoration:none;border-bottom:2px solid var(--blue)}
+.work .links a:hover{background:var(--blue);color:var(--black)}
 
-.lift{opacity:0;transform:translateY(10px);animation:lift .7s cubic-bezier(.2,.7,.3,1) forwards}
-.d1{animation-delay:.04s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}.d4{animation-delay:.28s}
-@keyframes lift{to{opacity:1;transform:none}}
+.eot{
+  background:var(--black);
+  color:var(--blue);
+  text-align:center;
+  font-family:var(--mono);
+  font-size:.625rem;
+  font-weight:600;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  padding:0 1.5rem 3.4rem;
+  margin:0;
+}
+
+.rv{opacity:0;transform:translateY(34px)}
+.rv.on{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.2,.7,.3,1),transform .9s cubic-bezier(.2,.7,.3,1)}
 
 @media (prefers-reduced-motion:reduce){
-  .lift,.js .panel{animation:none;opacity:1;transform:none}
-  .tab,.field .v a,.panel a{transition:none}
+  .rv{opacity:1;transform:none}
+  .cue{animation:none}
+  .stamp{transition:none}
 }
 
-@media (max-width:920px){
-  .stamp{position:static;display:inline-block;margin:0 0 1.1rem;transform:rotate(-4deg)}
-}
-
-@media (max-width:760px){
-  .cover{grid-template-columns:1fr;gap:2rem;padding-top:2.5rem}
-  .drawer-in{flex-wrap:wrap;justify-content:center;gap:.15rem 1rem;text-align:center}
-  .attachment::before{left:-1rem}
-  .attachment::after{right:-1rem}
-  .attachment{max-width:9.5rem}
-  .stamp{position:static;display:inline-block;margin:0 0 1.2rem;transform:rotate(-4deg)}
-  .cover h1{font-size:clamp(2.1rem,10vw,2.9rem)}
-  .sheet{padding:1.8rem 1.3rem 2.2rem 2.6rem;background:
-    linear-gradient(var(--red),var(--red)) no-repeat 1.6rem 0/2px 100%,
-    repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--blue-faint) 31px,var(--blue-faint) 32px),
-    var(--sheet)}
-  .sheet-head{flex-direction:column;gap:.2rem;align-items:flex-start}
-  .field{flex-wrap:wrap}
-  .field .v{text-align:left}
+@media (max-width:700px){
+  .frame{inset:6px}
+  .hud.tr,.hud.br{display:none}
+  .strip{gap:1.6rem}
+  .slot{box-shadow:5px 5px 0 rgba(14,11,8,.9)}
+  .chapter{padding:16vh 1.25rem}
 }
 </style>
 </head>
 
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#ch1">Skip to content</a>
 
-<div class="drawer">
-  <div class="drawer-in">
-    <span class="no">FILE NO. MM-2026-001</span>
-    <span>MOURELATOS, MICHAEL</span>
-    <span class="date">LAST UPDATED AUG 2026</span>
-  </div>
-</div>
+<div class="frame" aria-hidden="true"></div>
+<canvas id="terrain" aria-hidden="true"></canvas>
 
-<header class="cover">
-  <figure class="attachment lift d1">
-    <img src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
-    <figcaption>Subject — Calgary, AB · 51.04°N</figcaption>
-  </figure>
+<div class="hud tl">Mourelatos, M.</div>
+<div class="hud tr">Calgary&nbsp;AB · 51.04°N</div>
+<div class="hud bl" id="chnum">CH.&nbsp;0&nbsp;/&nbsp;VI</div>
+<div class="hud br"><a href="file.html">The file →</a></div>
 
-  <div>
-    <span class="stamp lift d1" aria-hidden="true">Active file</span>
-    <h1 class="lift d2">Mourelatos<span class="comma">,</span><br>Michael</h1>
+<main>
 
-    <div class="fields lift d3">
-      <div class="field"><span class="k">Occupation</span><span class="leader"></span><span class="v">Data &amp; Analytics</span></div>
-      <div class="field"><span class="k">Location</span><span class="leader"></span><span class="v">Calgary, Alberta</span></div>
-      <div class="field"><span class="k">Contact</span><span class="leader"></span><span class="v"><a href="mailto:michaelmourelatos99@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">LinkedIn</a></span></div>
-      <div class="field"><span class="k">Documents</span><span class="leader"></span><span class="v"><a href="resume.pdf">Resume (PDF)</a></span></div>
+  <header class="hero">
+    <p class="kicker rv">MM-2026 · Personal record</p>
+    <h1 class="rv">Michael<br><em>Mourelatos</em></h1>
+    <p class="sub rv">A life in six chapters · scroll</p>
+    <div class="cue" aria-hidden="true"></div>
+  </header>
+
+  <section class="chapter" id="ch1" data-ch="I">
+    <p class="ch-label rv">Chapter I · The old country</p>
+    <p class="beat rv">The surname is <em>Mourelatos.</em> Some stories start long before you do.</p>
+    <div class="strip">
+      <figure class="slot tilt-l rv"><figcaption>Awaiting — IMG_1141 · the sea</figcaption></figure>
+      <figure class="slot tilt-r rv"><figcaption>Awaiting — IMG_0985 · the rocks</figcaption></figure>
     </div>
+    <p class="beat rv">Went back to look at it. <em>Photographed the storm instead.</em></p>
+    <div class="strip">
+      <figure class="slot wide rv"><figcaption>Awaiting — IMG_8982 · the storm</figcaption></figure>
+    </div>
+  </section>
 
-    <p class="brief lift d4">
-      <span class="lead-in">Summary of subject</span>
-      Builds data products end to end — Python applications, enterprise
-      semantic models, Databricks pipelines — for industrial operations that
-      run on messy, high-volume data. <em>Known for the translation:</em>
-      turning what operations and finance actually need into requirements,
-      and what the data actually says into plain language.
+  <section class="chapter" data-ch="II">
+    <p class="ch-label rv">Chapter II · The grand tour</p>
+    <p class="beat rv">Rome. Dubrovnik. One <em>borrowed</em> throne.</p>
+    <div class="strip">
+      <figure class="slot tilt-r rv"><figcaption>Awaiting — IMG_8904 · colosseum</figcaption></figure>
+      <figure class="slot tilt-l rv"><figcaption>Awaiting — IMG_1007 · the throne</figcaption></figure>
+    </div>
+    <p class="beat rv">Travel is glamorous for roughly <em>eleven hours a day.</em></p>
+    <div class="strip">
+      <figure class="slot wide tilt-r rv"><figcaption>Awaiting — IMG_8953 · hour twelve</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="chapter" data-ch="III">
+    <p class="ch-label rv">Chapter III · Home</p>
+    <p class="beat rv">Calgary. For ten days every July, <em>the entire city wears a hat.</em></p>
+    <div class="strip">
+      <figure class="slot tilt-l rv"><figcaption>Awaiting — IMG_0162 · hat season</figcaption></figure>
+      <figure class="slot tilt-r rv"><figcaption>Awaiting — IMG_0040 · the grounds</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="chapter" data-ch="IV">
+    <p class="ch-label rv">Chapter IV · The game</p>
+    <p class="beat rv">Coaching high-school rugby since 2018. <em>Still playing.</em> The knees have opinions.</p>
+    <div class="strip">
+      <figure class="slot rv"><figcaption>Awaiting — IMG_0411 · club cap</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="chapter" data-ch="V">
+    <p class="ch-label rv">Chapter V · The dog</p>
+    <p class="beat rv">Unimpressed by <em>all of it.</em></p>
+    <div class="strip">
+      <figure class="slot wide tilt-l rv"><figcaption>Awaiting — IMG_7071 · the critic</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="work" data-ch="VI">
+    <p class="ch-label rv">Chapter VI · The work</p>
+    <p class="beat rv">By day: <b>data products for industrial operations.</b> Python, semantic models, pipelines — and the translation in between.</p>
+    <a class="stamp rv" href="file.html">Open the file</a>
+    <p class="links rv">
+      <a href="mailto:michaelmourelatos99@gmail.com">Email</a> &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">LinkedIn</a> &nbsp;·&nbsp;
+      <a href="resume.pdf">Resume</a>
     </p>
-  </div>
-</header>
+  </section>
 
-<main class="filing" id="main">
+  <p class="eot">End of transmission</p>
 
-  <div role="tablist" aria-label="File sections" class="tabs">
-    <button class="tab" role="tab" id="tab-about"      aria-controls="about"      aria-selected="true">About</button>
-    <button class="tab" role="tab" id="tab-experience" aria-controls="experience" aria-selected="false" tabindex="-1">Experience</button>
-    <button class="tab" role="tab" id="tab-projects"   aria-controls="projects"   aria-selected="false" tabindex="-1">Projects</button>
-    <button class="tab" role="tab" id="tab-skills"     aria-controls="skills"     aria-selected="false" tabindex="-1">Skills</button>
-    <button class="tab" role="tab" id="tab-writing"    aria-controls="writing"    aria-selected="false" tabindex="-1">Writing</button>
-    <button class="tab" role="tab" id="tab-contact"    aria-controls="contact"    aria-selected="false" tabindex="-1">Contact</button>
-  </div>
-
-  <div class="folder">
-    <div class="sheet">
-
-      <section class="panel" id="about" role="tabpanel" aria-labelledby="tab-about" tabindex="0">
-        <div class="sheet-head"><h2>What I do</h2><span class="ref">MM-2026 / 01</span></div>
-        <p>
-          Six years in data and analytics, most of it spent on the unglamorous
-          half of the job: reconciling systems that disagree, rebuilding the
-          semantic layer nobody wants to open, and shipping tools that survive
-          contact with real users.
-        </p>
-        <p>
-          I work across the whole path — stakeholder discovery, data
-          architecture, the application itself, then adoption tracking to find
-          out whether any of it landed. Lately that has meant production Python
-          apps in Dash and Streamlit for market intelligence and pricing, built
-          with AI-assisted workflows that compress the build cycle
-          considerably.
-        </p>
-        <p>
-          Economics background, which is probably why I care more about whether
-          a number changes a decision than whether the pipeline is elegant.
-        </p>
-        <p>
-          Off the clock: assistant coach for Henry Wise Wood high school rugby
-          since 2018, still playing for the Calgary Canucks, fluent in Greek.
-          Golf, NFL and NHL, and a dog who is unimpressed by all of it.
-        </p>
-      </section>
-
-      <section class="panel" id="experience" role="tabpanel" aria-labelledby="tab-experience" tabindex="0" hidden>
-        <div class="sheet-head"><h2>Where I've worked</h2><span class="ref">MM-2026 / 02</span></div>
-
-        <article>
-          <p class="when">2026 — Present</p>
-          <h3>BI Analyst, Data Science &amp; Analytics</h3>
-          <p class="org">Secure Waste Infrastructure · Calgary</p>
-          <p>
-            Own end-to-end delivery of operational analytics for an industrial
-            waste and metals-recycling business. Design and ship production
-            Python applications — market-intelligence, price-forecasting and
-            interactive scheduling tools with SQL-integrated data layers and
-            custom front ends.
-          </p>
-          <p>
-            Led a division-wide asset tracking analytics product from
-            requirements through to adoption baselines, re-architected the
-            corporate energy-hedging semantic model, and cleared systemic
-            data-quality defects in rail logistics reporting that operations
-            relied on daily. Standardised Git-based dev → UAT → prod promotion
-            for Databricks pipelines along the way.
-          </p>
-          <p class="stack">Python (Dash, Streamlit) · Databricks · Power BI · DAX · SQL</p>
-        </article>
-
-        <article class="entry">
-          <p class="when">2025 — 2026</p>
-          <h3>Business Intelligence Analyst, Data Science</h3>
-          <p class="org">Smart Technologies · Calgary</p>
-          <p>
-            Delivered interactive dashboards and backend pipeline work that
-            expanded self-service analytics across the business. Led
-            requirements sessions, owned ETL workflows for large datasets, and
-            integrated ML models and AI analytics into the enterprise data
-            factory.
-          </p>
-          <p class="stack">SQL · Python · Power BI · ETL</p>
-        </article>
-
-        <article class="entry">
-          <p class="when">2023 — 2025</p>
-          <h3>Workforce &amp; Reporting Business Analyst</h3>
-          <p class="org">Smart Technologies · Calgary</p>
-          <p>
-            Owned a portfolio of 20+ operational Power BI reports used daily for
-            staffing, workload and budget decisions. Built a support-volume
-            forecasting model, ran biweekly forecast reviews with leadership,
-            and partnered on efficiency programs worth $10–15k in monthly
-            savings.
-          </p>
-          <p class="stack">Power BI · Forecasting · Operations analytics</p>
-        </article>
-
-        <article class="entry">
-          <p class="when">2020 — 2023</p>
-          <h3>CX Operations Coordinator</h3>
-          <p class="org">Semtech · Richmond, BC</p>
-          <p>
-            Supported an operation handling 10,000+ monthly tickets and built
-            the KPI tracking used to manage it. Also co-led the North American
-            Emerging Professionals ERG, running programming for early-career
-            employees.
-          </p>
-          <p class="stack">Power BI · QlikSense · SQL · Salesforce</p>
-        </article>
-      </section>
-
-      <section class="panel" id="projects" role="tabpanel" aria-labelledby="tab-projects" tabindex="0" hidden>
-        <div class="sheet-head"><h2>Personal projects</h2><span class="ref">MM-2026 / 03</span></div>
-        <p>
-          Things built outside work hours — mostly Python, mostly to answer a
-          question I couldn't stop thinking about.
-        </p>
-        <p class="interim">
-          Write-ups in progress. The current one: an algorithmic trading
-          research project in Python, running paper-money experiments before a
-          single real dollar moves.
-        </p>
-      </section>
-
-      <section class="panel" id="skills" role="tabpanel" aria-labelledby="tab-skills" tabindex="0" hidden>
-        <div class="sheet-head"><h2>Tools of the trade</h2><span class="ref">MM-2026 / 04</span></div>
-        <dl class="skills">
-          <dt>Application development</dt>
-          <dd>Python (Dash, Streamlit, pandas), SQL, HTML/CSS, data-layer integration, AI-assisted development with Claude Code</dd>
-
-          <dt>Data platforms</dt>
-          <dd>Databricks, Snowflake, Microsoft Fabric, dbt, Power BI (DAX, Power Query M), enterprise semantic model design</dd>
-
-          <dt>Delivery</dt>
-          <dd>Git branching and dev → UAT → prod promotion, Azure DevOps, Jira, Agile, stakeholder discovery and requirements</dd>
-
-          <dt>Languages</dt>
-          <dd>English and Greek, both fluent</dd>
-
-          <dt>Education</dt>
-          <dd>BA Economics, minor in Business Management &amp; Society — University of Calgary. Certifications in progress: Project Management, Data Analytics.</dd>
-        </dl>
-      </section>
-
-      <section class="panel" id="writing" role="tabpanel" aria-labelledby="tab-writing" tabindex="0" hidden>
-        <div class="sheet-head"><h2>Writing</h2><span class="ref">MM-2026 / 05</span></div>
-        <p>
-          Notes on semantic modelling, reconciliation, and the parts of
-          analytics that don't make the conference talks.
-        </p>
-        <p class="interim">
-          First piece in draft — on why every reconciliation project starts
-          with two systems that are both technically correct.
-        </p>
-      </section>
-
-      <section class="panel" id="contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0" hidden>
-        <div class="sheet-head"><h2>Get in touch</h2><span class="ref">MM-2026 / 06</span></div>
-        <p>Open to interesting problems in data, analytics and operations.</p>
-        <ul class="plain">
-          <li class="field"><span class="k">Email</span><span class="leader"></span><span class="v"><a href="mailto:michaelmourelatos99@gmail.com">michaelmourelatos99@gmail.com</a></span></li>
-          <li class="field"><span class="k">LinkedIn</span><span class="leader"></span><span class="v"><a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">michael-mourelatos</a></span></li>
-          <li class="field"><span class="k">GitHub</span><span class="leader"></span><span class="v"><a href="https://github.com/michaelmourelatos99-commits">michaelmourelatos99-commits</a></span></li>
-          <li class="field"><span class="k">Resume</span><span class="leader"></span><span class="v"><a href="resume.pdf">Download PDF</a></span></li>
-        </ul>
-      </section>
-
-    </div>
-  </div>
 </main>
 
-<footer>
-  <p class="eof">End of file</p>
-</footer>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
-  if(!tabs.length) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  document.documentElement.classList.add('js');
-
-  function panelFor(tab){
-    return document.getElementById(tab.getAttribute('aria-controls'));
+  var cv = document.getElementById('terrain');
+  var ctx = cv.getContext('2d');
+  var W,H,DPR;
+  function size(){
+    DPR = Math.min(window.devicePixelRatio||1,2);
+    W = cv.width = innerWidth*DPR;
+    H = cv.height = innerHeight*DPR;
   }
+  size();
+  addEventListener('resize',size);
 
-  function select(tab, focus){
-    tabs.forEach(function(t){
-      var on = t === tab;
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
-      var p = panelFor(t);
-      if(p) p.hidden = !on;
-    });
-    if(focus) tab.focus();
-    var id = tab.getAttribute('aria-controls');
-    if(history.replaceState) history.replaceState(null, '', '#' + id);
+  function ridge(x,i,t){
+    return Math.sin(x*0.0016 + i*0.55 + t)*Math.sin(x*0.0007 - i*0.23 + t*0.6)*46*DPR
+         + Math.sin(x*0.004 + i*1.7 - t*1.3)*10*DPR;
   }
-
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){ select(tab, false); });
-
-    tab.addEventListener('keydown', function(e){
-      var i = tabs.indexOf(tab), next = null;
-      switch(e.key){
-        case 'ArrowDown': case 'ArrowRight': next = tabs[(i + 1) % tabs.length]; break;
-        case 'ArrowUp':   case 'ArrowLeft':  next = tabs[(i - 1 + tabs.length) % tabs.length]; break;
-        case 'Home': next = tabs[0]; break;
-        case 'End':  next = tabs[tabs.length - 1]; break;
-        default: return;
+  var scrollT = 0, drawn = -1;
+  function draw(){
+    var t = scrollT;
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle = 'rgba(14,11,8,.5)';
+    ctx.lineWidth = 1*DPR;
+    var lines = 34;
+    for(var i=0;i<lines;i++){
+      var base = (i/(lines-1))*H*1.25 - H*0.12 - (t*36*DPR)%(H*0.06);
+      ctx.beginPath();
+      for(var x=0;x<=W;x+=10*DPR){
+        var y = base + ridge(x,i,t);
+        if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
       }
-      e.preventDefault();
-      select(next, true);
+      ctx.stroke();
+    }
+  }
+  function loop(){
+    var target = (window.scrollY||0)*0.0016;
+    if(Math.abs(target-drawn)>0.0004){scrollT=target;draw();drawn=target;}
+    if(!reduce)requestAnimationFrame(loop);
+  }
+  draw();
+  if(!reduce)requestAnimationFrame(loop);
+
+  var chnum=document.getElementById('chnum');
+
+  if(reduce || !window.gsap || !window.ScrollTrigger){
+    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('on')});
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.rv').forEach(function(el){
+    ScrollTrigger.create({
+      trigger:el,
+      start:'top 86%',
+      once:true,
+      onEnter:function(){el.classList.add('on')}
     });
   });
 
-  function fromHash(){
-    var id = (location.hash || '').replace('#', '');
-    var match = tabs.filter(function(t){ return t.getAttribute('aria-controls') === id; })[0];
-    if(match) select(match, false);
-  }
-  fromHash();
-  window.addEventListener('hashchange', fromHash);
+  document.querySelectorAll('[data-ch]').forEach(function(sec){
+    ScrollTrigger.create({
+      trigger:sec,
+      start:'top 55%',
+      end:'bottom 55%',
+      onToggle:function(st){
+        if(st.isActive)chnum.textContent='CH. '+sec.getAttribute('data-ch')+' / VI';
+      }
+    });
+  });
+
+  document.querySelectorAll('.strip').forEach(function(strip){
+    gsap.fromTo(strip,{y:40},{y:-40,ease:'none',
+      scrollTrigger:{trigger:strip,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+
+  gsap.to('.hero',{opacity:0,ease:'none',
+    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 30%',scrub:true}});
 })();
 </script>
 </body>
