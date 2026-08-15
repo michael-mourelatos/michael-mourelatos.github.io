@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://michaelmourelatos99-commits.github.io/portrait.jpg">
 <meta name="twitter:card" content="summary">
 
-<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="%23E7D9B4"/><text x="32" y="45" font-family="Arial,sans-serif" font-weight="900" font-size="36" fill="%23D71E1E" text-anchor="middle">M</text></svg>'>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="%231E4BD7"/><text x="32" y="45" font-family="Arial,sans-serif" font-weight="900" font-size="36" fill="%23FBF8F0" text-anchor="middle">M</text></svg>'>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,12 +24,12 @@
 <style>
 :root{
   --paper:#F0EBDF;
-  --manila:#E7D9B4;
-  --manila-deep:#D8C48F;
-  --manila-shade:#C9B47C;
+  --manila:#1E4BD7;
+  --manila-deep:#1234A3;
+  --manila-shade:#0E2B87;
   --sheet:#FBF8F0;
-  --ink:#1C1913;
-  --ink-soft:#5C5442;
+  --ink:#1839A8;
+  --ink-soft:#4759A8;
   --red:#C81818;
   --blue:#1E4BD7;
   --blue-faint:rgba(30,75,215,.14);
@@ -54,7 +54,7 @@ body{
   overflow-x:clip;
 }
 
-::selection{background:var(--blue);color:var(--sheet)}
+::selection{background:var(--red);color:var(--sheet)}
 
 a{color:var(--ink)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
@@ -238,7 +238,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
   font-weight:600;
   letter-spacing:.13em;
   text-transform:uppercase;
-  color:#554728;
+  color:#D9E0F9;
   background:var(--manila-deep);
   padding:.62rem 1.15rem .5rem;
   clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 100%,0 100%);
@@ -249,7 +249,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 .tab:hover{transform:translateY(0);background:var(--manila)}
 .tab[aria-selected="true"]{
   background:var(--manila);
-  color:var(--ink);
+  color:var(--sheet);
   transform:translateY(0);
   padding-bottom:.62rem;
 }
@@ -356,7 +356,7 @@ h3{
   color:var(--ink-soft);
   margin:.7rem 0 0;
 }
-.stack::before{content:"TOOLS — ";color:var(--blue);font-weight:600}
+.stack::before{content:"TOOLS — ";color:var(--red);font-weight:600}
 
 .skills{margin:0}
 .skills dt{
