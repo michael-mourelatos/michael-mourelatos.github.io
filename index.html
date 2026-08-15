@@ -107,12 +107,12 @@ section{position:relative}
 .rail .y1{bottom:-1.4rem}
 .roles{position:relative;min-height:56vh}
 .role{position:absolute;inset:0;display:grid;align-content:center;opacity:0;visibility:hidden}
-.role .when{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.18em;color:var(--red);margin:0 0 .6rem}
+.role .when{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.18em;color:var(--cream);margin:0 0 .6rem}
 .role h3{font-weight:400;font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.1;margin:0 0 .3rem}
 .role .org{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 1.2rem}
 .role p{max-width:44ch;margin:0 0 1rem;font-size:1.06rem}
 .role .stack{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:rgba(14,11,8,.75);margin:0}
-.role .stack::before{content:"TOOLS — ";color:var(--red);font-weight:600}
+.role .stack::before{content:"TOOLS — ";color:var(--cream);font-weight:600}
 
 .work{overflow:hidden}
 .work .head{padding:14vh 1.5rem 6vh;text-align:center}
@@ -191,6 +191,12 @@ section{position:relative}
   .rail{display:none}
   .track{flex-direction:column;padding:0 1.5rem 12vh}
   .card{width:100%}
+  .ring-stage{grid-template-columns:1fr;gap:2.2rem;justify-items:center;text-align:center}
+  .ring-stage .aside{justify-self:center}
+  .face-ring{justify-self:center;width:min(52vw,30vh)}
+  .face-ring img{box-shadow:10px 10px 0 var(--blue)}
+  .face-ring figcaption{position:static;transform:none;white-space:normal;margin-top:.8rem}
+  .quick a,.alts a{display:inline-block;padding:.45rem .2rem;margin:-.45rem -.2rem}
 }
 </style>
 </head>
