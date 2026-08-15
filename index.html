@@ -66,7 +66,7 @@ body.on-dark .hud{color:var(--cream)}
 
 main{position:relative;z-index:1}
 section{position:relative}
-.wrap{max-width:66rem;margin:0 auto;padding:0 1.5rem}
+.wrap{width:100%;max-width:66rem;margin:0 auto;padding:0 1.5rem}
 .kick{font-family:var(--mono);font-size:.6875rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;margin:0 0 1.2rem}
 .big{font-size:clamp(1.9rem,4.4vw,3.4rem);line-height:1.16;font-weight:400;margin:0}
 .big em{font-style:italic}
@@ -427,7 +427,7 @@ section{position:relative}
   sections.forEach(function(sec){
     var isDark=sec.classList.contains('dark');
     ScrollTrigger.create({
-      trigger:sec,start:'top 55%',end:'bottom 55%',
+      trigger:sec,start:'top 55%',end:'bottom 55%',refreshPriority:-1,
       onToggle:function(st){
         if(st.isActive){
           secnum.textContent=sec.getAttribute('data-sec');
