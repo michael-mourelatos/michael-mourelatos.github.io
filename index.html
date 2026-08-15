@@ -424,18 +424,19 @@ section{position:relative}
     ScrollTrigger.create({trigger:el,start:'top 86%',once:true,onEnter:function(){el.classList.add('on')}});
   });
 
-  sections.forEach(function(sec){
-    var isDark=sec.classList.contains('dark');
-    ScrollTrigger.create({
-      trigger:sec,start:'top 55%',end:'bottom 55%',refreshPriority:-1,
-      onToggle:function(st){
-        if(st.isActive){
-          secnum.textContent=sec.getAttribute('data-sec');
-          document.body.classList.toggle('on-dark',isDark);
-        }
+  function updateHud(){
+    var mid=innerHeight*0.55;
+    for(var i=sections.length-1;i>=0;i--){
+      var r=sections[i].getBoundingClientRect();
+      if(r.top<=mid&&r.bottom>=mid){
+        secnum.textContent=sections[i].getAttribute('data-sec');
+        document.body.classList.toggle('on-dark',sections[i].classList.contains('dark'));
+        return;
       }
-    });
-  });
+    }
+  }
+  addEventListener('scroll',function(){requestAnimationFrame(updateHud)},{passive:true});
+  updateHud();
 
   gsap.to('.hero',{opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 35%',scrub:true}});
 
