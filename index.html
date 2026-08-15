@@ -123,10 +123,7 @@ section{position:relative}
 .card p{margin:0;font-size:1rem;color:var(--cream)}
 .card .tag{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);display:inline-block;margin-top:1rem;border:1px solid var(--blue);padding:.35rem .6rem}
 
-.skills{padding:20vh 0}
-.sk-line{font-weight:400;font-size:clamp(1.5rem,3.6vw,2.8rem);line-height:1.25;margin:0 0 3.2rem;max-width:60rem}
-.sk-line .lbl{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.5rem}
-.sk-line em{font-style:italic}
+.skills{padding:20vh 0;overflow:hidden}
 
 .contact{padding:22vh 1.5rem 16vh;text-align:center}
 .stamp{display:inline-block;margin-top:8vh;font-family:var(--mono);font-weight:600;font-size:clamp(.95rem,2vw,1.2rem);letter-spacing:.3em;text-transform:uppercase;color:var(--red);border:4px double var(--red);padding:1.2rem 2rem 1.05rem;text-decoration:none;transform:rotate(-4deg);transition:transform .25s cubic-bezier(.2,.7,.3,1),background .25s ease,color .25s ease}
@@ -134,6 +131,22 @@ section{position:relative}
 .alts{margin-top:8vh;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
 .alts a{text-decoration:none;border-bottom:2px solid var(--blue)}
 .alts a:hover{background:var(--blue);color:var(--black)}
+.bn{position:absolute;font-family:var(--mono);font-weight:600;font-size:clamp(9rem,24vw,19rem);line-height:1;color:transparent;-webkit-text-stroke:2px rgba(14,11,8,.16);pointer-events:none;user-select:none;z-index:0}
+.dark .bn{-webkit-text-stroke:2px rgba(251,248,240,.12)}
+.lets{position:fixed;right:22px;bottom:20px;z-index:80;font-family:var(--mono);font-weight:600;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red);background:var(--black);border:3px double var(--red);padding:.75rem 1.05rem .68rem;text-decoration:none;transform:rotate(-2deg);transition:transform .2s ease,background .2s ease,color .2s ease}
+.lets:hover,.lets:focus-visible{transform:rotate(0) scale(1.05);background:var(--red);color:var(--black)}
+.l3-stage{position:relative;min-height:78vh}
+.face{position:absolute;right:-4vw;bottom:-14vh;height:92vh;width:auto;filter:grayscale(1) brightness(.92) contrast(1.1);z-index:1}
+.facefade{position:absolute;right:-4vw;bottom:-14vh;height:92vh;aspect-ratio:720/900;z-index:2;background:linear-gradient(90deg,var(--black) 0%,rgba(14,11,8,0) 45%),linear-gradient(0deg,rgba(30,75,215,.28),rgba(30,75,215,.28))}
+.ghostname{position:absolute;left:-2vw;bottom:2vh;margin:0;font-family:var(--mono);font-weight:600;font-size:clamp(4rem,11vw,9rem);letter-spacing:.04em;color:transparent;-webkit-text-stroke:2px rgba(251,248,240,.2);z-index:3;pointer-events:none}
+.l3-stage .aside{position:absolute;left:0;top:18%;z-index:4;text-align:left}
+.l3-stage .kick2{position:absolute;left:0;top:8%;z-index:4;font-family:var(--mono);font-size:.6875rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--blue)}
+.sk-row{position:relative;margin:0 0 4.5rem;z-index:1}
+.sk-main{position:relative;font-weight:400;font-size:clamp(1.7rem,4.2vw,3.2rem);line-height:1.2;margin:0;z-index:2}
+.sk-main em{font-style:italic}
+.sk-ghost{position:absolute;left:.35em;top:.35em;right:-.35em;font-weight:400;font-size:clamp(1.7rem,4.2vw,3.2rem);line-height:1.2;margin:0;color:transparent;-webkit-text-stroke:1.5px rgba(14,11,8,.3);z-index:1;pointer-events:none}
+.sk-lbl{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.55rem}
+.thumb svg{display:block;width:100%;height:100%}
 .eot{text-align:center;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--blue);padding:0 1.5rem 3.2rem;margin:0;background:var(--black)}
 
 .rv{opacity:0;transform:translateY(30px)}
@@ -166,7 +179,7 @@ section{position:relative}
 <div class="hud tl">Mourelatos, M.</div>
 <div class="hud tr">Data &amp; Analytics · Calgary</div>
 <div class="hud bl" id="secnum">00 — Intro</div>
-<div class="hud br"><a href="resume.pdf">Resume →</a></div>
+<a class="lets" href="#contact">Let’s work ↗</a>
 
 <main>
 
@@ -180,19 +193,24 @@ section{position:relative}
   </header>
 
   <section class="about dark" id="about" data-sec="01 — About">
+    <p class="bn" style="top:4vh;right:2vw" aria-hidden="true">01</p>
     <div class="wrap stage">
       <div class="line l1"><p class="kick">01 · About</p><p class="big">I build data products <b>end to end</b> — the pipeline, the model, the application, the adoption.</p></div>
       <div class="line l2"><p class="big">The part people hire twice is the <em>translation:</em> operations into requirements, data into decisions.</p></div>
       <div class="line l3">
-        <div class="cast">
-          <figure class="plate"><img src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900"><figcaption>The subject · 51.04°N</figcaption></figure>
-          <p class="aside">Six years across <b>industrial operations, ed-tech and IoT.</b><br>Economics brain, builder's hands.<br><br>Off the clock: rugby coach since 2018,<br>fluent in Greek, one <b>unimpressed dog.</b></p>
+        <div class="l3-stage">
+          <img class="face" src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
+          <div class="facefade" aria-hidden="true"></div>
+          <p class="ghostname" aria-hidden="true">MOURELATOS</p>
+          <span class="kick2">The subject · 51.04°N</span>
+          <p class="aside">Six years across <b>industrial operations,<br>ed-tech and IoT.</b><br>Economics brain, builder's hands.<br><br>Off the clock: rugby coach since 2018,<br>fluent in Greek, one <b>unimpressed dog.</b></p>
         </div>
       </div>
     </div>
   </section>
 
   <section class="exp" data-sec="02 — Experience">
+    <p class="bn" style="top:6vh;right:1vw" aria-hidden="true">02</p>
     <div class="wrap">
       <div class="rail" aria-hidden="true"><span class="y0">2026</span><div class="fill"></div><span class="y1">2020</span></div>
       <div class="roles">
@@ -229,6 +247,7 @@ section{position:relative}
   </section>
 
   <section class="work dark" data-sec="03 — Selected work">
+    <p class="bn" style="top:2vh;left:2vw" aria-hidden="true">03</p>
     <div class="head">
       <p class="kick rv">03 · Selected work</p>
       <p class="big rv">Three builds I keep getting asked about.<br><em>Case studies in progress.</em></p>
@@ -237,21 +256,21 @@ section{position:relative}
       <article class="card">
         <span class="num">W/01</span>
         <h3>Market Intelligence Platform</h3>
-        <div class="thumb" aria-hidden="true"></div>
+        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M10 140 L60 100 L110 118 L160 70 L210 88 L260 40 L310 58" stroke="#E4342B" stroke-width="2.5"/><path d="M10 155 L60 130 L110 142 L160 108 L210 124 L260 86 L310 100" stroke="#FBF8F0" stroke-width="1.5" opacity=".6"/><circle cx="70" cy="52" r="4" fill="#1E4BD7"/><circle cx="150" cy="34" r="4" fill="#1E4BD7"/><circle cx="235" cy="60" r="4" fill="#1E4BD7"/><circle cx="285" cy="30" r="4" fill="#1E4BD7"/><path d="M70 52 L150 34 L235 60 L285 30" stroke="#1E4BD7" stroke-width="1" stroke-dasharray="4 4"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#1E4BD7" letter-spacing="2">PRICE / REGION</text></svg></div>
         <p>Pricing and market mapping for commercial teams — Databricks-backed, Python front end, tested against live users step by scripted step.</p>
         <span class="tag">Case study — coming soon</span>
       </article>
       <article class="card">
         <span class="num">W/02</span>
         <h3>Semantic Model Rebuild</h3>
-        <div class="thumb" aria-hidden="true"></div>
+        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><circle cx="160" cy="40" r="12" stroke="#E4342B" stroke-width="2.5"/><circle cx="80" cy="100" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="160" cy="110" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="240" cy="100" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="55" cy="152" r="7" stroke="#1E4BD7" stroke-width="1.5"/><circle cx="110" cy="156" r="7" stroke="#1E4BD7" stroke-width="1.5"/><circle cx="160" cy="160" r="7" stroke="#1E4BD7" stroke-width="1.5"/><circle cx="212" cy="156" r="7" stroke="#1E4BD7" stroke-width="1.5"/><circle cx="266" cy="152" r="7" stroke="#1E4BD7" stroke-width="1.5"/><path d="M160 52 L80 90 M160 52 L160 100 M160 52 L240 90 M80 110 L55 145 M80 110 L110 149 M160 120 L160 153 M240 110 L212 149 M240 110 L266 145" stroke="#FBF8F0" stroke-width="1" opacity=".55"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#1E4BD7" letter-spacing="2">MEASURE TREE</text></svg></div>
         <p>A corporate energy-hedging model rebuilt end to end: the query pipeline repaired, the measure library rewritten into something an analyst can navigate without a guide.</p>
         <span class="tag">Case study — coming soon</span>
       </article>
       <article class="card">
         <span class="num">W/03</span>
         <h3>Asset Tracking Analytics</h3>
-        <div class="thumb" aria-hidden="true"></div>
+        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><g stroke="#FBF8F0" stroke-width="1.5" opacity=".8"><rect x="24" y="36" width="34" height="22"/><rect x="66" y="36" width="34" height="22"/><rect x="108" y="36" width="34" height="22"/><rect x="24" y="66" width="34" height="22"/><rect x="66" y="66" width="34" height="22"/><rect x="108" y="66" width="34" height="22" stroke="#E4342B" stroke-width="2.5"/><rect x="24" y="96" width="34" height="22"/><rect x="66" y="96" width="34" height="22"/></g><path d="M125 77 C 190 77, 200 40, 250 40 C 285 40, 295 70, 295 96" stroke="#1E4BD7" stroke-width="2" stroke-dasharray="6 5"/><circle cx="295" cy="104" r="6" fill="#E4342B"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#1E4BD7" letter-spacing="2">FLEET / 3 SYSTEMS</text><text x="196" y="150" font-family="monospace" font-size="10" fill="#FBF8F0" opacity=".7">RECONCILED → 1</text></svg></div>
         <p>A division-wide view of fleet assets from requirements through adoption baselines — three disagreeing systems reconciled into one number people trust.</p>
         <span class="tag">Case study — coming soon</span>
       </article>
@@ -259,15 +278,17 @@ section{position:relative}
   </section>
 
   <section class="skills" data-sec="04 — Skills">
+    <p class="bn" style="top:8vh;right:3vw" aria-hidden="true">04</p>
     <div class="wrap">
       <p class="kick rv">04 · Skills</p>
-      <p class="sk-line rv"><span class="lbl">Build</span>Python — Dash, Streamlit, pandas — SQL, HTML/CSS, <em>AI-assisted development.</em></p>
-      <p class="sk-line rv"><span class="lbl">Platform</span>Databricks, Power BI — DAX, M — Snowflake, Fabric, dbt, <em>semantic model design.</em></p>
-      <p class="sk-line rv"><span class="lbl">Ship</span>Git, dev → UAT → prod, Azure DevOps, Agile, <em>stakeholder translation.</em></p>
+      <div class="sk-row rv"><span class="sk-lbl">Build</span><p class="sk-main">Python — Dash, Streamlit, pandas — SQL, <em>AI-assisted development.</em></p><p class="sk-ghost" aria-hidden="true">Python — Dash, Streamlit, pandas — SQL, AI-assisted development.</p></div>
+      <div class="sk-row rv"><span class="sk-lbl">Platform</span><p class="sk-main">Databricks, Power BI — DAX, M — Snowflake, Fabric, dbt, <em>semantic models.</em></p><p class="sk-ghost" aria-hidden="true">Databricks, Power BI — DAX, M — Snowflake, Fabric, dbt, semantic models.</p></div>
+      <div class="sk-row rv"><span class="sk-lbl">Ship</span><p class="sk-main">Git, dev → UAT → prod, Azure DevOps, Agile, <em>stakeholder translation.</em></p><p class="sk-ghost" aria-hidden="true">Git, dev → UAT → prod, Azure DevOps, Agile, stakeholder translation.</p></div>
     </div>
   </section>
 
   <section class="contact dark" data-sec="05 — Contact">
+    <p class="bn" style="bottom:4vh;left:3vw" aria-hidden="true">05</p>
     <p class="kick rv">05 · Contact</p>
     <p class="big rv">Have a messy dataset<br>and a <b>deadline?</b></p>
     <a class="stamp rv" href="mailto:michaelmourelatos99@gmail.com">Email me</a>
@@ -462,9 +483,13 @@ section{position:relative}
       scrollTrigger:{trigger:'.work',start:'top top',end:function(){return '+='+(dist()+innerHeight*0.5)},pin:true,scrub:0.6,invalidateOnRefresh:true}});
   }
 
-  document.querySelectorAll('.sk-line').forEach(function(el,i){
-    gsap.fromTo(el,{x:(i%2?60:-60),opacity:0},{x:0,opacity:1,ease:'none',
-      scrollTrigger:{trigger:el,start:'top 92%',end:'top 55%',scrub:true}});
+  document.querySelectorAll('.bn').forEach(function(el){
+    gsap.fromTo(el,{yPercent:18},{yPercent:-18,ease:'none',
+      scrollTrigger:{trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  document.querySelectorAll('.sk-row').forEach(function(el,i){
+    gsap.fromTo(el,{xPercent:(i%2?4:-4)},{xPercent:0,ease:'none',
+      scrollTrigger:{trigger:el,start:'top bottom',end:'top 40%',scrub:true}});
   });
 
   gsap.fromTo('.stamp',{scale:0.5,rotate:-18,opacity:0},{scale:1,rotate:-4,opacity:1,ease:'back.out(1.6)',
