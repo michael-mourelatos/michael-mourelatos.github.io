@@ -138,9 +138,12 @@ section{position:relative}
 @keyframes mqL{to{transform:translateX(-100%)}}
 @keyframes mqR{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 .contact-core{position:relative;z-index:2}
-.flash{position:absolute;inset:0;background:var(--blue);opacity:0;pointer-events:none;z-index:3}
-.stamp{display:inline-block;margin-top:8vh;font-family:var(--mono);font-weight:600;font-size:clamp(.95rem,2vw,1.2rem);letter-spacing:.3em;text-transform:uppercase;color:var(--red);border:4px double var(--red);padding:1.2rem 2rem 1.05rem;text-decoration:none;transform:rotate(-4deg);transition:transform .25s cubic-bezier(.2,.7,.3,1),background .25s ease,color .25s ease}
-.stamp:hover,.stamp:focus-visible{transform:rotate(0deg) scale(1.05);background:var(--red);color:var(--black)}
+.ctc{position:absolute;left:0;right:0;top:9vh;height:27vh;width:100%;z-index:1;pointer-events:none}
+.hello{position:relative;display:inline-block;margin-top:4vh;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(3.4rem,9vw,7.4rem);line-height:1.05;color:var(--cream);text-decoration:none}
+.hello .hl{display:inline-block;will-change:transform}
+.hello:hover{color:var(--blue)}
+.hline{position:absolute;left:2%;right:2%;bottom:-.06em;height:4px;background:var(--blue);transform:scaleX(0);transform-origin:left}
+.hello:hover .hline{background:var(--red)}
 .alts{margin-top:8vh;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
 .alts a{text-decoration:none;border-bottom:2px solid var(--blue)}
 .alts a:hover{background:var(--blue);color:var(--black)}
@@ -319,10 +322,11 @@ section{position:relative}
   <section class="contact dark" data-sec="05 — Contact">
     <p class="bn" style="bottom:4vh;left:3vw" aria-hidden="true">05</p>
     <div class="mq mq-top"><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span></div>
+    <canvas class="ctc" aria-hidden="true"></canvas>
     <div class="contact-core">
       <p class="kick rv">05 · Contact</p>
       <p class="big rv">Have a messy dataset<br>and a <b>deadline?</b></p>
-      <a class="stamp" href="mailto:michaelmourelatos99@gmail.com">Email me</a>
+      <a class="hello" href="mailto:michaelmourelatos99@gmail.com" aria-label="Say hello - email Michael"><span class="hl">S</span><span class="hl">a</span><span class="hl">y</span><span class="hl">&nbsp;</span><span class="hl">h</span><span class="hl">e</span><span class="hl">l</span><span class="hl">l</span><span class="hl">o</span><span class="hl">.</span><span class="hline" aria-hidden="true"></span></a>
       <p class="alts rv">
         <a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">LinkedIn</a> &nbsp;·&nbsp;
         <a href="resume.pdf">Resume (PDF)</a> &nbsp;·&nbsp;
@@ -331,7 +335,6 @@ section{position:relative}
       </p>
     </div>
     <div class="mq mq-bot"><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span></div>
-    <div class="flash" aria-hidden="true"></div>
   </section>
 
   <p class="eot">End of transmission</p>
@@ -536,10 +539,63 @@ section{position:relative}
   stl.to('.skills',{'--ink2':'#0E0B08','--lbl':'#0E0B08','--ghost':'rgba(14,11,8,.3)',duration:.7},3.35);
   stl.to(['.sk-base','.sk-fillbar'],{opacity:0,duration:.9},6.45);
 
-  var slam=gsap.timeline({scrollTrigger:{trigger:'.contact',start:'top 55%'}});
-  slam.fromTo('.stamp',{scale:7,rotate:-35,opacity:0},{scale:1,rotate:-4,opacity:1,duration:.55,ease:'power4.in'})
-      .fromTo('.flash',{opacity:.35},{opacity:0,duration:.5,ease:'power2.out'},'-=0.06')
-      .fromTo('.contact-core',{y:-10},{y:0,duration:.4,ease:'bounce.out'},'-=0.45');
+  var csec=document.querySelector('.contact');
+  var cv2=document.querySelector('.ctc');
+  var c2=cv2.getContext('2d');
+  var hls=[].slice.call(document.querySelectorAll('.hello .hl'));
+  var W2,H2;
+  function size2(){W2=cv2.width=cv2.clientWidth*DPR;H2=cv2.height=cv2.clientHeight*DPR}
+  size2();addEventListener('resize',size2);
+  var cmx=-9e4,cmy=-9e4,cph=0;
+  var curL=hls.map(function(){return{x:0,y:0,r:0}}),tgtL=hls.map(function(){return{x:0,y:0,r:0}});
+  function drawC(){
+    c2.clearRect(0,0,W2,H2);
+    c2.strokeStyle='rgba(30,75,215,.55)';c2.lineWidth=1*DPR;
+    var sg=Math.pow(120*DPR,2);
+    for(var x=6*DPR;x<W2;x+=13*DPR){
+      c2.beginPath();
+      for(var y=0;y<=H2;y+=10*DPR){
+        var dx=x-cmx,dy=y-cmy,d2=dx*dx+dy*dy,d=Math.sqrt(d2)||1;
+        var push=Math.exp(-d2/(2*sg))*54*DPR;
+        var wob=Math.sin(y*0.012+x*0.004+cph)*2.5*DPR;
+        var xx=x+(dx/d)*push+wob;
+        if(y===0)c2.moveTo(xx,y);else c2.lineTo(xx,y);
+      }
+      c2.stroke();
+    }
+  }
+  drawC();
+  var crun=false,clast=0;
+  function loop2(){
+    var live=false;
+    for(var i=0;i<hls.length;i++){
+      var c=curL[i],g=tgtL[i];
+      c.x+=(g.x-c.x)*0.16;c.y+=(g.y-c.y)*0.16;c.r+=(g.r-c.r)*0.16;
+      if(Math.abs(c.x)+Math.abs(c.y)+Math.abs(c.r)>0.15)live=true;
+      hls[i].style.transform='translate('+c.x.toFixed(2)+'px,'+c.y.toFixed(2)+'px) rotate('+c.r.toFixed(2)+'deg)';
+    }
+    cph=performance.now()*0.0012;
+    drawC();
+    if(live||performance.now()-clast<260){requestAnimationFrame(loop2)}else{crun=false}
+  }
+  if(!reduce)addEventListener('pointermove',function(e){
+    var r=csec.getBoundingClientRect();
+    if(r.top>innerHeight||r.bottom<0)return;
+    var cr=cv2.getBoundingClientRect();
+    cmx=(e.clientX-cr.left)*DPR;cmy=(e.clientY-cr.top)*DPR;
+    hls.forEach(function(el,i){
+      var b=el.getBoundingClientRect();
+      var dx=(b.left+b.width/2)-e.clientX,dy=(b.top+b.height/2)-e.clientY;
+      var d2=dx*dx+dy*dy,d=Math.sqrt(d2)||1;
+      var p=Math.exp(-d2/(2*150*150))*30;
+      tgtL[i].x=(dx/d)*p;tgtL[i].y=(dy/d)*p*0.6;tgtL[i].r=(dx>0?1:-1)*p*0.35;
+    });
+    clast=performance.now();
+    if(!crun){crun=true;requestAnimationFrame(loop2)}
+  },{passive:true});
+  var ctl=gsap.timeline({scrollTrigger:{trigger:'.contact',start:'top 60%'}});
+  ctl.fromTo('.hello .hl',{y:70,opacity:0},{y:0,opacity:1,duration:.7,stagger:.045,ease:'power3.out'})
+     .fromTo('.hline',{scaleX:0},{scaleX:1,duration:.6,ease:'power2.out'},'-=0.25');
 })();
 </script>
 </body>
