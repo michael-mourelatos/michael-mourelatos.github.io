@@ -365,7 +365,7 @@ section{position:relative}
 
   function drawCity(p,w){
     if(w<=0.01)return;
-    var baseY=H*0.9,hz=H*0.62;
+    var baseY=H*0.94,hz=H*0.74;
     ctx.strokeStyle='rgba(14,11,8,'+(0.22*w)+')';
     ctx.lineWidth=1*DPR;
     for(var g=0;g<9;g++){
@@ -378,11 +378,11 @@ section{position:relative}
     }
     var x=0;
     ctx.fillStyle='rgba(14,11,8,'+(0.3*w)+')';
-    while(x<W){var bw=(40+hash(x,7)*70)*DPR,bh=H*(0.1+hash(x,9)*0.2);ctx.fillRect(x,baseY-H*0.16-bh,bw,bh);x+=bw+8*DPR}
+    while(x<W){var bw=(40+hash(x,7)*70)*DPR,bh=H*(0.05+hash(x,9)*0.09);ctx.fillRect(x,baseY-H*0.08-bh,bw,bh);x+=bw+8*DPR}
     x=0;
     ctx.fillStyle='rgba(14,11,8,'+(0.88*w)+')';
     while(x<W){
-      var bw2=(50+hash(x,3)*80)*DPR,bh2=H*(0.12+hash(x,5)*0.3);
+      var bw2=(50+hash(x,3)*80)*DPR,bh2=H*(0.07+hash(x,5)*0.13);
       ctx.fillRect(x,baseY-bh2,bw2,bh2);
       x+=bw2+10*DPR;
     }
