@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Michael Mourelatos — Data &amp; Analytics</title>
+<meta name="description" content="Data and analytics professional in Calgary. Python applications, enterprise semantic models and Databricks pipelines for industrial operations.">
+<meta name="theme-color" content="#F0EBDF">
+
+<meta property="og:title" content="Michael Mourelatos — Data &amp; Analytics">
+<meta property="og:description" content="Personnel file MM-2026: data products built end to end, for operations that run on messy, high-volume data.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://michaelmourelatos99-commits.github.io/file.html">
+<meta property="og:image" content="https://michaelmourelatos99-commits.github.io/portrait.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="%231E4BD7"/><text x="32" y="45" font-family="Arial,sans-serif" font-weight="900" font-size="36" fill="%23FBF8F0" text-anchor="middle">M</text></svg>'>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#F0EBDF;
+  --manila:#1E4BD7;
+  --manila-deep:#1234A3;
+  --manila-shade:#0E2B87;
+  --sheet:#FBF8F0;
+  --ink:#1839A8;
+  --ink-soft:#4759A8;
+  --red:#C81818;
+  --blue:#1E4BD7;
+  --blue-faint:rgba(30,75,215,.14);
+
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+  --maxw:62rem;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+
+::selection{background:var(--red);color:var(--sheet)}
+
+a{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:var(--sheet);padding:.6rem 1rem;z-index:50}
+
+.drawer{
+  border-bottom:2px solid var(--ink);
+  background:var(--paper);
+}
+.drawer-in{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:.55rem 1.25rem;
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.drawer .no{color:var(--red)}
+.drawer .date{color:var(--ink-soft)}
+
+.cover{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:3.5rem 1.25rem 3rem;
+  display:grid;
+  grid-template-columns:12rem 1fr;
+  gap:2.5rem;
+  align-items:start;
+  position:relative;
+}
+
+.attachment{
+  position:relative;
+  margin:0;
+  transform:rotate(-2deg);
+}
+.attachment img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border:6px solid var(--sheet);
+  box-shadow:0 2px 4px rgba(28,25,19,.18),0 10px 24px -12px rgba(28,25,19,.35);
+  filter:saturate(.85) contrast(1.03);
+}
+.attachment::before,.attachment::after{
+  content:"";
+  position:absolute;
+  width:5.5rem;height:1.6rem;
+  background:rgba(250,247,238,.55);
+  box-shadow:0 1px 2px rgba(28,25,19,.15);
+  border-left:1px dashed rgba(28,25,19,.12);
+  border-right:1px dashed rgba(28,25,19,.12);
+}
+.attachment::before{top:-.8rem;left:-2rem;transform:rotate(-38deg)}
+.attachment::after{bottom:-.7rem;right:-1.9rem;transform:rotate(-40deg)}
+
+.attachment figcaption{
+  font-family:var(--mono);
+  font-size:.625rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--blue);
+  text-align:center;
+  padding-top:.6rem;
+}
+
+.cover h1{
+  font-family:var(--sans);
+  font-stretch:118%;
+  font-weight:900;
+  font-size:clamp(2.3rem,6.2vw,4.1rem);
+  line-height:.96;
+  letter-spacing:-.015em;
+  text-transform:uppercase;
+  margin:0 0 1.6rem;
+}
+.cover h1 .comma{color:var(--red)}
+
+.fields{margin:0 0 1.6rem;max-width:34rem}
+.field{
+  display:flex;
+  align-items:baseline;
+  gap:.75rem;
+  padding:.42rem 0;
+}
+.field .k{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:600;
+  letter-spacing:.13em;
+  color:var(--red);
+  white-space:nowrap;
+  text-transform:uppercase;
+}
+.field .leader{
+  flex:1;
+  border-bottom:2px dotted rgba(28,25,19,.3);
+  transform:translateY(-.28em);
+}
+.field .v{
+  font-family:var(--mono);
+  font-size:.8125rem;
+  text-align:right;
+}
+.field .v a{
+  text-decoration:none;
+  border-bottom:2px solid var(--blue);
+  color:var(--ink);
+  transition:color .18s ease,background .18s ease;
+}
+.field .v a:hover{background:var(--blue);color:var(--sheet)}
+
+.brief{
+  font-size:1.0625rem;
+  line-height:1.6;
+  max-width:34rem;
+  margin:0;
+  color:var(--ink);
+}
+.brief .lead-in{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:600;
+  letter-spacing:.13em;
+  color:var(--blue);
+  display:block;
+  margin-bottom:.35rem;
+  text-transform:uppercase;
+}
+.brief em{font-style:italic;color:var(--red)}
+
+.stamp{
+  position:absolute;
+  top:2.2rem;
+  right:1rem;
+  font-family:var(--mono);
+  font-weight:600;
+  font-size:.8125rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--red);
+  border:3px double var(--red);
+  padding:.5rem .9rem .45rem;
+  transform:rotate(7deg);
+  opacity:.82;
+  pointer-events:none;
+}
+
+.filing{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 1.25rem 4rem;
+}
+
+.tabs{
+  display:flex;
+  gap:.4rem;
+  padding:0 1rem;
+  position:relative;
+  z-index:2;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{display:none}
+
+.tab{
+  appearance:none;
+  border:0;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:600;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:#D9E0F9;
+  background:var(--manila-deep);
+  padding:.62rem 1.15rem .5rem;
+  clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 100%,0 100%);
+  transform:translateY(3px);
+  transition:transform .18s ease,background .18s ease,color .18s ease;
+  white-space:nowrap;
+}
+.tab:hover{transform:translateY(0);background:var(--manila)}
+.tab[aria-selected="true"]{
+  background:var(--manila);
+  color:var(--sheet);
+  transform:translateY(0);
+  padding-bottom:.62rem;
+}
+
+.folder{
+  background:var(--manila);
+  border-radius:0 10px 10px 10px;
+  box-shadow:0 2px 3px rgba(28,25,19,.14),0 16px 34px -18px rgba(28,25,19,.4);
+  padding:1.1rem;
+  position:relative;
+}
+.folder::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-7px;
+  height:14px;
+  background:var(--manila-shade);
+  border-radius:0 0 10px 10px;
+  z-index:-1;
+}
+
+.sheet{
+  background:
+    linear-gradient(var(--red),var(--red)) no-repeat 3.2rem 0/2px 100%,
+    repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--blue-faint) 31px,var(--blue-faint) 32px),
+    var(--sheet);
+  min-height:26rem;
+  padding:2.2rem 2.4rem 2.6rem 4.6rem;
+  box-shadow:inset 0 1px 3px rgba(28,25,19,.1);
+}
+
+.js .panel[hidden]{display:none}
+.panel[hidden]{display:block}
+.js .panel{animation:pull .4s cubic-bezier(.2,.7,.3,1) both}
+@keyframes pull{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.sheet-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:1rem;
+  margin-bottom:1.8rem;
+  border-bottom:2px solid var(--ink);
+  padding-bottom:.5rem;
+}
+h2{
+  font-family:var(--sans);
+  font-stretch:115%;
+  font-weight:800;
+  font-size:1.55rem;
+  letter-spacing:.005em;
+  text-transform:uppercase;
+  margin:0;
+}
+.ref{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:600;
+  letter-spacing:.13em;
+  color:var(--red);
+  white-space:nowrap;
+}
+
+p{margin:0 0 1rem;max-width:36rem}
+p:last-child{margin-bottom:0}
+
+.panel a{
+  text-decoration:none;
+  border-bottom:2px solid var(--blue);
+  transition:background .18s ease,color .18s ease;
+}
+.panel a:hover{background:var(--blue);color:var(--sheet)}
+
+.entry{margin-top:2rem;padding-top:1.6rem;border-top:1px dashed rgba(28,25,19,.35)}
+
+.when{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:600;
+  letter-spacing:.13em;
+  color:var(--red);
+  margin:0 0 .3rem;
+}
+h3{
+  font-family:var(--sans);
+  font-stretch:112%;
+  font-weight:800;
+  font-size:1.125rem;
+  line-height:1.3;
+  margin:0 0 .1rem;
+}
+.org{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--blue);
+  margin:0 0 .7rem;
+}
+.stack{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  letter-spacing:.04em;
+  color:var(--ink-soft);
+  margin:.7rem 0 0;
+}
+.stack::before{content:"TOOLS — ";color:var(--red);font-weight:600}
+
+.skills{margin:0}
+.skills dt{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:600;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:.3rem;
+}
+.skills dd{margin:0 0 1.4rem;max-width:36rem}
+.skills dd:last-child{margin-bottom:0}
+
+.plain{list-style:none;margin:0;padding:0;max-width:30rem}
+.plain .field{padding:.35rem 0}
+
+.interim{
+  font-style:italic;
+  color:var(--ink-soft);
+  border-left:3px solid var(--manila-deep);
+  padding-left:1rem;
+}
+
+footer{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 1.25rem 3rem;
+}
+.eof{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:600;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.eof::before,.eof::after{content:"";flex:1;border-top:2px solid var(--ink)}
+
+.lift{opacity:0;transform:translateY(10px);animation:lift .7s cubic-bezier(.2,.7,.3,1) forwards}
+.d1{animation-delay:.04s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}.d4{animation-delay:.28s}
+@keyframes lift{to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .lift,.js .panel{animation:none;opacity:1;transform:none}
+  .tab,.field .v a,.panel a{transition:none}
+}
+
+@media (max-width:920px){
+  .stamp{position:static;display:inline-block;margin:0 0 1.1rem;transform:rotate(-4deg)}
+}
+
+@media (max-width:760px){
+  .cover{grid-template-columns:1fr;gap:2rem;padding-top:2.5rem}
+  .drawer-in{flex-wrap:wrap;justify-content:center;gap:.15rem 1rem;text-align:center}
+  .attachment::before{left:-1rem}
+  .attachment::after{right:-1rem}
+  .attachment{max-width:9.5rem}
+  .stamp{position:static;display:inline-block;margin:0 0 1.2rem;transform:rotate(-4deg)}
+  .cover h1{font-size:clamp(2.1rem,10vw,2.9rem)}
+  .sheet{padding:1.8rem 1.3rem 2.2rem 2.6rem;background:
+    linear-gradient(var(--red),var(--red)) no-repeat 1.6rem 0/2px 100%,
+    repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--blue-faint) 31px,var(--blue-faint) 32px),
+    var(--sheet)}
+  .sheet-head{flex-direction:column;gap:.2rem;align-items:flex-start}
+  .field{flex-wrap:wrap}
+  .field .v{text-align:left}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="drawer">
+  <div class="drawer-in">
+    <span class="no">FILE NO. MM-2026-001</span>
+    <span>MOURELATOS, MICHAEL</span>
+    <span class="date">LAST UPDATED AUG 2026</span>
+  </div>
+</div>
+
+<header class="cover">
+  <figure class="attachment lift d1">
+    <img src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
+    <figcaption>Subject — Calgary, AB · 51.04°N</figcaption>
+  </figure>
+
+  <div>
+    <span class="stamp lift d1" aria-hidden="true">Active file</span>
+    <h1 class="lift d2">Mourelatos<span class="comma">,</span><br>Michael</h1>
+
+    <div class="fields lift d3">
+      <div class="field"><span class="k">Occupation</span><span class="leader"></span><span class="v">Data &amp; Analytics</span></div>
+      <div class="field"><span class="k">Location</span><span class="leader"></span><span class="v">Calgary, Alberta</span></div>
+      <div class="field"><span class="k">Contact</span><span class="leader"></span><span class="v"><a href="mailto:michaelmourelatos99@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">LinkedIn</a></span></div>
+      <div class="field"><span class="k">Documents</span><span class="leader"></span><span class="v"><a href="resume.pdf">Resume (PDF)</a></span></div>
+    </div>
+
+    <p class="brief lift d4">
+      <span class="lead-in">Summary of subject</span>
+      Builds data products end to end — Python applications, enterprise
+      semantic models, Databricks pipelines — for industrial operations that
+      run on messy, high-volume data. <em>Known for the translation:</em>
+      turning what operations and finance actually need into requirements,
+      and what the data actually says into plain language.
+    </p>
+  </div>
+</header>
+
+<main class="filing" id="main">
+
+  <div role="tablist" aria-label="File sections" class="tabs">
+    <button class="tab" role="tab" id="tab-about"      aria-controls="about"      aria-selected="true">About</button>
+    <button class="tab" role="tab" id="tab-experience" aria-controls="experience" aria-selected="false" tabindex="-1">Experience</button>
+    <button class="tab" role="tab" id="tab-projects"   aria-controls="projects"   aria-selected="false" tabindex="-1">Projects</button>
+    <button class="tab" role="tab" id="tab-skills"     aria-controls="skills"     aria-selected="false" tabindex="-1">Skills</button>
+    <button class="tab" role="tab" id="tab-writing"    aria-controls="writing"    aria-selected="false" tabindex="-1">Writing</button>
+    <button class="tab" role="tab" id="tab-contact"    aria-controls="contact"    aria-selected="false" tabindex="-1">Contact</button>
+  </div>
+
+  <div class="folder">
+    <div class="sheet">
+
+      <section class="panel" id="about" role="tabpanel" aria-labelledby="tab-about" tabindex="0">
+        <div class="sheet-head"><h2>What I do</h2><span class="ref">MM-2026 / 01</span></div>
+        <p>
+          Six years in data and analytics, most of it spent on the unglamorous
+          half of the job: reconciling systems that disagree, rebuilding the
+          semantic layer nobody wants to open, and shipping tools that survive
+          contact with real users.
+        </p>
+        <p>
+          I work across the whole path — stakeholder discovery, data
+          architecture, the application itself, then adoption tracking to find
+          out whether any of it landed. Lately that has meant production Python
+          apps in Dash and Streamlit for market intelligence and pricing, built
+          with AI-assisted workflows that compress the build cycle
+          considerably.
+        </p>
+        <p>
+          Economics background, which is probably why I care more about whether
+          a number changes a decision than whether the pipeline is elegant.
+        </p>
+        <p>
+          Off the clock: assistant coach for Henry Wise Wood high school rugby
+          since 2018, still playing for the Calgary Canucks, fluent in Greek.
+          Golf, NFL and NHL, and a dog who is unimpressed by all of it.
+        </p>
+      </section>
+
+      <section class="panel" id="experience" role="tabpanel" aria-labelledby="tab-experience" tabindex="0" hidden>
+        <div class="sheet-head"><h2>Where I've worked</h2><span class="ref">MM-2026 / 02</span></div>
+
+        <article>
+          <p class="when">2026 — Present</p>
+          <h3>BI Analyst, Data Science &amp; Analytics</h3>
+          <p class="org">Secure Waste Infrastructure · Calgary</p>
+          <p>
+            Own end-to-end delivery of operational analytics for an industrial
+            waste and metals-recycling business. Design and ship production
+            Python applications — market-intelligence, price-forecasting and
+            interactive scheduling tools with SQL-integrated data layers and
+            custom front ends.
+          </p>
+          <p>
+            Led a division-wide asset tracking analytics product from
+            requirements through to adoption baselines, re-architected the
+            corporate energy-hedging semantic model, and cleared systemic
+            data-quality defects in rail logistics reporting that operations
+            relied on daily. Standardised Git-based dev → UAT → prod promotion
+            for Databricks pipelines along the way.
+          </p>
+          <p class="stack">Python (Dash, Streamlit) · Databricks · Power BI · DAX · SQL</p>
+        </article>
+
+        <article class="entry">
+          <p class="when">2025 — 2026</p>
+          <h3>Business Intelligence Analyst, Data Science</h3>
+          <p class="org">Smart Technologies · Calgary</p>
+          <p>
+            Delivered interactive dashboards and backend pipeline work that
+            expanded self-service analytics across the business. Led
+            requirements sessions, owned ETL workflows for large datasets, and
+            integrated ML models and AI analytics into the enterprise data
+            factory.
+          </p>
+          <p class="stack">SQL · Python · Power BI · ETL</p>
+        </article>
+
+        <article class="entry">
+          <p class="when">2023 — 2025</p>
+          <h3>Workforce &amp; Reporting Business Analyst</h3>
+          <p class="org">Smart Technologies · Calgary</p>
+          <p>
+            Owned a portfolio of 20+ operational Power BI reports used daily for
+            staffing, workload and budget decisions. Built a support-volume
+            forecasting model, ran biweekly forecast reviews with leadership,
+            and partnered on efficiency programs worth $10–15k in monthly
+            savings.
+          </p>
+          <p class="stack">Power BI · Forecasting · Operations analytics</p>
+        </article>
+
+        <article class="entry">
+          <p class="when">2020 — 2023</p>
+          <h3>CX Operations Coordinator</h3>
+          <p class="org">Semtech · Richmond, BC</p>
+          <p>
+            Supported an operation handling 10,000+ monthly tickets and built
+            the KPI tracking used to manage it. Also co-led the North American
+            Emerging Professionals ERG, running programming for early-career
+            employees.
+          </p>
+          <p class="stack">Power BI · QlikSense · SQL · Salesforce</p>
+        </article>
+      </section>
+
+      <section class="panel" id="projects" role="tabpanel" aria-labelledby="tab-projects" tabindex="0" hidden>
+        <div class="sheet-head"><h2>Personal projects</h2><span class="ref">MM-2026 / 03</span></div>
+        <p>
+          Things built outside work hours — mostly Python, mostly to answer a
+          question I couldn't stop thinking about.
+        </p>
+        <p class="interim">
+          Write-ups in progress. The current one: an algorithmic trading
+          research project in Python, running paper-money experiments before a
+          single real dollar moves.
+        </p>
+      </section>
+
+      <section class="panel" id="skills" role="tabpanel" aria-labelledby="tab-skills" tabindex="0" hidden>
+        <div class="sheet-head"><h2>Tools of the trade</h2><span class="ref">MM-2026 / 04</span></div>
+        <dl class="skills">
+          <dt>Application development</dt>
+          <dd>Python (Dash, Streamlit, pandas), SQL, HTML/CSS, data-layer integration, AI-assisted development with Claude Code</dd>
+
+          <dt>Data platforms</dt>
+          <dd>Databricks, Snowflake, Microsoft Fabric, dbt, Power BI (DAX, Power Query M), enterprise semantic model design</dd>
+
+          <dt>Delivery</dt>
+          <dd>Git branching and dev → UAT → prod promotion, Azure DevOps, Jira, Agile, stakeholder discovery and requirements</dd>
+
+          <dt>Languages</dt>
+          <dd>English and Greek, both fluent</dd>
+
+          <dt>Education</dt>
+          <dd>BA Economics, minor in Business Management &amp; Society — University of Calgary. Certifications in progress: Project Management, Data Analytics.</dd>
+        </dl>
+      </section>
+
+      <section class="panel" id="writing" role="tabpanel" aria-labelledby="tab-writing" tabindex="0" hidden>
+        <div class="sheet-head"><h2>Writing</h2><span class="ref">MM-2026 / 05</span></div>
+        <p>
+          Notes on semantic modelling, reconciliation, and the parts of
+          analytics that don't make the conference talks.
+        </p>
+        <p class="interim">
+          First piece in draft — on why every reconciliation project starts
+          with two systems that are both technically correct.
+        </p>
+      </section>
+
+      <section class="panel" id="contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0" hidden>
+        <div class="sheet-head"><h2>Get in touch</h2><span class="ref">MM-2026 / 06</span></div>
+        <p>Open to interesting problems in data, analytics and operations.</p>
+        <ul class="plain">
+          <li class="field"><span class="k">Email</span><span class="leader"></span><span class="v"><a href="mailto:michaelmourelatos99@gmail.com">michaelmourelatos99@gmail.com</a></span></li>
+          <li class="field"><span class="k">LinkedIn</span><span class="leader"></span><span class="v"><a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">michael-mourelatos</a></span></li>
+          <li class="field"><span class="k">GitHub</span><span class="leader"></span><span class="v"><a href="https://github.com/michaelmourelatos99-commits">michaelmourelatos99-commits</a></span></li>
+          <li class="field"><span class="k">Resume</span><span class="leader"></span><span class="v"><a href="resume.pdf">Download PDF</a></span></li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p class="eof">End of file</p>
+</footer>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  if(!tabs.length) return;
+
+  document.documentElement.classList.add('js');
+
+  function panelFor(tab){
+    return document.getElementById(tab.getAttribute('aria-controls'));
+  }
+
+  function select(tab, focus){
+    tabs.forEach(function(t){
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var p = panelFor(t);
+      if(p) p.hidden = !on;
+    });
+    if(focus) tab.focus();
+    var id = tab.getAttribute('aria-controls');
+    if(history.replaceState) history.replaceState(null, '', '#' + id);
+  }
+
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){ select(tab, false); });
+
+    tab.addEventListener('keydown', function(e){
+      var i = tabs.indexOf(tab), next = null;
+      switch(e.key){
+        case 'ArrowDown': case 'ArrowRight': next = tabs[(i + 1) % tabs.length]; break;
+        case 'ArrowUp':   case 'ArrowLeft':  next = tabs[(i - 1 + tabs.length) % tabs.length]; break;
+        case 'Home': next = tabs[0]; break;
+        case 'End':  next = tabs[tabs.length - 1]; break;
+        default: return;
+      }
+      e.preventDefault();
+      select(next, true);
+    });
+  });
+
+  function fromHash(){
+    var id = (location.hash || '').replace('#', '');
+    var match = tabs.filter(function(t){ return t.getAttribute('aria-controls') === id; })[0];
+    if(match) select(match, false);
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+})();
+</script>
+</body>
+</html>
