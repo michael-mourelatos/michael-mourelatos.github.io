@@ -158,7 +158,7 @@ html.js .hline{transform:scaleX(0)}
 .lets:hover,.lets:focus-visible{transform:rotate(0) scale(1.05);box-shadow:9px 9px 0 var(--blue)}
 .about .fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.95;pointer-events:none}
 /* ===== 01/01a — Specimen Turntable ===== */
-.about{--oR:clamp(15rem,26vw,21rem)}
+.about{--oR:clamp(14rem,24vw,19.5rem)}
 /* Base = static flow: what no-JS, no-GSAP and reduced-motion users see */
 .orbit-stage{position:relative}
 .o-aside{margin:0 auto 2rem;text-align:center}
@@ -166,13 +166,11 @@ html.js .hline{transform:scaleX(0)}
 .o-ring{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:flex-start}
 .o-core{margin:0 auto 2.4rem;width:min(52vw,18rem)}
 .o-core img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border:2px solid var(--cream);box-shadow:12px 12px 0 var(--blue);filter:contrast(1.06) saturate(1.05)}
-.o-core figcaption{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);text-align:center;padding-top:.8rem}
 .oc{margin:0}
 .oc-in{position:relative;margin:0;width:min(13rem,46vw);background:var(--cream);padding:.4rem .4rem 1.3rem;box-shadow:10px 10px 0 var(--blue)}
 .oc-in.wide{width:min(19rem,80vw)}
 .oc-in img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;filter:contrast(1.06) saturate(1.05)}
 .oc-in.wide img{aspect-ratio:16/10}
-.oc-in figcaption{font-family:var(--mono);font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-align:center;padding-top:.55rem}
 .o-read{display:none;margin:2rem auto 0;gap:.35rem;text-align:center;font-family:var(--mono);text-transform:uppercase}
 .or-k{font-size:.62rem;letter-spacing:.24em;color:var(--cream);opacity:.72}
 .or-cap{font-size:.72rem;font-weight:600;letter-spacing:.18em;color:var(--signal)}
@@ -182,13 +180,12 @@ html.js .hline{transform:scaleX(0)}
   html.js .o-aside{position:absolute;top:2vh;left:0;z-index:6;max-width:23rem;margin:0;text-align:left;opacity:0}
   html.js .o-read{position:absolute;left:50%;bottom:1vh;transform:translateX(-50%);z-index:6;margin:0;opacity:0;display:grid}
   html.js .o-scene{height:76vh;margin-top:6vh;perspective:1200px;perspective-origin:50% 44%;z-index:2}
-  html.js .o-tilt{position:absolute;left:50%;top:56%;width:0;height:0;transform-style:preserve-3d}
+  html.js .o-tilt{position:absolute;left:50%;top:58%;width:0;height:0;transform-style:preserve-3d}
   html.js .o-ring{position:absolute;display:block;transform-style:preserve-3d;transform:rotateX(-9deg)}
   html.js .o-core{position:absolute;margin:0;width:min(40vh,24vw);opacity:0;transform:translate(-50%,-50%)}
-  html.js .o-core figcaption{position:absolute;left:50%;bottom:-2.6rem;transform:translateX(-50%);white-space:nowrap;padding:0}
   html.js .oc{position:absolute;transform-style:preserve-3d;transform:rotateY(var(--a)) translateZ(var(--oR))}
-  html.js .oc-in{width:9.5rem;box-shadow:10px 10px 0 rgba(0,34,238,var(--sh,0));opacity:0;transform:translate(-50%,-50%) rotateY(var(--jy)) rotate(var(--jz))}
-  html.js .oc-in.wide{width:13rem}
+  html.js .oc-in{width:10.5rem;box-shadow:10px 10px 0 rgba(0,34,238,var(--sh,0));opacity:0;transform:translate(-50%,-50%) rotateY(var(--jy)) rotate(var(--jz))}
+  html.js .oc-in.wide{width:14.5rem}
   html.js .o-scene.live .o-ring{will-change:transform}
   html.js .o-scene.live .oc-in{will-change:transform,opacity}
 }
@@ -197,8 +194,8 @@ html.js .hline{transform:scaleX(0)}
 }
 @media (min-width:701px) and (max-height:720px){
   html.js .about{--oR:clamp(13rem,24vw,18rem)}
-  html.js .oc-in{width:8.5rem}
-  html.js .oc-in.wide{width:11.5rem}
+  html.js .oc-in{width:9.5rem}
+  html.js .oc-in.wide{width:12.5rem}
 }
 .sk-stage{position:relative;z-index:1;height:100vh;display:grid;place-items:center;overflow:hidden}
 .gate{position:absolute;width:min(44vw,32rem);height:58vh;border:3px solid var(--signal);display:grid;place-items:center;will-change:transform}
@@ -256,12 +253,12 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
 
 <div class="hud tl">Mourelatos, M.</div>
 <div class="hud tr">Data &amp; Analytics · Calgary</div>
-<div class="hud bl" id="secnum">00 — Intro</div>
+<div class="hud bl" id="secnum">Intro</div>
 <a class="lets" href="#contact">Let’s work ↗</a>
 
 <main>
 
-  <header class="hero" data-sec="00 — Intro">
+  <header class="hero" data-sec="Intro">
     <p class="kick rv">MM-2026 · Data &amp; Analytics</p>
     <h1 class="rv">Michael<br><em>Mourelatos</em></h1>
     <p class="tag rv">I make heavy industry legible.</p>
@@ -270,14 +267,14 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     <p class="sub quick rv"><a href="resume.pdf">In a hurry? Grab the resume →</a></p>
   </header>
 
-  <section class="about dark" id="about" data-sec="01 — About">
+  <section class="about dark" id="about" data-sec="About">
     <svg class="fx" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <g class="fx-dots" fill="#0022EE"><circle cx="80" cy="120" r="4"/><circle cx="180" cy="80" r="4"/><circle cx="300" cy="150" r="4"/><circle cx="420" cy="90" r="4"/><circle cx="560" cy="140" r="4"/><circle cx="700" cy="70" r="4"/><circle cx="840" cy="130" r="4"/><circle cx="140" cy="260" r="4"/><circle cx="260" cy="300" r="4"/><circle cx="400" cy="260" r="4"/><circle cx="540" cy="300" r="4"/><circle cx="680" cy="250" r="4"/><circle cx="820" cy="300" r="4"/><circle cx="120" cy="430" r="4"/><circle cx="240" cy="470" r="4"/><circle cx="380" cy="420" r="4"/><circle cx="520" cy="470" r="4"/><circle cx="660" cy="430" r="4"/><circle cx="800" cy="470" r="4"/><circle cx="920" cy="400" r="4"/><circle cx="90" cy="540" r="4"/><circle cx="930" cy="220" r="4"/></g>
       <g class="fx-links" stroke="#FBF8F0" stroke-width="1" opacity=".45"><line x1="80" y1="120" x2="260" y2="300" pathLength="1" stroke-dasharray="1"/><line x1="180" y1="80" x2="400" y2="260" pathLength="1" stroke-dasharray="1"/><line x1="300" y1="150" x2="540" y2="300" pathLength="1" stroke-dasharray="1"/><line x1="420" y1="90" x2="680" y2="250" pathLength="1" stroke-dasharray="1"/><line x1="560" y1="140" x2="820" y2="300" pathLength="1" stroke-dasharray="1"/><line x1="140" y1="260" x2="380" y2="420" pathLength="1" stroke-dasharray="1"/><line x1="260" y1="300" x2="520" y2="470" pathLength="1" stroke-dasharray="1"/><line x1="400" y1="260" x2="660" y2="430" pathLength="1" stroke-dasharray="1"/><line x1="540" y1="300" x2="800" y2="470" pathLength="1" stroke-dasharray="1"/><line x1="700" y1="70" x2="930" y2="220" pathLength="1" stroke-dasharray="1"/></g>
       <path class="fx-line" d="M60,520 C 250,480 380,545 520,360 S 800,180 950,110" fill="none" stroke="#E4342B" stroke-width="3.5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
     </svg>
     <div class="wrap stage">
-      <div class="line l1"><p class="kick">01 · About</p><p class="big">I build data products <b>end to end</b> — the pipeline, the model, the application, the adoption.</p></div>
+      <div class="line l1"><p class="kick">About</p><p class="big">I build data products <b>end to end</b> — the pipeline, the model, the application, the adoption.</p></div>
       <div class="line l2"><p class="big">The part people hire twice is the <em>translation:</em> operations into requirements, data into decisions.</p></div>
       <div class="line l3">
         <div class="orbit-stage">
@@ -286,25 +283,24 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
             <div class="o-tilt">
               <figure class="o-core">
                 <img src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
-                <figcaption>Fig. 01 · The subject · 51.04°N</figcaption>
               </figure>
               <div class="o-ring">
-                <div class="oc" style="--a:0deg;--jy:13deg;--jz:-2deg"><figure class="oc-in wide"><img src="photos/rugby.jpg" alt="Michael carrying the rugby ball through two tacklers on a snowy pitch" width="1100" height="581" loading="lazy" style="object-position:50% 30%"><figcaption>Exh. A · Ball in hand · club rugby</figcaption></figure></div>
-                <div class="oc" style="--a:60deg;--jy:-11deg;--jz:1.6deg"><figure class="oc-in"><img src="photos/suit.jpg" alt="Michael in a suit, jacket over one shoulder, on a garden path" width="720" height="900" loading="lazy"><figcaption>Exh. B · Formal configuration</figcaption></figure></div>
-                <div class="oc" style="--a:120deg;--jy:9deg;--jz:-1.4deg"><figure class="oc-in"><img src="photos/pasta.jpg" alt="Michael holding fresh handmade pasta in an Italian kitchen" width="640" height="800" loading="lazy"><figcaption>Exh. C · Fresh pasta · Italy</figcaption></figure></div>
-                <div class="oc" style="--a:180deg;--jy:-14deg;--jz:2.2deg"><figure class="oc-in"><img src="photos/dog.jpg" alt="Michael and his partner by the river with one unimpressed dog and a bottle of champagne" width="720" height="900" loading="lazy"><figcaption>Exh. D · The unimpressed dog · +2</figcaption></figure></div>
-                <div class="oc" style="--a:240deg;--jy:12deg;--jz:1.2deg"><figure class="oc-in"><img src="photos/golf.jpg" alt="Michael on a golf green with the Rockies behind" width="640" height="800" loading="lazy"><figcaption>Exh. E · Foothills golf · AB</figcaption></figure></div>
-                <div class="oc" style="--a:300deg;--jy:-9deg;--jz:-1.8deg"><figure class="oc-in"><img src="photos/stampede.jpg" alt="Michael in a cowboy hat and western shirt" width="640" height="800" loading="lazy"><figcaption>Exh. F · Stampede protocol · YYC</figcaption></figure></div>
+                <div class="oc" style="--a:0deg;--jy:13deg;--jz:-2deg"><figure class="oc-in wide" data-cap="Ball in hand · club rugby"><img src="photos/rugby.jpg" alt="Michael carrying the rugby ball through two tacklers on a snowy pitch" width="1100" height="581" loading="lazy" style="object-position:50% 30%"></figure></div>
+                <div class="oc" style="--a:60deg;--jy:-11deg;--jz:1.6deg"><figure class="oc-in" data-cap="Formal configuration"><img src="photos/suit.jpg" alt="Michael in a suit, jacket over one shoulder, on a garden path" width="720" height="900" loading="lazy"></figure></div>
+                <div class="oc" style="--a:120deg;--jy:9deg;--jz:-1.4deg"><figure class="oc-in" data-cap="Fresh pasta · Italy"><img src="photos/pasta.jpg" alt="Michael holding fresh handmade pasta in an Italian kitchen" width="640" height="800" loading="lazy"></figure></div>
+                <div class="oc" style="--a:180deg;--jy:-14deg;--jz:2.2deg"><figure class="oc-in" data-cap="The unimpressed dog · +2"><img src="photos/dog.jpg" alt="Michael and his partner by the river with one unimpressed dog and a bottle of champagne" width="720" height="900" loading="lazy"></figure></div>
+                <div class="oc" style="--a:240deg;--jy:12deg;--jz:1.2deg"><figure class="oc-in" data-cap="Foothills golf · AB"><img src="photos/golf.jpg" alt="Michael on a golf green with the Rockies behind" width="640" height="800" loading="lazy"></figure></div>
+                <div class="oc" style="--a:300deg;--jy:-9deg;--jz:-1.8deg"><figure class="oc-in" data-cap="Stampede protocol · YYC"><img src="photos/stampede.jpg" alt="Michael in a cowboy hat and western shirt" width="640" height="800" loading="lazy"></figure></div>
               </div>
             </div>
           </div>
-          <p class="o-read"><span class="or-k">01a · Off the clock — 01/06</span><span class="or-cap">Exh. A · Ball in hand · club rugby</span></p>
+          <p class="o-read"><span class="or-k">Off the clock — 1 of 6</span><span class="or-cap">Ball in hand · club rugby</span></p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="exp" data-sec="02 — Experience">
+  <section class="exp" data-sec="Experience">
     <div class="wrap">
       <div class="rail" aria-hidden="true"><span class="y0">2026</span><div class="fill"></div><span class="y1">2020</span></div>
       <div class="roles">
@@ -340,9 +336,9 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     </div>
   </section>
 
-  <section class="work dark" data-sec="03 — Selected work">
+  <section class="work dark" data-sec="Selected work">
     <div class="head">
-      <p class="kick rv">03 · Selected work</p>
+      <p class="kick rv">Selected work</p>
       <p class="big rv">Three builds I keep getting asked about.<br><em>Case studies in progress.</em></p>
     </div>
     <div class="track">
@@ -370,23 +366,23 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     </div>
   </section>
 
-  <section class="skills dark" data-sec="04 — Skills">
+  <section class="skills dark" data-sec="Skills">
     <div class="sk-base" aria-hidden="true"></div>
     <div class="sk-fillbar" aria-hidden="true"></div>
     <div class="sk-stage">
-      <div class="gate" aria-hidden="true"><span>04 · Skills</span></div>
+      <div class="gate" aria-hidden="true"><span>Skills</span></div>
       <div class="sk-slide s0"><span class="sk-lbl">Build</span><p class="sk-main">Python — Dash, Streamlit, pandas — SQL, <em>AI-assisted development.</em></p></div>
       <div class="sk-slide s1"><span class="sk-lbl">Platform</span><p class="sk-main">Databricks, Power BI — DAX, M — Snowflake, Fabric, dbt, <em>semantic models.</em></p></div>
       <div class="sk-slide s2"><span class="sk-lbl">Ship</span><p class="sk-main">Git, dev → UAT → prod, Azure DevOps, Agile, <em>stakeholder translation.</em></p></div>
     </div>
   </section>
 
-  <section class="contact dark" data-sec="05 — Contact">
+  <section class="contact dark" data-sec="Contact">
     <div class="mq mq-top" aria-hidden="true"><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span></div>
     <canvas class="ctc" aria-hidden="true"></canvas>
     <div class="contact-core">
-      <p class="kick rv">05 · Contact</p>
-      <p class="big rv">Have a messy dataset<br>and a <b>deadline?</b></p>
+      <p class="kick rv">Contact</p>
+      <p class="big rv">Let’s make your data<br><b>make sense.</b></p>
       <a class="hello" href="mailto:michaelmourelatos99@gmail.com" aria-label="Say hello - email Michael"><span class="hl">S</span><span class="hl">a</span><span class="hl">y</span><span class="hl">&nbsp;</span><span class="hl">h</span><span class="hl">e</span><span class="hl">l</span><span class="hl">l</span><span class="hl">o</span><span class="hl">.</span><span class="hline" aria-hidden="true"></span></a>
       <p class="alts rv">
         <a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">LinkedIn</a> &nbsp;·&nbsp;
@@ -692,11 +688,11 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     // flattens preserve-3d. .l3 snaps to 1 via set(); only leaf children fade.
     atl.set('.l3',{opacity:1,y:0},L3)
        .fromTo('.o-aside',{autoAlpha:0,y:26},{autoAlpha:1,y:0,duration:.8,
-         onUpdate:function(){ if(aboutSec.getAttribute('data-sec')!=='01 — About') aboutSec.setAttribute('data-sec','01 — About'); }},L3)
+         onUpdate:function(){ if(aboutSec.getAttribute('data-sec')!=='About') aboutSec.setAttribute('data-sec','About'); }},L3)
        .fromTo('.o-core',{autoAlpha:0,z:-420},{autoAlpha:1,z:0,duration:1},L3+.15);
 
     var cards = gsap.utils.toArray('.oc-in');
-    function depthOp(f){ return 0.25 + 0.75*f; } // f: 1 at front apex, 0 at back
+    function depthOp(f){ return 0.45 + 0.55*f; } // f: 1 at front apex, 0 at back
 
     if (deep) {
       atl.fromTo('.o-read',{autoAlpha:0},{autoAlpha:1,duration:.6},L3+.9);
@@ -715,7 +711,7 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
       var setRing = gsap.quickSetter('.o-ring','rotationY','deg');
       var setOp = cards.map(function(c){ return gsap.quickSetter(c,'opacity'); });
       var setSh = cards.map(function(c){ return gsap.quickSetter(c,'--sh'); });
-      var caps  = cards.map(function(c){ return c.querySelector('figcaption').textContent; });
+      var caps  = cards.map(function(c){ return c.getAttribute('data-cap'); });
       var capEl = document.querySelector('.or-cap'), kEl = document.querySelector('.or-k');
       function detent(t){ var u=Math.min(1,Math.max(0,(t-.18)/.64)); return u*u*(3-2*u); }
 
@@ -730,9 +726,9 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
         var idx=((Math.round(-a/60))%6+6)%6;
         if(idx!==cur){ cur=idx;
           capEl.textContent=caps[idx];
-          kEl.textContent='01a · Off the clock — 0'+(idx+1)+'/06';
+          kEl.textContent='Off the clock — '+(idx+1)+' of 6';
           gsap.fromTo(capEl,{y:6},{y:0,duration:.28,ease:'power2.out'});
-          if(aboutSec.getAttribute('data-sec')!=='01a — Off the clock') aboutSec.setAttribute('data-sec','01a — Off the clock');
+          if(aboutSec.getAttribute('data-sec')!=='Off the clock') aboutSec.setAttribute('data-sec','Off the clock');
         }
       }},L3+2.1)
       .to({},{duration:.5}); // settle hold before unpin
@@ -774,7 +770,7 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     return function(){ // context revert: listeners + state the tweens don't own
       if(pmHandler) removeEventListener('pointermove', pmHandler);
       oScene.classList.remove('live');
-      aboutSec.setAttribute('data-sec','01 — About');
+      aboutSec.setAttribute('data-sec','About');
       expScene.start=Infinity;expScene.p=0;
     };
   });
@@ -786,8 +782,8 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     stl.fromTo(sel,{scale:.7,opacity:0},{scale:1,opacity:1,duration:1},at)
        .to(sel,{scale:2.6,opacity:0,duration:1},at+1.35);
   });
-  stl.to('.sk-fillbar',{scaleY:1,ease:'none',duration:3.2},1.9);
-  stl.to(['.sk-base','.sk-fillbar'],{opacity:0,duration:.9},6.45);
+  stl.to('.sk-fillbar',{scaleY:1,ease:'none',duration:2},0.6);
+  stl.to(['.sk-base','.sk-fillbar'],{opacity:0,duration:.65},7.0);
 
   var csec=document.querySelector('.contact');
   var cv2=document.querySelector('.ctc');
