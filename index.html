@@ -487,6 +487,89 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     ctx.fillRect(0,baseY,W,H-baseY);
   }
 
+  /* ---- industry scenes: flowing lines converge into each employer's world
+     while the experience section is pinned (oil&gas -> pencils -> circuits) ---- */
+  var expScene={p:0,start:Infinity};
+
+  function profOil(x){
+    var g=H*0.93,u=x/W,y=g;
+    if(u>=0.05&&u<=0.145)y=Math.min(y,H*0.855);
+    if(u>=0.165&&u<=0.26)y=Math.min(y,H*0.855);
+    if(u>=0.56&&u<=0.65)y=Math.min(y,H*0.865);
+    if(u>=0.33&&u<=0.45){var h=H*0.775;y=Math.min(y,h+(Math.abs(u-0.39)/0.06)*(g-h));}
+    if(u>=0.72&&u<=0.735)y=Math.min(y,H*0.73);
+    if(u>=0.83&&u<=0.90)y=Math.min(y,H*0.885);
+    return y;
+  }
+  function detOil(w){
+    ctx.strokeStyle='rgba(14,11,8,'+(0.9*w)+')';ctx.lineWidth=3*DPR;
+    ctx.beginPath();ctx.moveTo(W*0.335,H*0.79);ctx.lineTo(W*0.45,H*0.765);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(W*0.335,H*0.79);ctx.lineTo(W*0.325,H*0.835);ctx.stroke();
+    var a=Math.max(0,(w-0.5)*2);if(a<=0)return;
+    var fx=W*0.7275,fy=H*0.722,fl=1+0.2*Math.sin((window.scrollY||0)*0.03);
+    ctx.fillStyle='rgba(242,255,73,'+(0.92*a)+')';
+    ctx.beginPath();ctx.moveTo(fx,fy-14*DPR*fl);ctx.quadraticCurveTo(fx+7*DPR,fy-4*DPR,fx,fy+2*DPR);ctx.quadraticCurveTo(fx-7*DPR,fy-4*DPR,fx,fy-14*DPR*fl);ctx.closePath();ctx.fill();
+  }
+
+  var PENCILS=[[0.08,0.795],[0.22,0.755],[0.36,0.785],[0.55,0.74],[0.72,0.77],[0.88,0.80]],PW=0.05;
+  function profPen(x){
+    var g=H*0.93,u=x/W,y=g;
+    for(var i=0;i<PENCILS.length;i++){
+      var d=Math.abs(u-PENCILS[i][0]);
+      if(d<=PW)y=Math.min(y,PENCILS[i][1]*H+(d/PW)*H*0.05);
+    }
+    return y;
+  }
+  function detPen(w){
+    var a=Math.max(0,(w-0.5)*2);if(a<=0)return;
+    ctx.fillStyle='rgba(242,255,73,'+(0.95*a)+')';
+    for(var i=0;i<PENCILS.length;i++){
+      var cx2=PENCILS[i][0]*W,ty=PENCILS[i][1]*H;
+      ctx.beginPath();ctx.moveTo(cx2,ty);ctx.lineTo(cx2-6*DPR,ty+12*DPR);ctx.lineTo(cx2+6*DPR,ty+12*DPR);ctx.closePath();ctx.fill();
+    }
+  }
+
+  var CHIPS=[[0.08,0.22,0.865],[0.29,0.39,0.845],[0.44,0.60,0.80],[0.66,0.76,0.85],[0.82,0.93,0.862]];
+  function profChip(x){
+    var g=H*0.93,u=x/W,y=g;
+    for(var i=0;i<CHIPS.length;i++)if(u>=CHIPS[i][0]&&u<=CHIPS[i][1])y=Math.min(y,CHIPS[i][2]*H);
+    return y;
+  }
+  function detChip(w){
+    ctx.strokeStyle='rgba(14,11,8,'+(0.8*w)+')';ctx.lineWidth=2*DPR;
+    for(var i=0;i<CHIPS.length;i++){var c=CHIPS[i],y0=c[2]*H;
+      for(var u=c[0]+0.012;u<c[1]-0.006;u+=0.018){
+        ctx.beginPath();ctx.moveTo(u*W,y0);ctx.lineTo(u*W,y0-6*DPR);ctx.stroke();
+      }
+    }
+    var a=Math.max(0,(w-0.5)*2);if(a<=0)return;
+    ctx.fillStyle='rgba(242,255,73,'+(0.9*a)+')';
+    for(var j=0;j<CHIPS.length-1;j++){
+      var vx=(CHIPS[j][1]+CHIPS[j+1][0])/2*W;
+      ctx.beginPath();ctx.arc(vx,H*0.905,3.2*DPR,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.arc(vx,H*0.877,3.2*DPR,0,Math.PI*2);ctx.fill();
+    }
+  }
+
+  function drawScene(wS,prof,det,p){
+    if(wS<=0.01)return;
+    var M=7,base=H*0.935;
+    for(var i=0;i<M;i++){
+      var rest=H*(0.775+i*0.024),k=i/(M-1);
+      ctx.strokeStyle='rgba(14,11,8,'+((0.2+0.7*(1-k*0.5))*wS)+')';
+      ctx.lineWidth=(i===0?2:1.2)*DPR;
+      ctx.beginPath();
+      for(var x=0;x<=W;x+=8*DPR){
+        var pr=prof(x),target=pr+(base-pr)*k;
+        var wave=Math.sin(x*0.0045+i*1.3+p*7)*4*DPR;
+        var y=rest+(target-rest)*wS+wave*(1-wS*0.85);
+        if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    det(wS);
+  }
+
   var queued=false;
   function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;draw()})}
 
@@ -520,9 +603,17 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     var wA=1-ss(p,0.24,0.4);
     var wB=ss(p,0.24,0.4)*(1-ss(p,0.56,0.72));
     var wC=ss(p,0.56,0.72);
-    drawFoothills(p,wA);
-    drawBeach(p,wB);
-    drawCity(p,wC);
+    var env=ss((window.scrollY||0),expScene.start-innerHeight*0.9,expScene.start-innerHeight*0.15);
+    var wOil=env*(1-ss(expScene.p,0.20,0.32));
+    var wPen=env*ss(expScene.p,0.20,0.32)*(1-ss(expScene.p,0.66,0.78));
+    var wChip=env*ss(expScene.p,0.66,0.78);
+    var wInd=Math.max(wOil,wPen,wChip);
+    drawFoothills(p,wA*(1-wInd));
+    drawBeach(p,wB*(1-wInd));
+    drawCity(p,wC*(1-wInd));
+    drawScene(wOil,profOil,detOil,p);
+    drawScene(wPen,profPen,detPen,p);
+    drawScene(wChip,profChip,detChip,p);
   }
   addEventListener('scroll',schedule,{passive:true});
   addEventListener('resize',function(){size();schedule()});
@@ -664,7 +755,9 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     // 02 Experience — created here, AFTER the about pin and BEFORE the work pin,
     // so ScrollTrigger computes each pin's start with the previous pin-spacer applied
     gsap.set('.role',{visibility:'visible'});
-    var etl=gsap.timeline({scrollTrigger:{trigger:'.exp',start:'top top',end:'+=320%',pin:true,scrub:0.6}});
+    var etl=gsap.timeline({scrollTrigger:{trigger:'.exp',start:'top top',end:'+=320%',pin:true,scrub:0.6,
+      onRefresh:function(self){expScene.start=self.start;},
+      onUpdate:function(self){expScene.p=self.progress;}}});
     etl.to('.rail .fill',{scaleY:1,ease:'none',duration:8},0);
     ['.r0','.r1','.r2','.r3'].forEach(function(sel,i){
       etl.fromTo(sel,{opacity:0,y:50},{opacity:1,y:0,duration:1},i*2)
@@ -682,6 +775,7 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
       if(pmHandler) removeEventListener('pointermove', pmHandler);
       oScene.classList.remove('live');
       aboutSec.setAttribute('data-sec','01 — About');
+      expScene.start=Infinity;expScene.p=0;
     };
   });
 
