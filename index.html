@@ -507,45 +507,90 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
   }
 
   function profSchool(x){
+    // gentle mounds where each object sits — the lines gather, the icons stand on top
     var g=H*0.93,u=x/W,y=g;
-    if(u>=0.055&&u<=0.20)y=Math.min(y,H*0.888);   // book stack, staggered slabs
-    if(u>=0.07&&u<=0.19)y=Math.min(y,H*0.864);
-    if(u>=0.062&&u<=0.178)y=Math.min(y,H*0.842);
-    var R1=H*0.075,dx1=x-W*0.335;                  // alarm-clock dome
-    if(Math.abs(dx1)<R1*0.94)y=Math.min(y,H*0.845-Math.sqrt(Math.max(0,R1*R1-dx1*dx1)));
-    if(u>=0.46&&u<=0.60){                          // backpack, rounded shoulders
-      var e=Math.min(1,Math.min(u-0.46,0.60-u)/0.02);
-      y=Math.min(y,H*0.805+(1-e)*(g-H*0.805)*0.9);
+    var A=[[0.115,0.085,0.028],[0.245,0.05,0.02],[0.345,0.075,0.032],[0.53,0.085,0.036],[0.665,0.06,0.024],[0.83,0.085,0.038]];
+    for(var i=0;i<A.length;i++){
+      var d=Math.abs(u-A[i][0]);
+      if(d<A[i][1]){var t=Math.cos(d/A[i][1]*Math.PI/2);y=Math.min(y,g-H*A[i][2]*t*t);}
     }
-    if(u>=0.645&&u<=0.695){                        // ruler leaning on nothing
-      var t=(u-0.645)/0.05;
-      y=Math.min(y,g-(g-H*0.78)*t);
-    }
-    var R2=H*0.092,dx2=x-W*0.83;                   // desk globe
-    if(Math.abs(dx2)<R2*0.95)y=Math.min(y,H*0.832-Math.sqrt(Math.max(0,R2*R2-dx2*dx2)));
     return y;
   }
   function detSchool(w){
-    ctx.strokeStyle='rgba(14,11,8,'+(0.85*w)+')';ctx.lineWidth=1.6*DPR;
-    ctx.beginPath();ctx.moveTo(W*0.062,H*0.864);ctx.lineTo(W*0.19,H*0.864);ctx.stroke();   // book seams
-    ctx.beginPath();ctx.moveTo(W*0.058,H*0.888);ctx.lineTo(W*0.197,H*0.888);ctx.stroke();
-    var cx1=W*0.335,cy1=H*0.85;                                                             // clock hands
-    ctx.beginPath();ctx.moveTo(cx1,cy1);ctx.lineTo(cx1,cy1-H*0.038);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(cx1,cy1);ctx.lineTo(cx1+H*0.026,cy1+H*0.008);ctx.stroke();
-    ctx.beginPath();ctx.rect(W*0.505,H*0.862,W*0.05,H*0.046);ctx.stroke();                  // backpack pocket
-    for(var i=1;i<=5;i++){                                                                  // ruler ticks
-      var t=i/6,rx=W*(0.645+0.05*t),ry=H*0.93-(H*0.93-H*0.78)*t;
-      ctx.beginPath();ctx.moveTo(rx,ry+2*DPR);ctx.lineTo(rx-5*DPR,ry+9*DPR);ctx.stroke();
-    }
-    var cx2=W*0.83,cy2=H*0.832,R2=H*0.092;                                                  // globe meridian + equator
-    ctx.beginPath();ctx.ellipse(cx2,cy2,R2*0.45,R2*0.96,0,Math.PI,Math.PI*2);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(cx2-R2*0.88,cy2-R2*0.22);ctx.quadraticCurveTo(cx2,cy2+R2*0.02,cx2+R2*0.88,cy2-R2*0.22);ctx.stroke();
-    var a=Math.max(0,(w-0.5)*2);if(a<=0)return;                                             // the yellow apple
-    var ax=W*0.255,ay=H*0.905,r=H*0.022;
-    ctx.fillStyle='rgba(242,255,73,'+(0.95*a)+')';
-    ctx.beginPath();ctx.arc(ax-r*0.45,ay,r,0,Math.PI*2);ctx.arc(ax+r*0.45,ay,r,0,Math.PI*2);ctx.fill();
-    ctx.strokeStyle='rgba(242,255,73,'+(0.95*a)+')';ctx.lineWidth=2*DPR;
-    ctx.beginPath();ctx.moveTo(ax,ay-r*0.9);ctx.quadraticCurveTo(ax+r*0.3,ay-r*1.7,ax+r*0.9,ay-r*1.8);ctx.stroke();
+    var g=H*0.925, ink='rgba(14,11,8,';
+    function pop(k){return ss(w,0.14+k*0.055,0.36+k*0.055)}
+    function enter(a,ax){ctx.save();ctx.globalAlpha=a;ctx.translate(ax,(1-a)*16*DPR)}
+    var a,cx,cy,R,i;
+
+    a=pop(0); if(a>0){ enter(a,0); // book stack — three offset slabs, page seams
+      ctx.strokeStyle=ink+'.95)';ctx.lineWidth=2.2*DPR;
+      ctx.strokeRect(W*0.055,g-H*0.024,W*0.125,H*0.024);
+      ctx.strokeRect(W*0.068,g-H*0.048,W*0.118,H*0.024);
+      ctx.strokeRect(W*0.06,g-H*0.072,W*0.112,H*0.024);
+      ctx.lineWidth=1.4*DPR;
+      ctx.beginPath();ctx.moveTo(W*0.166,g-H*0.02);ctx.lineTo(W*0.166,g-H*0.004);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(W*0.172,g-H*0.044);ctx.lineTo(W*0.172,g-H*0.028);ctx.stroke();
+      ctx.restore(); }
+
+    a=pop(1); if(a>0){ enter(a,0); // the yellow apple, outlined
+      cx=W*0.245;cy=g-H*0.026;R=H*0.026;
+      ctx.fillStyle='rgba(242,255,73,'+(0.95)+')';
+      ctx.beginPath();ctx.arc(cx-R*0.42,cy,R,0,Math.PI*2);ctx.arc(cx+R*0.42,cy,R,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle=ink+'.9)';ctx.lineWidth=2*DPR;
+      ctx.beginPath();ctx.moveTo(cx,cy-R*0.95);ctx.quadraticCurveTo(cx+R*0.1,cy-R*1.6,cx+R*0.55,cy-R*1.75);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx+R*0.55,cy-R*1.75);ctx.quadraticCurveTo(cx+R*1.3,cy-R*1.9,cx+R*1.1,cy-R*1.2);ctx.quadraticCurveTo(cx+R*0.6,cy-R*1.15,cx+R*0.55,cy-R*1.75);ctx.stroke();
+      ctx.restore(); }
+
+    a=pop(2); if(a>0){ enter(a,0); // alarm clock — face, bells, legs, hands
+      cx=W*0.345;cy=g-H*0.062;R=H*0.055;
+      ctx.strokeStyle=ink+'.95)';ctx.lineWidth=2.4*DPR;
+      ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();
+      ctx.beginPath();ctx.arc(cx-R*0.72,cy-R*0.82,R*0.28,Math.PI*0.75,Math.PI*1.85);ctx.stroke();
+      ctx.beginPath();ctx.arc(cx+R*0.72,cy-R*0.82,R*0.28,Math.PI*1.15,Math.PI*0.25+Math.PI*2);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx-R*0.55,cy+R*0.84);ctx.lineTo(cx-R*0.8,cy+R*1.12);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx+R*0.55,cy+R*0.84);ctx.lineTo(cx+R*0.8,cy+R*1.12);ctx.stroke();
+      ctx.lineWidth=2*DPR;
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy-R*0.62);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*0.45,cy+R*0.12);ctx.stroke();
+      ctx.fillStyle=ink+'.95)';ctx.beginPath();ctx.arc(cx,cy,2.4*DPR,0,Math.PI*2);ctx.fill();
+      ctx.restore(); }
+
+    a=pop(3); if(a>0){ enter(a,0); // backpack — rounded body, handle, pocket, straps
+      var x0=W*0.478,x1=W*0.582,yT=g-H*0.108,rr=H*0.02;
+      ctx.strokeStyle=ink+'.95)';ctx.lineWidth=2.4*DPR;
+      ctx.beginPath();ctx.moveTo(x0,g);ctx.lineTo(x0,yT+rr);ctx.quadraticCurveTo(x0,yT,x0+rr,yT);
+      ctx.lineTo(x1-rr,yT);ctx.quadraticCurveTo(x1,yT,x1,yT+rr);ctx.lineTo(x1,g);ctx.stroke();
+      ctx.beginPath();ctx.arc((x0+x1)/2,yT,H*0.016,Math.PI,Math.PI*2);ctx.stroke();
+      ctx.lineWidth=1.8*DPR;
+      var px0=(x0+x1)/2-W*0.026,pw=W*0.052,pyT=g-H*0.05;
+      ctx.beginPath();ctx.moveTo(px0,g);ctx.lineTo(px0,pyT+rr*0.6);ctx.quadraticCurveTo(px0,pyT,px0+rr*0.6,pyT);
+      ctx.lineTo(px0+pw-rr*0.6,pyT);ctx.quadraticCurveTo(px0+pw,pyT,px0+pw,pyT+rr*0.6);ctx.lineTo(px0+pw,g);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(x0+W*0.008,yT+H*0.02);ctx.lineTo(x0+W*0.008,g-H*0.015);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(x1-W*0.008,yT+H*0.02);ctx.lineTo(x1-W*0.008,g-H*0.015);ctx.stroke();
+      ctx.restore(); }
+
+    a=pop(4); if(a>0){ enter(a,0); // ruler leaning at an angle, ticked
+      ctx.strokeStyle=ink+'.95)';ctx.lineWidth=2.2*DPR;
+      ctx.save();ctx.translate(W*0.645,g);ctx.rotate(-0.42);
+      ctx.strokeRect(0,-H*0.026,W*0.115,H*0.026);
+      ctx.lineWidth=1.4*DPR;
+      for(i=1;i<=6;i++){var tx=W*0.115*i/7;
+        ctx.beginPath();ctx.moveTo(tx,-H*0.026);ctx.lineTo(tx,-H*0.013);ctx.stroke();}
+      ctx.restore();
+      ctx.restore(); }
+
+    a=pop(5); if(a>0){ enter(a,0); // desk globe — sphere, meridian, equator, stand
+      cx=W*0.835;cy=g-H*0.078;R=H*0.062;
+      ctx.strokeStyle=ink+'.95)';ctx.lineWidth=2.4*DPR;
+      ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();
+      ctx.lineWidth=1.6*DPR;
+      ctx.beginPath();ctx.ellipse(cx,cy,R*0.42,R,0,0,Math.PI*2);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx-R*0.96,cy-R*0.1);ctx.quadraticCurveTo(cx,cy+R*0.22,cx+R*0.96,cy-R*0.1);ctx.stroke();
+      ctx.lineWidth=2.2*DPR;
+      ctx.beginPath();ctx.arc(cx,cy,R*1.22,Math.PI*0.32,Math.PI*0.78);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx,cy+R*1.22);ctx.lineTo(cx,g-H*0.006);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx-R*0.5,g);ctx.lineTo(cx+R*0.5,g);ctx.stroke();
+      ctx.restore(); }
   }
 
   var CHIPS=[[0.13,0.27,0.858],[0.40,0.60,0.792],[0.73,0.87,0.862]];
