@@ -387,8 +387,7 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
       <p class="alts rv">
         <a href="https://www.linkedin.com/in/michael-mourelatos-50198a1a0/">LinkedIn</a> &nbsp;·&nbsp;
         <a href="resume.pdf">Resume (PDF)</a> &nbsp;·&nbsp;
-        <a href="https://github.com/michael-mourelatos">GitHub</a> &nbsp;·&nbsp;
-        <a href="file.html">The full file</a>
+        <a href="https://github.com/michael-mourelatos">GitHub</a>
       </p>
     </div>
     <div class="mq mq-bot" aria-hidden="true"><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span></div>
@@ -507,43 +506,80 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     ctx.beginPath();ctx.moveTo(fx,fy-14*DPR*fl);ctx.quadraticCurveTo(fx+7*DPR,fy-4*DPR,fx,fy+2*DPR);ctx.quadraticCurveTo(fx-7*DPR,fy-4*DPR,fx,fy-14*DPR*fl);ctx.closePath();ctx.fill();
   }
 
-  var PENCILS=[[0.08,0.795],[0.22,0.755],[0.36,0.785],[0.55,0.74],[0.72,0.77],[0.88,0.80]],PW=0.05;
-  function profPen(x){
+  function profSchool(x){
     var g=H*0.93,u=x/W,y=g;
-    for(var i=0;i<PENCILS.length;i++){
-      var d=Math.abs(u-PENCILS[i][0]);
-      if(d<=PW)y=Math.min(y,PENCILS[i][1]*H+(d/PW)*H*0.05);
+    if(u>=0.055&&u<=0.20)y=Math.min(y,H*0.888);   // book stack, staggered slabs
+    if(u>=0.07&&u<=0.19)y=Math.min(y,H*0.864);
+    if(u>=0.062&&u<=0.178)y=Math.min(y,H*0.842);
+    var R1=H*0.075,dx1=x-W*0.335;                  // alarm-clock dome
+    if(Math.abs(dx1)<R1*0.94)y=Math.min(y,H*0.845-Math.sqrt(Math.max(0,R1*R1-dx1*dx1)));
+    if(u>=0.46&&u<=0.60){                          // backpack, rounded shoulders
+      var e=Math.min(1,Math.min(u-0.46,0.60-u)/0.02);
+      y=Math.min(y,H*0.805+(1-e)*(g-H*0.805)*0.9);
     }
+    if(u>=0.645&&u<=0.695){                        // ruler leaning on nothing
+      var t=(u-0.645)/0.05;
+      y=Math.min(y,g-(g-H*0.78)*t);
+    }
+    var R2=H*0.092,dx2=x-W*0.83;                   // desk globe
+    if(Math.abs(dx2)<R2*0.95)y=Math.min(y,H*0.832-Math.sqrt(Math.max(0,R2*R2-dx2*dx2)));
     return y;
   }
-  function detPen(w){
-    var a=Math.max(0,(w-0.5)*2);if(a<=0)return;
-    ctx.fillStyle='rgba(242,255,73,'+(0.95*a)+')';
-    for(var i=0;i<PENCILS.length;i++){
-      var cx2=PENCILS[i][0]*W,ty=PENCILS[i][1]*H;
-      ctx.beginPath();ctx.moveTo(cx2,ty);ctx.lineTo(cx2-6*DPR,ty+12*DPR);ctx.lineTo(cx2+6*DPR,ty+12*DPR);ctx.closePath();ctx.fill();
+  function detSchool(w){
+    ctx.strokeStyle='rgba(14,11,8,'+(0.85*w)+')';ctx.lineWidth=1.6*DPR;
+    ctx.beginPath();ctx.moveTo(W*0.062,H*0.864);ctx.lineTo(W*0.19,H*0.864);ctx.stroke();   // book seams
+    ctx.beginPath();ctx.moveTo(W*0.058,H*0.888);ctx.lineTo(W*0.197,H*0.888);ctx.stroke();
+    var cx1=W*0.335,cy1=H*0.85;                                                             // clock hands
+    ctx.beginPath();ctx.moveTo(cx1,cy1);ctx.lineTo(cx1,cy1-H*0.038);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx1,cy1);ctx.lineTo(cx1+H*0.026,cy1+H*0.008);ctx.stroke();
+    ctx.beginPath();ctx.rect(W*0.505,H*0.862,W*0.05,H*0.046);ctx.stroke();                  // backpack pocket
+    for(var i=1;i<=5;i++){                                                                  // ruler ticks
+      var t=i/6,rx=W*(0.645+0.05*t),ry=H*0.93-(H*0.93-H*0.78)*t;
+      ctx.beginPath();ctx.moveTo(rx,ry+2*DPR);ctx.lineTo(rx-5*DPR,ry+9*DPR);ctx.stroke();
     }
+    var cx2=W*0.83,cy2=H*0.832,R2=H*0.092;                                                  // globe meridian + equator
+    ctx.beginPath();ctx.ellipse(cx2,cy2,R2*0.45,R2*0.96,0,Math.PI,Math.PI*2);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx2-R2*0.88,cy2-R2*0.22);ctx.quadraticCurveTo(cx2,cy2+R2*0.02,cx2+R2*0.88,cy2-R2*0.22);ctx.stroke();
+    var a=Math.max(0,(w-0.5)*2);if(a<=0)return;                                             // the yellow apple
+    var ax=W*0.255,ay=H*0.905,r=H*0.022;
+    ctx.fillStyle='rgba(242,255,73,'+(0.95*a)+')';
+    ctx.beginPath();ctx.arc(ax-r*0.45,ay,r,0,Math.PI*2);ctx.arc(ax+r*0.45,ay,r,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='rgba(242,255,73,'+(0.95*a)+')';ctx.lineWidth=2*DPR;
+    ctx.beginPath();ctx.moveTo(ax,ay-r*0.9);ctx.quadraticCurveTo(ax+r*0.3,ay-r*1.7,ax+r*0.9,ay-r*1.8);ctx.stroke();
   }
 
-  var CHIPS=[[0.08,0.22,0.865],[0.29,0.39,0.845],[0.44,0.60,0.80],[0.66,0.76,0.85],[0.82,0.93,0.862]];
+  var CHIPS=[[0.13,0.27,0.858],[0.40,0.60,0.792],[0.73,0.87,0.862]];
   function profChip(x){
     var g=H*0.93,u=x/W,y=g;
     for(var i=0;i<CHIPS.length;i++)if(u>=CHIPS[i][0]&&u<=CHIPS[i][1])y=Math.min(y,CHIPS[i][2]*H);
     return y;
   }
   function detChip(w){
-    ctx.strokeStyle='rgba(14,11,8,'+(0.8*w)+')';ctx.lineWidth=2*DPR;
-    for(var i=0;i<CHIPS.length;i++){var c=CHIPS[i],y0=c[2]*H;
-      for(var u=c[0]+0.012;u<c[1]-0.006;u+=0.018){
-        ctx.beginPath();ctx.moveTo(u*W,y0);ctx.lineTo(u*W,y0-6*DPR);ctx.stroke();
+    ctx.strokeStyle='rgba(14,11,8,'+(0.85*w)+')';ctx.lineWidth=2*DPR;
+    for(var i=0;i<CHIPS.length;i++){var c=CHIPS[i],y0=c[2]*H;                               // top pin combs
+      for(var u=c[0]+0.012;u<c[1]-0.008;u+=0.02){
+        ctx.beginPath();ctx.moveTo(u*W,y0);ctx.lineTo(u*W,y0-7*DPR);ctx.stroke();
       }
     }
-    var a=Math.max(0,(w-0.5)*2);if(a<=0)return;
-    ctx.fillStyle='rgba(242,255,73,'+(0.9*a)+')';
-    for(var j=0;j<CHIPS.length-1;j++){
-      var vx=(CHIPS[j][1]+CHIPS[j+1][0])/2*W;
-      ctx.beginPath();ctx.arc(vx,H*0.905,3.2*DPR,0,Math.PI*2);ctx.fill();
-      ctx.beginPath();ctx.arc(vx,H*0.877,3.2*DPR,0,Math.PI*2);ctx.fill();
+    ctx.lineWidth=1.6*DPR;
+    ctx.beginPath();ctx.rect(W*0.465,H*0.828,W*0.07,H*0.058);ctx.stroke();                  // die outline
+    var a=Math.max(0,(w-0.5)*2);
+    var ys=[H*0.822,H*0.858,H*0.895];
+    for(var k=0;k<3;k++){                                                                   // radiating traces -> terminals
+      var yk=ys[k],lx=W*(0.35-k*0.014),rx2=W*(0.65+k*0.014);
+      ctx.strokeStyle='rgba(14,11,8,'+(0.7*w)+')';
+      ctx.beginPath();ctx.moveTo(W*0.40,yk);ctx.lineTo(lx,yk);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(W*0.60,yk);ctx.lineTo(rx2,yk);ctx.stroke();
+      if(a>0){
+        ctx.fillStyle='rgba(242,255,73,'+(0.92*a)+')';
+        ctx.beginPath();ctx.arc(lx,yk,3*DPR,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.arc(rx2,yk,3*DPR,0,Math.PI*2);ctx.fill();
+      }
+    }
+    if(a>0){                                                                                // vias between packages
+      ctx.fillStyle='rgba(242,255,73,'+(0.9*a)+')';
+      ctx.beginPath();ctx.arc(W*0.315,H*0.912,3.2*DPR,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.arc(W*0.695,H*0.912,3.2*DPR,0,Math.PI*2);ctx.fill();
     }
   }
 
@@ -608,7 +644,7 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
     drawBeach(p,wB*(1-wInd));
     drawCity(p,wC*(1-wInd));
     drawScene(wOil,profOil,detOil,p);
-    drawScene(wPen,profPen,detPen,p);
+    drawScene(wPen,profSchool,detSchool,p);
     drawScene(wChip,profChip,detChip,p);
   }
   addEventListener('scroll',schedule,{passive:true});
