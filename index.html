@@ -74,6 +74,9 @@ dialog.cs h3{font-weight:400;font-size:clamp(1.6rem,3vw,2.3rem);margin:0 0 .6rem
 dialog.cs h4{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin:1.5rem 0 .45rem}
 dialog.cs ul{margin:0;padding-left:1.2rem}
 dialog.cs li{margin:.3rem 0}
+.cs-links{margin-top:1.6rem;padding-top:1.2rem;border-top:2px solid var(--black);font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.cs-links a{text-decoration:none;border-bottom:2px solid var(--blue)}
+.cs-links a:hover,.cs-links a:focus-visible{background:var(--signal);border-bottom-color:var(--black)}
 .cs-stack{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;margin:0}
 .cs-metric{font-size:1.2rem;margin:0}
 .redact{display:inline-block;height:.85em;max-width:100%;vertical-align:baseline;background:repeating-linear-gradient(90deg,var(--black) 0 14px,rgba(14,11,8,.75) 14px 16px)}
@@ -548,6 +551,13 @@ html{scrollbar-color:var(--signal) var(--black);scrollbar-width:thin}
         <p>Self-serve scheduling for truck deliveries into disposal facilities — live remaining capacity, sales and operations workflows, booked-vs-delivered reconciliation. Spreadsheets and phone calls, retired.</p>
         <button class="tag cs-btn" data-cs="cs3">Case study &#8594;</button>
       </article>
+      <article class="card">
+        <span class="num">W/04</span>
+        <h3>Budget Bite</h3>
+        <div class="thumb"><img src="photos/work/work-budget-bite.jpg" alt="Budget Bite comparison view: one order priced across three delivery apps with a full fee breakdown" loading="lazy"></div>
+        <p>A personal build, live and public: price the same food order across every delivery app at once. Menu price isn&rsquo;t price &mdash; fees, promos and memberships decide the winner, and the app shows its working.</p>
+        <button class="tag cs-btn" data-cs="cs4">Case study &#8594;</button>
+      </article>
     </div>
   </section>
 
@@ -664,6 +674,26 @@ html{scrollbar-color:var(--signal) var(--black);scrollbar-width:thin}
     <h4>Stack</h4><p class="cs-stack">Python &middot; Flask &middot; Databricks Apps &middot; Lakebase (Postgres) &middot; Databricks SQL &middot; Asset Bundles &middot; GitHub Actions &middot; pytest</p>
     <h4>Outcome</h4><p class="cs-metric">Live in pilot and heading for org-wide rollout — one source of truth for who's bringing what, where and when.</p>
     <h4>One lesson</h4><p>When every conventional path is blocked, the winning design is the one that needs zero new permissions.</p>
+  </dialog>
+
+  <dialog class="cs" id="cs4" aria-label="Case study: Budget Bite">
+    <button class="cs-x" autofocus>Close &#215;</button>
+    <p class="cs-num">W/04 &middot; Personal project</p>
+    <h3>Skyscanner for food delivery &mdash; and an honest answer about why it can&rsquo;t be a business</h3>
+    <img class="cs-shot" src="photos/work/work-budget-bite.jpg" alt="Budget Bite comparison view showing one order priced across three delivery apps with the full fee derivation">
+    <h4>The problem</h4><p>The delivery app with the cheapest menu price is frequently not the cheapest app. Delivery, service and small-order fees differ, promotions differ, and a paid subscription reorders the answer again &mdash; so the number you compare in the app is not the number you pay.</p>
+    <h4>What I did</h4><ul>
+      <li>Built the comparison engine as pure functions over integer cents: membership, service, small-order and regulatory fees, then the single best promotion, then tax &mdash; in that order, because each step depends on the last.</li>
+      <li>Modeled restaurants and menu items canonically, since the same restaurant carries a different name and price on every platform, and propagated entity-match confidence into pricing confidence.</li>
+      <li>Ranked on the list price available to everyone, not the member price &mdash; a fee waived only by a paid subscription is still mandatory for someone who doesn&rsquo;t hold one.</li>
+      <li>Replaced min-max price scoring with a saturating curve, so a 20&cent; spread stops scoring as decisively as a $6 one and noise can&rsquo;t drive the ranking.</li>
+      <li>Made trust structural: sponsorship has no input to the scoring function, ties break on stable jitter rather than list order, and a test fails if anyone ever adds a paid-placement term.</li>
+      <li>Researched whether real data was legally obtainable, found it isn&rsquo;t, and shipped the finding as a documented artifact rather than quietly scraping.</li>
+    </ul>
+    <h4>Stack</h4><p class="cs-stack">TypeScript &middot; Next.js &middot; React &middot; Tailwind &middot; Vitest &middot; GitHub Actions &middot; Vercel</p>
+    <h4>Outcome</h4><p class="cs-metric">Live and public at budget-bite-pearl.vercel.app &mdash; open it and compare an order yourself.</p>
+    <h4>One lesson</h4><p>No delivery platform sells third-party access to competitor pricing, and their terms forbid collecting it. Knowing that early changed the build from a scraper into an honest fee model with a documented constraint &mdash; a better answer than a demo that quietly breaks the rules.</p>
+    <p class="cs-links"><a href="https://budget-bite-pearl.vercel.app" target="_blank" rel="noopener">Open the app &#8599;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/michael-mourelatos/budget-bite" target="_blank" rel="noopener">Source on GitHub &#8599;</a></p>
   </dialog>
 </main>
 
