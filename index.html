@@ -93,7 +93,8 @@ body{
 
 ::selection{background:var(--signal);color:var(--black)}
 a{color:inherit}
-a:focus-visible,button:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+dialog.cs a:focus-visible,dialog.cs button:focus-visible{outline-color:var(--blue)}
 
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:1.5rem;top:1.5rem;background:var(--cream);color:var(--black);padding:.6rem 1rem;z-index:99}
@@ -108,8 +109,10 @@ a:focus-visible,button:focus-visible{outline:3px solid currentColor;outline-offs
 .hud.bl{bottom:24px;left:26px}
 .hud.br{bottom:24px;right:26px;text-align:right}
 .hud a{text-decoration:none;border-bottom:2px solid currentColor}
-nav.hud.tr a{border-bottom:0;margin-left:1.1rem;transition:color .2s ease}
-nav.hud.tr a:hover,nav.hud.tr a:focus-visible{color:var(--hud-accent);border-bottom:2px solid var(--hud-accent)}
+nav.hud.tr a{border-bottom:0;margin-left:1.1rem;transition:color .2s ease;position:relative}
+nav.hud.tr a::after{content:'';position:absolute;left:0;right:0;bottom:-5px;height:2px;background:var(--hud-accent);transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.2,.7,.3,1)}
+nav.hud.tr a:hover,nav.hud.tr a:focus-visible,nav.hud.tr a.now{color:var(--hud-accent)}
+nav.hud.tr a:hover::after,nav.hud.tr a:focus-visible::after,nav.hud.tr a.now::after{transform:scaleX(1)}
 body.on-dark .hud{color:var(--hud-ink)}
 .hud.bl,body.on-dark .hud.bl{color:var(--hud-accent)}
 .hud.tl{line-height:1.9}
@@ -177,7 +180,9 @@ html:not(.js) .card{width:min(44rem,90vw);margin:0 auto}
 .card:hover{transform:translateY(-10px);box-shadow:12px 12px 0 var(--blue)}
 .card .num{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.2em;color:var(--signal)}
 .card h3{font-weight:400;font-size:clamp(1.5rem,2.8vw,2.2rem);margin:.6rem 0 1rem}
-.card .thumb{aspect-ratio:16/9;border:2px solid var(--cream);background:repeating-linear-gradient(45deg,transparent 0 7px,rgba(251,248,240,.5) 7px 9px);margin-bottom:1rem}
+.card .thumb{aspect-ratio:16/9;border:2px solid var(--cream);background:repeating-linear-gradient(45deg,transparent 0 7px,rgba(251,248,240,.5) 7px 9px);margin-bottom:1rem;overflow:hidden}
+.card .thumb img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+.cs-shot{width:100%;height:auto;display:block;border:2px solid var(--black);margin:.4rem 0 .2rem}
 .card p{margin:0;font-size:1rem;color:var(--cream)}
 .card .tag{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);display:inline-block;margin-top:1rem;border:1px solid var(--signal);padding:.35rem .6rem}
 
@@ -202,7 +207,8 @@ html:not(.js) .card{width:min(44rem,90vw);margin:0 auto}
 html.js .hline{transform:scaleX(0)}
 .alts{margin-top:8vh;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
 .alts a{text-decoration:none;border-bottom:2px solid var(--blue)}
-.alts a:hover{background:var(--blue);color:var(--cream)}
+.alts a{transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.alts a:hover,.alts a:focus-visible{background:var(--signal);color:var(--black);border-color:var(--signal)}
 .lets{position:fixed;right:22px;bottom:20px;z-index:80;font-family:var(--mono);font-weight:600;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lets-ink);background:var(--lets-bg);border:2px solid var(--black);padding:.8rem 1.05rem .72rem;text-decoration:none;transform:rotate(-2deg);box-shadow:6px 6px 0 var(--blue);transition:transform .2s ease,box-shadow .2s ease}
 .lets:hover,.lets:focus-visible{transform:rotate(0) scale(1.05);box-shadow:9px 9px 0 var(--blue)}
 .about .fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.95;pointer-events:none}
@@ -332,10 +338,54 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   .o-core{width:min(52vw,30vh)}
   html.js .o-aside,html.js .o-core,html.js .oc-in{opacity:0}
 }
+/* ===== polish pass: hovers, focus, optics ===== */
+.cs-btn{transition:background-color .18s ease,color .18s ease,transform .18s ease}
+@media (hover:hover){.cs-btn:hover{background:var(--signal);color:var(--black);transform:translate(2px,-2px)}}
+.cs-btn:focus-visible{background:var(--signal);color:var(--black)}
+.cs-btn:active{transform:translate(0,0)}
+.card{position:relative}
+.card::before{content:'';position:absolute;left:-2px;right:-2px;top:-2px;height:4px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.7,.3,1);pointer-events:none;z-index:2}
+.thumb{transition:border-color .25s ease}
+@media (hover:hover){
+  .card:hover::before{transform:scaleX(1)}
+  .card:hover .thumb{border-color:var(--signal)}
+  .oc-in:hover::after{opacity:1}
+  .sk-entry:hover .sk-idx{color:var(--signal)}
+  .sk-entry:hover .sk-lbl{box-shadow:5px 5px 0 rgba(242,255,73,.25)}
+}
+.oc-in::after{content:'';position:absolute;inset:-9px;border:3px solid var(--signal);opacity:0;transition:opacity .22s ease;pointer-events:none}
+.sk-idx{transition:color .25s ease}
+.sk-lbl{transition:box-shadow .25s ease}
+dialog.cs[open]{animation:csIn .35s cubic-bezier(.2,.7,.3,1)}
+dialog.cs[open]::backdrop{animation:bdIn .3s ease}
+@keyframes csIn{from{opacity:0;transform:translateY(16px)}}
+@keyframes bdIn{from{opacity:0}}
+.hline{transition:background-color .25s ease}
+.hello:hover .hline,.hello:focus-visible .hline{background:var(--signal)}
+.quick a{transition:background-color .2s ease,color .2s ease;padding:.15em .35em;margin:-.15em -.35em}
+html{scrollbar-color:var(--signal) var(--black);scrollbar-width:thin}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--signal);border:2px solid var(--black)}
+::-webkit-scrollbar-thumb:hover{background:var(--cream)}
+.tl-dot{position:relative}
+.tl-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid var(--signal);opacity:0;animation:ping 2.8s cubic-bezier(.2,.7,.3,1) infinite}
+@keyframes ping{0%{transform:scale(.5);opacity:.9}70%,100%{transform:scale(1.9);opacity:0}}
+.kick{text-indent:.24em}
+.eot{text-indent:.34em}
+.in-kick{text-indent:.3em}
+.hero .sub{text-indent:.14em}
+.big,.role h3{text-wrap:balance}
+.role p,.card p{text-wrap:pretty}
+@media (prefers-reduced-motion:reduce){
+  .tl-dot::after{animation:none}
+  dialog.cs[open],dialog.cs[open]::backdrop{animation:none}
+}
 </style>
 </head>
 
 <body>
+<!-- ===== INTRO LOADER: once per session, skippable ===== -->
 <div class="intro" aria-hidden="true">
   <div class="in-core">
     <span class="in-line in-t"></span>
@@ -346,6 +396,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 </div>
 <a class="skip" href="#about">Skip to content</a>
 
+<!-- ===== FIXED CHROME: frame, terrain canvas, curtain, HUD corners, sticky CTA ===== -->
 <div class="frame" aria-hidden="true"></div>
 <canvas id="terrain" aria-hidden="true"></canvas>
 <div class="wipe wipe-rise" aria-hidden="true"></div>
@@ -357,6 +408,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 
 <main>
 
+  <!-- ===== 00 HERO: pinned name lockup, copy peels, black curtain rises ===== -->
   <header class="hero" data-sec="Intro">
     <p class="kick rv">Data &amp; Analytics · Calgary</p>
     <h1 class="rv">Michael<br><em>Mourelatos</em></h1>
@@ -366,6 +418,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     <p class="sub quick rv"><a href="resume.pdf">In a hurry? Grab the resume →</a></p>
   </header>
 
+  <!-- ===== 01 ABOUT: typed statements -> yellow room -> 3D turntable -> gravity drop ===== -->
   <section class="about dark" id="about" data-sec="About">
     <svg class="fx" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <g class="fx-dots" fill="#0022EE"><circle cx="80" cy="120" r="4"/><circle cx="180" cy="80" r="4"/><circle cx="300" cy="150" r="4"/><circle cx="420" cy="90" r="4"/><circle cx="560" cy="140" r="4"/><circle cx="700" cy="70" r="4"/><circle cx="840" cy="130" r="4"/><circle cx="140" cy="260" r="4"/><circle cx="260" cy="300" r="4"/><circle cx="400" cy="260" r="4"/><circle cx="540" cy="300" r="4"/><circle cx="680" cy="250" r="4"/><circle cx="820" cy="300" r="4"/><circle cx="120" cy="430" r="4"/><circle cx="240" cy="470" r="4"/><circle cx="380" cy="420" r="4"/><circle cx="520" cy="470" r="4"/><circle cx="660" cy="430" r="4"/><circle cx="800" cy="470" r="4"/><circle cx="920" cy="400" r="4"/><circle cx="90" cy="540" r="4"/><circle cx="930" cy="220" r="4"/></g>
@@ -376,7 +429,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       <div class="y-disc"></div>
     </div>
     <div class="wrap stage">
-      <div class="line l1"><p class="kick">About</p><p class="big">I build data products <b>end to end</b> — the pipeline, the model, the application, the adoption.</p></div>
+      <div class="line l1"><p class="kick">About</p><p class="big">I build data products <b>end to end</b> — the data, the model, the application, the adoption.</p></div>
       <div class="line l2"><p class="big">The part people hire twice is the <em>translation:</em> operations into requirements, data into decisions.</p></div>
       <div class="line l3">
         <div class="orbit-stage">
@@ -403,6 +456,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     </div>
   </section>
 
+  <!-- ===== 02 EXPERIENCE: pinned roles + rail; industry line-scenes on the canvas ===== -->
   <section class="exp" id="experience" data-sec="Experience">
     <div class="wrap">
       <div class="rail" aria-hidden="true"><span class="y0">2026</span><div class="fill"></div><span class="y1">2020</span></div>
@@ -439,36 +493,38 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     </div>
   </section>
 
+  <!-- ===== 03 WORK: 3D corridor of case cards (dialog case sheets below) ===== -->
   <section class="work dark" id="work" data-sec="Selected work">
     <div class="head">
       <p class="kick rv">Selected work</p>
-      <p class="big rv">Three builds I keep getting asked about.<br><em>Case studies in progress.</em></p>
+      <p class="big rv">Three apps in production at Secure.<br><em>Built end to end, shipped to real operators.</em></p>
     </div>
     <div class="track">
       <article class="card">
         <span class="num">W/01</span>
         <h3>Market Intelligence Platform</h3>
-        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M10 140 L60 100 L110 118 L160 70 L210 88 L260 40 L310 58" stroke="#E4342B" stroke-width="2.5"/><path d="M10 155 L60 130 L110 142 L160 108 L210 124 L260 86 L310 100" stroke="#FBF8F0" stroke-width="1.5" opacity=".6"/><circle cx="70" cy="52" r="4" fill="#0022EE"/><circle cx="150" cy="34" r="4" fill="#0022EE"/><circle cx="235" cy="60" r="4" fill="#0022EE"/><circle cx="285" cy="30" r="4" fill="#0022EE"/><path d="M70 52 L150 34 L235 60 L285 30" stroke="#0022EE" stroke-width="1" stroke-dasharray="4 4"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#0022EE" letter-spacing="2">PRICE / REGION</text></svg></div>
-        <p>Pricing and market mapping for commercial teams — Databricks-backed, Python front end, tested against live users step by scripted step.</p>
+        <div class="thumb"><img src="photos/work/work-market-map.jpg" alt="Geospatial market-intelligence app: revenue density over a Western Canada map with a filter sidebar and KPI panel" loading="lazy"></div>
+        <p>Co-built a geospatial market app for commercial teams — internal revenue, market volumes and competitor footprint fused on one interactive map, with polygon-draw KPIs and an explainable opportunity score.</p>
         <button class="tag cs-btn" data-cs="cs1">Case study &#8594;</button>
       </article>
       <article class="card">
         <span class="num">W/02</span>
-        <h3>Semantic Model Rebuild</h3>
-        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><circle cx="160" cy="40" r="12" stroke="#E4342B" stroke-width="2.5"/><circle cx="80" cy="100" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="160" cy="110" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="240" cy="100" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="55" cy="152" r="7" stroke="#0022EE" stroke-width="1.5"/><circle cx="110" cy="156" r="7" stroke="#0022EE" stroke-width="1.5"/><circle cx="160" cy="160" r="7" stroke="#0022EE" stroke-width="1.5"/><circle cx="212" cy="156" r="7" stroke="#0022EE" stroke-width="1.5"/><circle cx="266" cy="152" r="7" stroke="#0022EE" stroke-width="1.5"/><path d="M160 52 L80 90 M160 52 L160 100 M160 52 L240 90 M80 110 L55 145 M80 110 L110 149 M160 120 L160 153 M240 110 L212 149 M240 110 L266 145" stroke="#FBF8F0" stroke-width="1" opacity=".55"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#0022EE" letter-spacing="2">MEASURE TREE</text></svg></div>
-        <p>A corporate energy-hedging model rebuilt end to end: the query pipeline repaired, the measure library rewritten into something an analyst can navigate without a guide.</p>
+        <h3>Operations Command Center</h3>
+        <div class="thumb"><img src="photos/work/work-ops-app.jpg" alt="Operations app: network map of facilities with per-stream utilization rings and KPI cards on a dark dashboard" loading="lazy"></div>
+        <p>A live network map and facility hub that replaced a daily email report — observed-capacity utilization, honest data provenance, live cameras and what-if asset simulators for operations leaders.</p>
         <button class="tag cs-btn" data-cs="cs2">Case study &#8594;</button>
       </article>
       <article class="card">
         <span class="num">W/03</span>
-        <h3>Asset Tracking Analytics</h3>
-        <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><g stroke="#FBF8F0" stroke-width="1.5" opacity=".8"><rect x="24" y="36" width="34" height="22"/><rect x="66" y="36" width="34" height="22"/><rect x="108" y="36" width="34" height="22"/><rect x="24" y="66" width="34" height="22"/><rect x="66" y="66" width="34" height="22"/><rect x="108" y="66" width="34" height="22" stroke="#E4342B" stroke-width="2.5"/><rect x="24" y="96" width="34" height="22"/><rect x="66" y="96" width="34" height="22"/></g><path d="M125 77 C 190 77, 200 40, 250 40 C 285 40, 295 70, 295 96" stroke="#0022EE" stroke-width="2" stroke-dasharray="6 5"/><circle cx="295" cy="104" r="6" fill="#E4342B"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#0022EE" letter-spacing="2">FLEET / 3 SYSTEMS</text><text x="196" y="150" font-family="monospace" font-size="10" fill="#FBF8F0" opacity=".7">RECONCILED → 1</text></svg></div>
-        <p>A division-wide view of fleet assets from requirements through adoption baselines — three disagreeing systems reconciled into one number people trust.</p>
+        <h3>Capacity Booking Platform</h3>
+        <div class="thumb"><img src="photos/work/work-booking-app.jpg" alt="Water disposal booking app: network availability day view with facility cards and capacity bars" loading="lazy"></div>
+        <p>Self-serve scheduling for truck deliveries into disposal facilities — live remaining capacity, sales and operations workflows, booked-vs-delivered reconciliation. Spreadsheets and phone calls, retired.</p>
         <button class="tag cs-btn" data-cs="cs3">Case study &#8594;</button>
       </article>
     </div>
   </section>
 
+  <!-- ===== 04 SKILLS: capability manifest under a rising blue fill ===== -->
   <section class="skills dark" id="skills" data-sec="Skills">
     <div class="sk-base" aria-hidden="true"></div>
     <div class="sk-fillbar" aria-hidden="true"></div>
@@ -509,6 +565,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     </div>
   </section>
 
+  <!-- ===== 05 CONTACT: marquees, pointer-bent lines, letter-magnet CTA ===== -->
   <section class="contact dark" id="contact" data-sec="Contact">
     <div class="mq mq-top" aria-hidden="true"><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span></div>
     <canvas class="ctc" aria-hidden="true"></canvas>
@@ -528,38 +585,62 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   <p class="eot">End of transmission</p>
 
 
+  <!-- ===== CASE-STUDY DIALOGS ===== -->
   <dialog class="cs" id="cs1" aria-label="Case study: Market Intelligence Platform">
     <button class="cs-x" autofocus>Close &#215;</button>
     <p class="cs-num">W/01</p>
-    <h3>Market Intelligence Platform</h3>
-    <h4>The problem</h4><p><span class="redact" style="width:34ch"></span> <span class="redact" style="width:21ch"></span></p>
-    <h4>What I did</h4><ul><li><span class="redact" style="width:30ch"></span></li><li><span class="redact" style="width:26ch"></span></li><li><span class="redact" style="width:32ch"></span></li></ul>
-    <h4>Stack</h4><p class="cs-stack">Python &middot; Dash &middot; Databricks &middot; Power BI &middot; SQL</p>
-    <h4>Outcome</h4><p class="cs-metric"><span class="redact" style="width:8ch"></span> <span class="redact" style="width:24ch"></span></p>
-    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; COMING SOON</span></div>
+    <h3>From gut-feel territory calls to a ranked, explainable target list</h3>
+    <img class="cs-shot" src="photos/work/work-market-map.jpg" alt="Revenue density map of Western Canada inside the market intelligence app">
+    <h4>The problem</h4><p>Commercial decisions — which areas to chase, how to price against the nearest competitor — lived in disconnected tables and tribal knowledge. No single screen showed our revenue, total market activity and the competitor footprint together.</p>
+    <h4>What I did</h4><ul>
+      <li>Co-built a four-tab geospatial Dash app on Databricks Apps fusing internal revenue with market water &amp; drilling volumes and competitor locations.</li>
+      <li>Designed a load-once, in-memory architecture — parallel Arrow-backed SQL at startup — so every filter and polygon redraw is instant, with zero per-click database load.</li>
+      <li>Audited an upstream ML opportunity score, found most of its inputs degenerate, and replaced it with a transparent four-component score a rep can argue with.</li>
+      <li>Built polygon-draw analytics: outline any area, get well counts, revenue KPIs, top accounts and competitor proximity in one round trip.</li>
+      <li>Cut a 77-second table render to under one second and compressed multi-MB payloads roughly 10&#215;.</li>
+    </ul>
+    <h4>Stack</h4><p class="cs-stack">Python &middot; Dash &middot; Leaflet &middot; Plotly &middot; pandas &middot; Shapely &middot; Databricks Apps &middot; Databricks SQL &middot; Unity Catalog &middot; GitHub Actions</p>
+    <h4>Outcome</h4><p class="cs-metric">In production with the commercial team across Western Canada, now expanding into US regions.</p>
+    <h4>One lesson</h4><p>A score you can't explain is worse than a simple one you can.</p>
   </dialog>
-  <dialog class="cs" id="cs2" aria-label="Case study: Semantic Model Rebuild">
+  <dialog class="cs" id="cs2" aria-label="Case study: Operations Command Center">
     <button class="cs-x" autofocus>Close &#215;</button>
     <p class="cs-num">W/02</p>
-    <h3>Semantic Model Rebuild</h3>
-    <h4>The problem</h4><p><span class="redact" style="width:31ch"></span> <span class="redact" style="width:24ch"></span></p>
-    <h4>What I did</h4><ul><li><span class="redact" style="width:28ch"></span></li><li><span class="redact" style="width:33ch"></span></li><li><span class="redact" style="width:24ch"></span></li></ul>
-    <h4>Stack</h4><p class="cs-stack">Power BI &middot; DAX &middot; M &middot; SQL &middot; semantic models</p>
-    <h4>Outcome</h4><p class="cs-metric"><span class="redact" style="width:7ch"></span> <span class="redact" style="width:26ch"></span></p>
-    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; COMING SOON</span></div>
+    <h3>From a daily email to a live operations command center</h3>
+    <img class="cs-shot" src="photos/work/work-ops-app.jpg" alt="Network map of facilities with utilization rings inside the operations app">
+    <h4>The problem</h4><p>Operations leaders tracked a network of dozens of facilities through a static daily email and four disconnected systems. Nobody could answer &ldquo;where does the network actually have capacity?&rdquo; without manual reconciliation.</p>
+    <h4>What I did</h4><ul>
+      <li>Built a multi-page Dash app — an interactive network map with per-stream KPIs and a per-facility hub — so the whole network and any single site are one click apart.</li>
+      <li>Designed an observed-capacity utilization metric (rolling P95 baseline, grain-matched to daily volumes) because rated capacities weren't available — naive peak-hour math understated utilization roughly 10&#215;.</li>
+      <li>Merged two measurement bases behind one interface with provenance flagged in the UI — an em-dash beats a confident zero.</li>
+      <li>Parallelized warehouse queries with caching and pre-warming: cold page loads went from ~50 seconds to a few.</li>
+      <li>Made every data source fail-safe: a broken query dims one section with diagnostics instead of blanking the page.</li>
+    </ul>
+    <h4>Stack</h4><p class="cs-stack">Python &middot; Dash &middot; Plotly &middot; Leaflet &middot; Databricks Apps &middot; Databricks SQL &middot; Unity Catalog &middot; OpenTelemetry &middot; GitHub Actions</p>
+    <h4>Outcome</h4><p class="cs-metric">In production with operations leadership across the facility network.</p>
+    <h4>One lesson</h4><p>Encode a metric's limits into the UI itself — it earns more trust than one that just looks precise.</p>
   </dialog>
-  <dialog class="cs" id="cs3" aria-label="Case study: Asset Tracking Analytics">
+  <dialog class="cs" id="cs3" aria-label="Case study: Capacity Booking Platform">
     <button class="cs-x" autofocus>Close &#215;</button>
     <p class="cs-num">W/03</p>
-    <h3>Asset Tracking Analytics</h3>
-    <h4>The problem</h4><p><span class="redact" style="width:29ch"></span> <span class="redact" style="width:23ch"></span></p>
-    <h4>What I did</h4><ul><li><span class="redact" style="width:31ch"></span></li><li><span class="redact" style="width:25ch"></span></li><li><span class="redact" style="width:29ch"></span></li></ul>
-    <h4>Stack</h4><p class="cs-stack">Power BI &middot; SQL &middot; requirements &rarr; adoption</p>
-    <h4>Outcome</h4><p class="cs-metric"><span class="redact" style="width:9ch"></span> <span class="redact" style="width:22ch"></span></p>
-    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; COMING SOON</span></div>
+    <h3>Turning disposal capacity into a bookable, auditable resource</h3>
+    <img class="cs-shot" src="photos/work/work-booking-app.jpg" alt="Network availability day view with facility capacity cards inside the booking app">
+    <h4>The problem</h4><p>Facilities take truckloads of oilfield water against hard daily limits, but commitments lived in phone calls and spreadsheets — sales couldn't see remaining capacity while quoting, operations couldn't see what was promised, and nobody could prove booked volumes actually arrived.</p>
+    <h4>What I did</h4><ul>
+      <li>Built a full-stack booking platform — Flask API plus a framework-free single-page UI with separate sales and operations workflows.</li>
+      <li>Modeled capacity as a derived quantity, never a stored one: SQL views compute remaining room from effective-dated limits, confirmed bookings and walk-ins, so the number can't drift.</li>
+      <li>Designed around the real 07:00&ndash;07:00 operating day so overnight loads count against the right shift — provably DST-safe.</li>
+      <li>Implemented transactional-outbox notifications: messages queue atomically with each booking change, so a dead mail server can never break a booking and nothing gets lost.</li>
+      <li>Reconciled promises against reality: live truck tickets matched to bookings through name and well-identifier canonicalization.</li>
+      <li>Shipped as infrastructure-as-code with isolated dev/UAT/prod, an append-only audit trail and ~300 automated tests.</li>
+    </ul>
+    <h4>Stack</h4><p class="cs-stack">Python &middot; Flask &middot; Databricks Apps &middot; Lakebase (Postgres) &middot; Databricks SQL &middot; Asset Bundles &middot; GitHub Actions &middot; pytest</p>
+    <h4>Outcome</h4><p class="cs-metric">Piloting across a disposal network — one live source of truth for who's bringing what, where, when.</p>
+    <h4>One lesson</h4><p>When every conventional path is blocked, the winning design is the one that needs zero new permissions.</p>
   </dialog>
 </main>
 
+<!-- ===== SCRIPT: terrain canvas + GSAP scroll choreography ===== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
@@ -835,6 +916,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   draw();
 
   var secnum=document.getElementById('secnum');
+  var navLinks=[].slice.call(document.querySelectorAll('nav.hud.tr a'));
   var sections=document.querySelectorAll('[data-sec]');
 
   if(reduce||!window.gsap||!window.ScrollTrigger){
@@ -910,6 +992,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       var r=sections[i].getBoundingClientRect();
       if(r.top<=mid&&r.bottom>=mid){
         secnum.textContent=sections[i].getAttribute('data-sec');
+        navLinks.forEach(function(a){a.classList.toggle('now',a.getAttribute('href')==='#'+sections[i].id)});
         document.body.classList.toggle('on-dark',sections[i].classList.contains('dark'));
         return;
       }
