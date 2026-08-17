@@ -112,6 +112,9 @@ nav.hud.tr a{border-bottom:0;margin-left:1.1rem;transition:color .2s ease}
 nav.hud.tr a:hover,nav.hud.tr a:focus-visible{color:var(--hud-accent);border-bottom:2px solid var(--hud-accent)}
 body.on-dark .hud{color:var(--hud-ink)}
 .hud.bl,body.on-dark .hud.bl{color:var(--hud-accent)}
+.hud.tl{line-height:1.9}
+.tl-sub{font-weight:600;opacity:.68;letter-spacing:.14em}
+.tl-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--signal);margin-right:.45rem;vertical-align:1px}
 
 main{position:relative;z-index:1}
 section{position:relative}
@@ -346,7 +349,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 <div class="frame" aria-hidden="true"></div>
 <canvas id="terrain" aria-hidden="true"></canvas>
 <div class="wipe wipe-rise" aria-hidden="true"></div>
-<div class="hud tl">Mourelatos, M.</div>
+<div class="hud tl">Michael Mourelatos<br><span class="tl-sub">Data &amp; Analytics</span><br><span class="tl-sub"><i class="tl-dot"></i>Calgary · Open to work</span></div>
 <nav class="hud tr" aria-label="Sections"><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
 <div class="hud bl" id="secnum">Intro</div>
 <div class="hud bc" aria-hidden="true"><span id="typer"></span><span class="caret">&#9612;</span></div>
@@ -384,16 +387,16 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
                 <img src="portrait.jpg" alt="Michael Mourelatos" width="720" height="900">
               </figure>
               <div class="o-ring">
-                <div class="oc" style="--a:0deg;--jy:13deg;--jz:-2deg"><figure class="oc-in wide" data-cap="Ball in hand · club rugby"><img src="photos/rugby.jpg" alt="Michael carrying the rugby ball through two tacklers on a snowy pitch" width="1100" height="581" loading="lazy" style="object-position:50% 30%"></figure></div>
-                <div class="oc" style="--a:60deg;--jy:-11deg;--jz:1.6deg"><figure class="oc-in" data-cap="Formal configuration"><img src="photos/suit.jpg" alt="Michael in a suit, jacket over one shoulder, on a garden path" width="720" height="900" loading="lazy"></figure></div>
-                <div class="oc" style="--a:120deg;--jy:9deg;--jz:-1.4deg"><figure class="oc-in" data-cap="Fresh pasta · Italy"><img src="photos/pasta.jpg" alt="Michael holding fresh handmade pasta in an Italian kitchen" width="640" height="800" loading="lazy"></figure></div>
-                <div class="oc" style="--a:180deg;--jy:-14deg;--jz:2.2deg"><figure class="oc-in" data-cap="The unimpressed dog · +2"><img src="photos/dog.jpg" alt="Michael and his partner by the river with one unimpressed dog and a bottle of champagne" width="720" height="900" loading="lazy"></figure></div>
-                <div class="oc" style="--a:240deg;--jy:12deg;--jz:1.2deg"><figure class="oc-in" data-cap="Foothills golf · AB"><img src="photos/golf.jpg" alt="Michael on a golf green with the Rockies behind" width="640" height="800" loading="lazy"></figure></div>
-                <div class="oc" style="--a:300deg;--jy:-9deg;--jz:-1.8deg"><figure class="oc-in" data-cap="Stampede protocol · YYC"><img src="photos/stampede.jpg" alt="Michael in a cowboy hat and western shirt" width="640" height="800" loading="lazy"></figure></div>
+                <div class="oc" style="--a:0deg;--jy:13deg;--jz:-2deg"><figure class="oc-in wide" data-cap="Rugby — player &amp; coach"><img src="photos/rugby.jpg" alt="Michael carrying the rugby ball through two tacklers on a snowy pitch" width="1100" height="581" loading="lazy" style="object-position:50% 30%"></figure></div>
+                <div class="oc" style="--a:60deg;--jy:-11deg;--jz:1.6deg"><figure class="oc-in" data-cap="Cleans up when required"><img src="photos/suit.jpg" alt="Michael in a suit, jacket over one shoulder, on a garden path" width="720" height="900" loading="lazy"></figure></div>
+                <div class="oc" style="--a:120deg;--jy:9deg;--jz:-1.4deg"><figure class="oc-in" data-cap="Cooking — pasta from scratch"><img src="photos/pasta.jpg" alt="Michael holding fresh handmade pasta in an Italian kitchen" width="640" height="800" loading="lazy"></figure></div>
+                <div class="oc" style="--a:180deg;--jy:-14deg;--jz:2.2deg"><figure class="oc-in" data-cap="Dog dad"><img src="photos/dog.jpg" alt="Michael and his partner by the river with one unimpressed dog and a bottle of champagne" width="720" height="900" loading="lazy"></figure></div>
+                <div class="oc" style="--a:240deg;--jy:12deg;--jz:1.2deg"><figure class="oc-in" data-cap="Golf, optimistically"><img src="photos/golf.jpg" alt="Michael on a golf green with the Rockies behind" width="640" height="800" loading="lazy"></figure></div>
+                <div class="oc" style="--a:300deg;--jy:-9deg;--jz:-1.8deg"><figure class="oc-in" data-cap="Calgary, hat and all"><img src="photos/stampede.jpg" alt="Michael in a cowboy hat and western shirt" width="640" height="800" loading="lazy"></figure></div>
               </div>
             </div>
           </div>
-          <p class="o-read"><span class="or-k">Off the clock — 1 of 6</span><span class="or-cap">Ball in hand · club rugby</span></p>
+          <p class="o-read"><span class="or-k">Off the clock — 1 of 6</span><span class="or-cap">Rugby — player &amp; coach</span></p>
           <p class="or-grav" aria-hidden="true">GRAVITY : ON</p>
         </div>
       </div>
@@ -1055,17 +1058,15 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       atl.to('.o-read',{autoAlpha:0,y:8,duration:.25},APEX+.1)
          .to(cards,{opacity:1,duration:.2},APEX+.15)
          .fromTo('.or-grav',{autoAlpha:0,scale:.6,rotation:6},{autoAlpha:1,scale:1,rotation:-2,duration:.3,ease:'back.out(2.5)'},APEX+.2);
-      [5,1,4,0,2].forEach(function(ci,k){ // plates blast out of the monitor, slow and heavy; the dog (3) is withheld
+      [5,1,4,0,2].forEach(function(ci,k){ // plates unhook and fall, slow and heavy; the dog (3) is withheld
         atl.to(cards[ci],{keyframes:[
-          {scale:0.47,duration:.2,ease:'power1.out'},
-          {scale:3.25,rotation:'+='+(ci%2?-16:13),duration:1.7,ease:'power2.in'},
-          {autoAlpha:0,duration:.22}
+          {y:-16,rotation:'+='+(ci%2?-4:5),duration:.2,ease:'power1.out'},
+          {y:function(){return innerHeight*1.4},rotation:'+='+(ci%2?-110:95),duration:1.7,ease:'power2.in'}
         ]},DROP+k*.34);
       });
-      atl.to(cards[3],{scale:0.48,rotation:'-=1.5',duration:.3,ease:'power1.inOut'},DROP+1.9)  // dog checks gravity...
-         .to(cards[3],{scale:3.25,rotation:'-=10',duration:1.4,ease:'power3.in'},DROP+2.5)       // ...then leaves flat
-         .to(cards[3],{autoAlpha:0,duration:.2},DROP+3.7)
-         .to('.o-aside',{autoAlpha:0,y:-24,duration:.7},DROP+1.2);
+      atl.to(cards[3],{y:-7,rotation:'-=1.5',duration:.3,ease:'power1.inOut'},DROP+1.9)  // dog checks gravity...
+         .to(cards[3],{y:function(){return innerHeight*1.4},rotation:'-=16',duration:1.4,ease:'power3.in'},DROP+2.5) // ...then drops flat
+         .to('.o-aside',{y:function(){return innerHeight*1.2},rotation:-6,duration:1.1,ease:'power2.in'},DROP+1.2);
       // the headshot goes LAST: a long flip toward the lens, blue rising behind it
       var FLIP=DROP+4.1;
       atl.to('.o-core',{rotationY:'+=540',scale:9,duration:2.0,ease:'power2.in'},FLIP)
@@ -1083,7 +1084,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
           return over > 0 ? -(over + 24) : 0;
         },ease:'none',duration:3},L3+1.2);
       var APEXm=L3+4.2;
-      atl.to(cards,{scale:5.5,rotation:function(i){return i%2?-14:12},autoAlpha:0,duration:1.5,ease:'power2.in',stagger:.24},APEXm+.2)
+      atl.to(cards,{y:function(){return innerHeight*2.8},rotation:function(i){return i%2?-70:60},duration:1.5,ease:'power2.in',stagger:.24},APEXm+.2)
          .to('.o-aside',{autoAlpha:0,duration:.5},APEXm+.5)
          .to('.o-core',{rotationY:'+=540',scale:8,duration:1.8,ease:'power2.in'},APEXm+2.6)
          .to('.y-disc',{backgroundColor:'#0022EE',duration:.9,ease:'power1.in'},APEXm+3.2)
