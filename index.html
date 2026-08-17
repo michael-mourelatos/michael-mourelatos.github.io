@@ -40,13 +40,7 @@
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 /* ===== section morph wipes ===== */
 .wipe{position:fixed;pointer-events:none;z-index:60}
-.mgate{position:fixed;inset:0;width:100%;height:100%;z-index:55;pointer-events:none;visibility:hidden;will-change:opacity}
-.mg-glyph{font-family:var(--serif);font-weight:400;font-optical-sizing:auto}
-.glint{position:fixed;top:0;bottom:0;width:2px;background:var(--signal);opacity:0;z-index:56;pointer-events:none}
-.glintL{left:0}.glintR{right:0}
-.hero h1 .zoomM,.hero h1 .mTail,.hero h1 .mLine2{display:inline-block}
-html.js .hero h1{will-change:transform}
-html:not(.js) .mgate,html:not(.js) .glint{display:none}
+.wipe-rise{inset:0;background:var(--black);transform:translateY(103%);will-change:transform}
 html:not(.js) .wipe{display:none}
 /* ===== vibrancy: signal yellow forward ===== */
 mark.hl{background:var(--signal);color:var(--black);padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -68,10 +62,6 @@ html.js .intro{display:grid}
 .hud.bc .caret{color:var(--hud-accent);animation:caret 1s steps(1) infinite}
 @keyframes caret{50%{opacity:0}}
 /* ===== data separators ===== */
-.sep{position:relative;z-index:1;margin:0;padding:2.2rem 1.5rem 0;text-align:center;font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.3em;opacity:.42}
-.dark .sep{color:var(--cream)}
-.exp .sep{color:var(--cream)}
-.sep .bits span.hot{color:var(--signal)}
 /* ===== case-study file sheets ===== */
 .cs-btn{cursor:pointer;background:none;font-family:var(--mono)}
 html:not(.js) .cs-btn{display:none}
@@ -81,7 +71,6 @@ dialog.cs::backdrop{background:rgba(14,11,8,.74)}
 .cs-x:hover{background:var(--black);color:var(--signal)}
 .cs-num{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.26em;color:var(--blue);margin:0 0 .4rem}
 dialog.cs h3{font-weight:400;font-size:clamp(1.6rem,3vw,2.3rem);margin:0 0 .6rem}
-.cs-stamp{display:inline-block;font-family:var(--mono);font-weight:600;font-size:.62rem;letter-spacing:.26em;color:var(--red);border:3px double var(--red);padding:.5rem .8rem .42rem;transform:rotate(-2deg);margin:.2rem 0 .6rem}
 dialog.cs h4{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin:1.5rem 0 .45rem}
 dialog.cs ul{margin:0;padding-left:1.2rem}
 dialog.cs li{margin:.3rem 0}
@@ -296,7 +285,6 @@ html:not(.js) .sk-tally b{transform:scale(1)}
 .sk-main .wi{display:inline-block}
 .sk-rule{display:block;height:2px;background:var(--signal);margin-top:1.05rem;transform-origin:left center}
 .sk-link{position:absolute;left:1.5rem;top:calc(-1*var(--sk-gap) - .2rem);height:calc(var(--sk-gap) + .4rem);width:2px;background:repeating-linear-gradient(to bottom,var(--signal) 0 5px,transparent 5px 10px);opacity:.55}
-.sk-filed{position:absolute;right:-.5rem;bottom:-2.8rem;z-index:3;font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;text-align:center;color:var(--red);border:2px solid var(--red);outline:2px solid var(--red);outline-offset:3px;padding:.55rem .8rem .5rem;transform:rotate(-8deg);will-change:transform}
 .thumb svg{display:block;width:100%;height:100%}
 .eot{text-align:center;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--signal);padding:0 1.5rem 3.2rem;margin:0;background:var(--black)}
 
@@ -305,7 +293,6 @@ html.js .rv.on{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,
 html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 
 @media (prefers-reduced-motion:reduce){
-  .mgate,.glint{display:none}
   .intro{display:none!important}
   .hud.bc .caret{animation:none}
   .rv{opacity:1;transform:none}
@@ -325,7 +312,6 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 @media (max-width:700px){
   .frame{inset:6px}
   .hud.tr,.hud.br,.hud.bc{display:none}
-  .sep{letter-spacing:.16em;font-size:.55rem}
   .exp .wrap{grid-template-columns:1fr}
   .rail{display:none}
   .track{flex-direction:column;padding:0 1.5rem 12vh}
@@ -335,7 +321,6 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   .sk-entry{grid-template-columns:2rem 1fr;column-gap:.8rem}
   .sk-link{left:.9rem}
   .sk-main{font-size:clamp(1.1rem,4.6vw,1.5rem)}
-  .sk-filed{right:0;bottom:-3.1rem;font-size:.54rem}
   .sk-tick{width:13px}
   .o-ring{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding:0 1.25rem}
   .oc{min-width:0}
@@ -351,7 +336,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 <div class="intro" aria-hidden="true">
   <div class="in-core">
     <span class="in-line in-t"></span>
-    <p class="in-kick">FILE MM-2026 &middot; DATA &amp; ANALYTICS</p>
+    <p class="in-kick">DATA &amp; ANALYTICS</p>
     <p class="in-name"><span>Michael</span> <span><em>Mourelatos</em></span></p>
     <span class="in-line in-b"></span>
   </div>
@@ -360,39 +345,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 
 <div class="frame" aria-hidden="true"></div>
 <canvas id="terrain" aria-hidden="true"></canvas>
-<svg class="mgate" aria-hidden="true">
-  <g class="mg-g">
-    <text class="mg-glyph" fill="#0E0B08">M</text>
-    <rect class="mg-plug" fill="#0E0B08"/>
-    <g class="mg-anno" opacity="0" fill="#FBF8F0" font-family="IBM Plex Mono,monospace" letter-spacing=".18em">
-      <text class="mg-a1">ENTERING FILE MM-2026</text>
-      <text class="mg-a2">SPECIMEN M &middot; NEWSREADER &middot; CAP 0.68em &middot; STEM 0.075em</text>
-      <line class="mg-tick1"/><line class="mg-tick2"/>
-    </g>
-  </g>
-  <rect class="mg-safe" fill="#0E0B08" opacity="0" x="0" y="0" width="100%" height="100%"/>
-</svg>
-<div class="glint glintL" aria-hidden="true"></div>
-<div class="glint glintR" aria-hidden="true"></div>
-</div>
-<a class="skip" href="#about">Skip to content</a>
-
-<div class="frame" aria-hidden="true"></div>
-<canvas id="terrain" aria-hidden="true"></canvas>
-<svg class="mgate" aria-hidden="true">
-  <g class="mg-g">
-    <text class="mg-glyph" fill="#0E0B08">M</text>
-    <rect class="mg-plug" fill="#0E0B08"/>
-    <g class="mg-anno" opacity="0" fill="#FBF8F0" font-family="IBM Plex Mono,monospace" letter-spacing=".18em">
-      <text class="mg-a1">ENTERING FILE MM-2026</text>
-      <text class="mg-a2">SPECIMEN M &middot; NEWSREADER &middot; CAP 0.68em &middot; STEM 0.075em</text>
-      <line class="mg-tick1"/><line class="mg-tick2"/>
-    </g>
-  </g>
-  <rect class="mg-safe" fill="#0E0B08" opacity="0" x="0" y="0" width="100%" height="100%"/>
-</svg>
-<div class="glint glintL" aria-hidden="true"></div>
-<div class="glint glintR" aria-hidden="true"></div>
+<div class="wipe wipe-rise" aria-hidden="true"></div>
 <div class="hud tl">Mourelatos, M.</div>
 <nav class="hud tr" aria-label="Sections"><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
 <div class="hud bl" id="secnum">Intro</div>
@@ -402,8 +355,8 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 <main>
 
   <header class="hero" data-sec="Intro">
-    <p class="kick rv">MM-2026 · Data &amp; Analytics</p>
-    <h1 class="rv"><span class="zoomM">M</span><span class="mTail">ichael</span><br><em class="mLine2">Mourelatos</em></h1>
+    <p class="kick rv">Data &amp; Analytics · Calgary</p>
+    <h1 class="rv">Michael<br><em>Mourelatos</em></h1>
     <p class="tag rv">I make heavy industry <mark class="hl">legible.</mark></p>
     <p class="sub rv">Scroll</p>
     <div class="cue" aria-hidden="true"></div>
@@ -448,7 +401,6 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   </section>
 
   <section class="exp" id="experience" data-sec="Experience">
-    <p class="sep" aria-hidden="true">FILE MM-2026 &#9656; REC 0042 &#9656; <span class="bits">01101101</span> &#9656; CHK A4F2</p>
     <div class="wrap">
       <div class="rail" aria-hidden="true"><span class="y0">2026</span><div class="fill"></div><span class="y1">2020</span></div>
       <div class="roles">
@@ -485,7 +437,6 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   </section>
 
   <section class="work dark" id="work" data-sec="Selected work">
-    <p class="sep" aria-hidden="true">FILE MM-2026 &#9656; REC 0117 &#9656; <span class="bits">01101101</span> &#9656; CHK A4F2</p>
     <div class="head">
       <p class="kick rv">Selected work</p>
       <p class="big rv">Three builds I keep getting asked about.<br><em>Case studies in progress.</em></p>
@@ -496,21 +447,21 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
         <h3>Market Intelligence Platform</h3>
         <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M10 140 L60 100 L110 118 L160 70 L210 88 L260 40 L310 58" stroke="#E4342B" stroke-width="2.5"/><path d="M10 155 L60 130 L110 142 L160 108 L210 124 L260 86 L310 100" stroke="#FBF8F0" stroke-width="1.5" opacity=".6"/><circle cx="70" cy="52" r="4" fill="#0022EE"/><circle cx="150" cy="34" r="4" fill="#0022EE"/><circle cx="235" cy="60" r="4" fill="#0022EE"/><circle cx="285" cy="30" r="4" fill="#0022EE"/><path d="M70 52 L150 34 L235 60 L285 30" stroke="#0022EE" stroke-width="1" stroke-dasharray="4 4"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#0022EE" letter-spacing="2">PRICE / REGION</text></svg></div>
         <p>Pricing and market mapping for commercial teams — Databricks-backed, Python front end, tested against live users step by scripted step.</p>
-        <button class="tag cs-btn" data-cs="cs1">Open the file &#8594;</button>
+        <button class="tag cs-btn" data-cs="cs1">Case study &#8594;</button>
       </article>
       <article class="card">
         <span class="num">W/02</span>
         <h3>Semantic Model Rebuild</h3>
         <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><circle cx="160" cy="40" r="12" stroke="#E4342B" stroke-width="2.5"/><circle cx="80" cy="100" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="160" cy="110" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="240" cy="100" r="10" stroke="#FBF8F0" stroke-width="1.5"/><circle cx="55" cy="152" r="7" stroke="#0022EE" stroke-width="1.5"/><circle cx="110" cy="156" r="7" stroke="#0022EE" stroke-width="1.5"/><circle cx="160" cy="160" r="7" stroke="#0022EE" stroke-width="1.5"/><circle cx="212" cy="156" r="7" stroke="#0022EE" stroke-width="1.5"/><circle cx="266" cy="152" r="7" stroke="#0022EE" stroke-width="1.5"/><path d="M160 52 L80 90 M160 52 L160 100 M160 52 L240 90 M80 110 L55 145 M80 110 L110 149 M160 120 L160 153 M240 110 L212 149 M240 110 L266 145" stroke="#FBF8F0" stroke-width="1" opacity=".55"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#0022EE" letter-spacing="2">MEASURE TREE</text></svg></div>
         <p>A corporate energy-hedging model rebuilt end to end: the query pipeline repaired, the measure library rewritten into something an analyst can navigate without a guide.</p>
-        <button class="tag cs-btn" data-cs="cs2">Open the file &#8594;</button>
+        <button class="tag cs-btn" data-cs="cs2">Case study &#8594;</button>
       </article>
       <article class="card">
         <span class="num">W/03</span>
         <h3>Asset Tracking Analytics</h3>
         <div class="thumb" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" fill="none"><g stroke="#FBF8F0" stroke-width="1.5" opacity=".8"><rect x="24" y="36" width="34" height="22"/><rect x="66" y="36" width="34" height="22"/><rect x="108" y="36" width="34" height="22"/><rect x="24" y="66" width="34" height="22"/><rect x="66" y="66" width="34" height="22"/><rect x="108" y="66" width="34" height="22" stroke="#E4342B" stroke-width="2.5"/><rect x="24" y="96" width="34" height="22"/><rect x="66" y="96" width="34" height="22"/></g><path d="M125 77 C 190 77, 200 40, 250 40 C 285 40, 295 70, 295 96" stroke="#0022EE" stroke-width="2" stroke-dasharray="6 5"/><circle cx="295" cy="104" r="6" fill="#E4342B"/><text x="12" y="24" font-family="monospace" font-size="10" fill="#0022EE" letter-spacing="2">FLEET / 3 SYSTEMS</text><text x="196" y="150" font-family="monospace" font-size="10" fill="#FBF8F0" opacity=".7">RECONCILED → 1</text></svg></div>
         <p>A division-wide view of fleet assets from requirements through adoption baselines — three disagreeing systems reconciled into one number people trust.</p>
-        <button class="tag cs-btn" data-cs="cs3">Open the file &#8594;</button>
+        <button class="tag cs-btn" data-cs="cs3">Case study &#8594;</button>
       </article>
     </div>
   </section>
@@ -520,7 +471,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     <div class="sk-fillbar" aria-hidden="true"></div>
     <div class="sk-stage">
       <div class="sk-manifest">
-        <p class="sk-head" aria-hidden="true">REC 0093 &#9656; CAPABILITY MANIFEST
+        <p class="sk-head" aria-hidden="true">CAPABILITY MANIFEST
           <span class="sk-tally"><i><b></b></i><i><b></b></i><i><b></b></i></span></p>
         <div class="sk-entry s0">
           <span class="sk-idx" aria-hidden="true">01
@@ -551,13 +502,11 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
             <span class="sk-rule" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="sk-filed" aria-hidden="true">FILED &middot; MM-2026<br>3 / 3 VERIFIED</div>
       </div>
     </div>
   </section>
 
   <section class="contact dark" id="contact" data-sec="Contact">
-    <p class="sep" aria-hidden="true">FILE MM-2026 &#9656; REC 0113 &#9656; <span class="bits">01101101</span> &#9656; CHK A4F2</p>
     <div class="mq mq-top" aria-hidden="true"><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span><span>MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · MICHAELMOURELATOS99@GMAIL.COM · LET'S WORK · </span></div>
     <canvas class="ctc" aria-hidden="true"></canvas>
     <div class="contact-core">
@@ -578,36 +527,33 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 
   <dialog class="cs" id="cs1" aria-label="Case study: Market Intelligence Platform">
     <button class="cs-x" autofocus>Close &#215;</button>
-    <p class="cs-num">W/01 &middot; CASE FILE</p>
+    <p class="cs-num">W/01</p>
     <h3>Market Intelligence Platform</h3>
-    <p class="cs-stamp">PENDING DECLASSIFICATION</p>
     <h4>The problem</h4><p><span class="redact" style="width:34ch"></span> <span class="redact" style="width:21ch"></span></p>
     <h4>What I did</h4><ul><li><span class="redact" style="width:30ch"></span></li><li><span class="redact" style="width:26ch"></span></li><li><span class="redact" style="width:32ch"></span></li></ul>
     <h4>Stack</h4><p class="cs-stack">Python &middot; Dash &middot; Databricks &middot; Power BI &middot; SQL</p>
     <h4>Outcome</h4><p class="cs-metric"><span class="redact" style="width:8ch"></span> <span class="redact" style="width:24ch"></span></p>
-    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; TO FOLLOW</span></div>
+    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; COMING SOON</span></div>
   </dialog>
   <dialog class="cs" id="cs2" aria-label="Case study: Semantic Model Rebuild">
     <button class="cs-x" autofocus>Close &#215;</button>
-    <p class="cs-num">W/02 &middot; CASE FILE</p>
+    <p class="cs-num">W/02</p>
     <h3>Semantic Model Rebuild</h3>
-    <p class="cs-stamp">PENDING DECLASSIFICATION</p>
     <h4>The problem</h4><p><span class="redact" style="width:31ch"></span> <span class="redact" style="width:24ch"></span></p>
     <h4>What I did</h4><ul><li><span class="redact" style="width:28ch"></span></li><li><span class="redact" style="width:33ch"></span></li><li><span class="redact" style="width:24ch"></span></li></ul>
     <h4>Stack</h4><p class="cs-stack">Power BI &middot; DAX &middot; M &middot; SQL &middot; semantic models</p>
     <h4>Outcome</h4><p class="cs-metric"><span class="redact" style="width:7ch"></span> <span class="redact" style="width:26ch"></span></p>
-    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; TO FOLLOW</span></div>
+    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; COMING SOON</span></div>
   </dialog>
   <dialog class="cs" id="cs3" aria-label="Case study: Asset Tracking Analytics">
     <button class="cs-x" autofocus>Close &#215;</button>
-    <p class="cs-num">W/03 &middot; CASE FILE</p>
+    <p class="cs-num">W/03</p>
     <h3>Asset Tracking Analytics</h3>
-    <p class="cs-stamp">PENDING DECLASSIFICATION</p>
     <h4>The problem</h4><p><span class="redact" style="width:29ch"></span> <span class="redact" style="width:23ch"></span></p>
     <h4>What I did</h4><ul><li><span class="redact" style="width:31ch"></span></li><li><span class="redact" style="width:25ch"></span></li><li><span class="redact" style="width:29ch"></span></li></ul>
     <h4>Stack</h4><p class="cs-stack">Power BI &middot; SQL &middot; requirements &rarr; adoption</p>
     <h4>Outcome</h4><p class="cs-metric"><span class="redact" style="width:9ch"></span> <span class="redact" style="width:22ch"></span></p>
-    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; TO FOLLOW</span></div>
+    <h4>Artifact</h4><div class="cs-art"><span>SCREENSHOT / LIVE DEMO &mdash; COMING SOON</span></div>
   </dialog>
 </main>
 
@@ -643,25 +589,6 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   function ss(p,a,b){var t=Math.min(1,Math.max(0,(p-a)/(b-a)));return t*t*(3-2*t)}
   function ridgeY(x,L,base,xo){return base+Math.sin((x+xo)*0.0011+L*2.1)*H*0.05+Math.sin((x+xo)*0.0029+L*5.7)*H*0.018}
 
-  function drawFoothills(p,w){
-    if(w<=0.01)return;
-    var alphas=[0.14,0.24,0.42,0.85];
-    for(var L=0;L<4;L++){
-      var speed=(L+1)/4,base=H*(0.74+L*0.08)-p*H*0.3*speed,xo=p*W*0.3*speed;
-      ctx.fillStyle='rgba(14,11,8,'+(alphas[L]*w)+')';
-      ctx.beginPath();ctx.moveTo(0,H);
-      for(var x=0;x<=W;x+=12*DPR)ctx.lineTo(x,ridgeY(x,L,base,xo));
-      ctx.lineTo(W,H);ctx.closePath();ctx.fill();
-      if(L>=2){
-        for(var tx=0;tx<=W;tx+=26*DPR){
-          var hsh=hash(tx+L*999,L);if(hsh<0.42)continue;
-          var ty=ridgeY(tx,L,base,xo),th=(L===3?24:16)*DPR*(0.7+hsh*0.6),tw=(L===3?7:5)*DPR;
-          ctx.beginPath();ctx.moveTo(tx,ty-th);ctx.lineTo(tx-tw,ty+2*DPR);ctx.lineTo(tx+tw,ty+2*DPR);ctx.closePath();ctx.fill();
-        }
-      }
-    }
-  }
-
   function drawBeach(p,w){
     if(w<=0.01)return;
     var hz=H*0.76;
@@ -682,33 +609,6 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     ctx.lineTo(W,H);ctx.closePath();ctx.fill();
     ctx.strokeStyle='rgba(14,11,8,'+(0.35*w)+')';
     ctx.beginPath();ctx.moveTo(0,hz);ctx.lineTo(W,hz);ctx.stroke();
-  }
-
-  function drawCity(p,w){
-    if(w<=0.01)return;
-    var baseY=H*0.94,hz=H*0.74;
-    ctx.strokeStyle='rgba(14,11,8,'+(0.22*w)+')';
-    ctx.lineWidth=1*DPR;
-    for(var g=0;g<9;g++){
-      var gy=hz+(baseY-hz)*Math.pow(g/8,1.6);
-      ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke();
-    }
-    for(var v=0;v<=12;v++){
-      var vx=W*v/12;
-      ctx.beginPath();ctx.moveTo(W/2+(vx-W/2)*0.25,hz);ctx.lineTo(vx,baseY);ctx.stroke();
-    }
-    var x=0;
-    ctx.fillStyle='rgba(14,11,8,'+(0.3*w)+')';
-    while(x<W){var bw=(40+hash(x,7)*70)*DPR,bh=H*(0.05+hash(x,9)*0.09);ctx.fillRect(x,baseY-H*0.08-bh,bw,bh);x+=bw+8*DPR}
-    x=0;
-    ctx.fillStyle='rgba(14,11,8,'+(0.88*w)+')';
-    while(x<W){
-      var bw2=(50+hash(x,3)*80)*DPR,bh2=H*(0.07+hash(x,5)*0.13);
-      ctx.fillRect(x,baseY-bh2,bw2,bh2);
-      x+=bw2+10*DPR;
-    }
-    ctx.fillStyle='rgba(14,11,8,'+(0.95*w)+')';
-    ctx.fillRect(0,baseY,W,H-baseY);
   }
 
   /* ---- industry scenes: flowing lines converge into each employer's world
@@ -912,17 +812,13 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     ctx.strokeStyle='rgba(242,255,73,.95)';ctx.lineWidth=2*DPR;
     ctx.beginPath();ctx.arc(cx,cy,42*DPR,0,Math.PI*2);ctx.stroke();
 
-    var wA=1-ss(p,0.24,0.4);
-    var wB=ss(p,0.24,0.4)*(1-ss(p,0.56,0.72));
-    var wC=ss(p,0.56,0.72);
+    var wB=ss(p,0.16,0.32);
     var env=ss((window.scrollY||0),expScene.start-innerHeight*0.9,expScene.start-innerHeight*0.15);
     var wOil=env*(1-ss(expScene.p,0.20,0.32));
     var wPen=env*ss(expScene.p,0.20,0.32)*(1-ss(expScene.p,0.66,0.78));
     var wChip=env*ss(expScene.p,0.66,0.78);
     var wInd=Math.max(wOil,wPen,wChip);
-    drawFoothills(p,wA*(1-wInd));
     drawBeach(p,wB*(1-wInd));
-    drawCity(p,wC*(1-wInd));
     drawScene(wOil,profOil,detOil,p);
     drawScene(wPen,profSchool,detSchool,p);
     drawScene(wChip,profChip,detChip,p);
@@ -992,23 +888,6 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     tyLive=true;tyTick();
   }
 
-  /* ---- live data separators ---- */
-  document.querySelectorAll('.sep .bits').forEach(function(bits){
-    var chars=bits.textContent.split('');
-    bits.textContent='';
-    var spans=chars.map(function(ch){var sp=document.createElement('span');sp.textContent=ch;bits.appendChild(sp);return sp});
-    var iv=null;
-    ScrollTrigger.create({trigger:bits,start:'top bottom',end:'bottom top',
-      onToggle:function(st){
-        clearInterval(iv);
-        if(st.isActive){iv=setInterval(function(){
-          var k=Math.floor(Math.random()*spans.length);
-          spans[k].textContent=Math.random()<0.5?'0':'1';
-          spans[k].className=Math.random()<0.22?'hot':'';
-        },160)}
-      }});
-  });
-
   /* ---- case-study file sheets ---- */
   document.querySelectorAll('.cs-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
@@ -1044,92 +923,17 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     var deep = !!ctx.conditions.isDeep;
     var aboutSec = document.querySelector('.about');
 
-    /* ---- Hero: DIVE INTO THE M — its ink becomes the about section ---- */
-    var h1=document.querySelector('.hero h1'),
-        zoomM=document.querySelector('.zoomM'),
-        mgate=document.querySelector('.mgate'),
-        gG=mgate.querySelector('.mg-g'),
-        gGlyph=mgate.querySelector('.mg-glyph'),
-        gPlug=mgate.querySelector('.mg-plug'),
-        gAnno=mgate.querySelector('.mg-anno'),
-        gA1=mgate.querySelector('.mg-a1'), gA2=mgate.querySelector('.mg-a2'),
-        gT1=mgate.querySelector('.mg-tick1'), gT2=mgate.querySelector('.mg-tick2');
-    var M={};
-    function measureGlyph(){ // pixel-scan the loaded Newsreader M
-      var gs=256,c=document.createElement('canvas');c.width=gs*2;c.height=gs*2;
-      var x=c.getContext('2d',{willReadFrequently:true});
-      x.font='400 '+gs+'px '+getComputedStyle(h1).fontFamily;
-      x.textBaseline='alphabetic';x.fillStyle='#000';
-      x.fillText('M',gs*0.5,gs*1.4);
-      var met=x.measureText('M'),cap=met.actualBoundingBoxAscent;
-      var row=Math.round(gs*1.4-cap*0.42),px=x.getImageData(0,row,gs*2,1).data,SL=-1,SR=-1;
-      for(var i=0;i<gs*2;i++){
-        if(px[i*4+3]>127){if(SL<0)SL=i;SR=i;}else if(SL>=0)break;
-      }
-      return {fbAsc:met.fontBoundingBoxAscent/gs,cap:cap/gs,stemL:(SL-gs*0.5)/gs,stemR:(SR+1-gs*0.5)/gs};
-    }
-    function diveSetup(){
-      var prev=h1.style.transform;h1.style.transform='none';gsap.set(h1,{x:0,y:0});
-      var r=zoomM.getBoundingClientRect(),hr=h1.getBoundingClientRect(),
-          em=parseFloat(getComputedStyle(h1).fontSize),g=measureGlyph();
-      h1.style.transform=prev;
-      var hsTop=document.querySelector('.hero').getBoundingClientRect().top;
-      var base=r.top-hsTop+g.fbAsc*em,
-          stemL=r.left+g.stemL*em, stemR=r.left+g.stemR*em,
-          capT=base-g.cap*em;
-      M.pt={x:(stemL+stemR)/2, y:base-g.cap*em*0.42};
-      M.cx=innerWidth/2; M.cy=innerHeight/2;
-      var inset=(stemR-stemL)*0.18;
-      M.plug={L:stemL+inset,R:stemR-inset,T:capT+2,B:base-1};
-      M.F=1.2*Math.max(
-        (innerWidth/2)/(M.pt.x-M.plug.L),(innerWidth/2)/(M.plug.R-M.pt.x),
-        (innerHeight/2)/(M.pt.y-M.plug.T),(innerHeight/2)/(M.plug.B-M.pt.y));
-      M.lnF=Math.log(M.F);
-      gsap.set(h1,{transformOrigin:(M.pt.x-hr.left)+'px '+(M.pt.y-(hr.top-hsTop))+'px'});
-      mgate.setAttribute('viewBox','0 0 '+innerWidth+' '+innerHeight);
-      gGlyph.setAttribute('x',r.left);gGlyph.setAttribute('y',base);
-      gGlyph.setAttribute('font-size',em);
-      gPlug.setAttribute('x',M.plug.L);gPlug.setAttribute('y',M.plug.T);
-      gPlug.setAttribute('width',M.plug.R-M.plug.L);gPlug.setAttribute('height',M.plug.B-M.plug.T);
-      gsap.set(gG,{svgOrigin:M.pt.x+' '+M.pt.y,scale:1,x:0,y:0});
-      var fs=em*0.022, ex=stemR+em*0.02;
-      gA1.setAttribute('font-size',fs);
-      gA1.setAttribute('transform','rotate(90 '+M.pt.x+' '+M.pt.y+')');
-      gA1.setAttribute('x',M.pt.x+em*0.06);gA1.setAttribute('y',M.pt.y+fs*0.35);
-      gA2.setAttribute('font-size',fs);
-      gA2.setAttribute('x',ex+em*0.03);gA2.setAttribute('y',M.pt.y-em*0.03);
-      gT1.setAttribute('x1',ex);gT1.setAttribute('y1',capT);gT1.setAttribute('x2',ex);gT1.setAttribute('y2',base);
-      gT2.setAttribute('x1',stemL);gT2.setAttribute('y1',M.pt.y+em*0.05);gT2.setAttribute('x2',stemR);gT2.setAttribute('y2',M.pt.y+em*0.05);
-      [gT1,gT2].forEach(function(t){t.setAttribute('stroke','#FBF8F0');t.setAttribute('stroke-width',Math.max(.5,em*0.004))});
-    }
-    diveSetup(); // build-time measure; fonts.ready -> refresh re-measures with loaded Newsreader
-    var S1=16;
-    var flight={z:0};
+    /* ---- Hero exit: layers peel, black curtain rises into about ---- */
     var htl=gsap.timeline({scrollTrigger:{
-      trigger:'.hero',start:'top top',end:deep?'+=320%':'+=240%',
-      pin:true,scrub:0.5,invalidateOnRefresh:true,onRefresh:diveSetup
+      trigger:'.hero',start:'top top',end:deep?'+=200%':'+=160%',
+      pin:true,scrub:0.5,invalidateOnRefresh:true
     }});
     htl.to('.hero .kick',{yPercent:-260,autoAlpha:0,ease:'power1.in',duration:.4},0)
        .to('.hero .tag',{yPercent:-150,autoAlpha:0,ease:'power1.in',duration:.45},0)
        .to('.hero .sub',{yPercent:120,autoAlpha:0,ease:'power1.in',duration:.4},0)
        .to('.cue',{opacity:0,duration:.2},0)
-       .fromTo(flight,{z:0},{z:1,ease:'power2.in',duration:1.5,onUpdate:function(){
-          var S=Math.exp(M.lnF*flight.z);
-          gsap.set(gG,{scale:S});
-          if(S>S1){ gsap.set(h1,{autoAlpha:0}); gsap.set(mgate,{autoAlpha:1}); }
-          else    { gsap.set(h1,{scale:S,autoAlpha:1}); gsap.set(mgate,{autoAlpha:0}); }
-       }},.25)
-       .to(h1,{x:function(){return M.cx-M.pt.x},y:function(){return M.cy-M.pt.y},ease:'power2.in',duration:.9},.25)
-       .to(gG,{x:function(){return M.cx-M.pt.x},y:function(){return M.cy-M.pt.y},ease:'power2.in',duration:.9},.25);
-    if(deep){
-      htl.to('.mTail',{xPercent:140,ease:'power2.in',duration:.8},.25)
-         .to('.mLine2',{yPercent:320,xPercent:24,ease:'power2.in',duration:.8},.25)
-         .fromTo(gAnno,{opacity:0},{opacity:1,duration:.14},1.26)
-         .to(gAnno,{opacity:0,duration:.18},1.42)
-         .fromTo('.glintR',{opacity:0},{opacity:.9,duration:.05},1.62).to('.glintR',{opacity:0,duration:.07},1.67)
-         .fromTo('.glintL',{opacity:0},{opacity:.9,duration:.05},1.65).to('.glintL',{opacity:0,duration:.07},1.70);
-    }
-    htl.fromTo('.mg-safe',{opacity:0},{opacity:1,duration:.04},1.71);
+       .to('.hero h1',{scale:1.12,yPercent:-6,ease:'none',duration:1.2},0)
+       .fromTo('.wipe-rise',{yPercent:103},{yPercent:0,duration:.85,ease:'power2.inOut'},.5);
     var oScene = document.querySelector('.o-scene');
 
     var pmHandler = null, qTiltY = null, qTiltX = null;
@@ -1157,7 +961,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       }
     }});
 
-    atl.fromTo(mgate,{autoAlpha:1},{autoAlpha:0,duration:.02,immediateRender:false},.01);
+    atl.fromTo('.wipe-rise',{autoAlpha:1},{autoAlpha:0,duration:.02,immediateRender:false},.01);
     // the about statements TYPE character by character (and untype in reverse)
     var abRoots=[];
     function abSplit(sel){
@@ -1183,7 +987,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     }
     var l1chars=abSplit('.about .l1 .kick, .about .l1 .big');
     var l2chars=abSplit('.about .l2 .big');
-    atl.fromTo('.about .l1',{scale:1.9,opacity:0},{scale:1,opacity:1,duration:.35,ease:'expo.out'},.06) // tunnel-exit brake
+    atl.fromTo('.about .l1',{scale:1.12,opacity:0},{scale:1,opacity:1,duration:.35,ease:'power2.out'},.06)
        .fromTo(l1chars,{autoAlpha:0},{autoAlpha:1,duration:.01,stagger:1.15/l1chars.length},.3)
        .to('.about .l1',{opacity:0,y:-60,scale:1.06,duration:1},2.55)
        .set('.about .l2',{opacity:1,y:0,scale:1},3.45)
@@ -1380,11 +1184,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
          .fromTo('.sk-tally i:nth-child('+(i+1)+') b',{scale:0},{scale:1,duration:.2,ease:'back.out(3)'},T+1.45);
     });
     stl.to('.sk-fillbar',{autoAlpha:0,duration:.8,ease:'power1.inOut'},7.2)
-       .fromTo('.sk-filed',{autoAlpha:0,scale:2.4,rotation:-4},
-         {autoAlpha:1,scale:1,rotation:-8,duration:.3,ease:'power3.in'},8.15)
-       .to('.sk-manifest',{y:4,duration:.07,ease:'none'},8.45)
-       .to('.sk-manifest',{y:0,duration:.15,ease:'power2.out'},8.52)
-       .to({},{duration:.45});
+       .to({},{duration:.6});
     return function(){mains.forEach(function(pEl){if(pEl.dataset.orig)pEl.innerHTML=pEl.dataset.orig})};
   });
 
