@@ -1106,7 +1106,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     var S1=16, hHidden=false;
     var flight={z:0};
     var htl=gsap.timeline({scrollTrigger:{
-      trigger:'.hero',start:'top top',end:deep?'+=175%':'+=130%',
+      trigger:'.hero',start:'top top',end:deep?'+=320%':'+=240%',
       pin:true,scrub:0.5,invalidateOnRefresh:true,onRefresh:diveSetup
     }});
     htl.to('.hero .kick',{yPercent:-260,autoAlpha:0,ease:'power1.in',duration:.4},0)
@@ -1143,7 +1143,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     }
 
     var atl = gsap.timeline({scrollTrigger:{
-      trigger:'.about', start:'top top', end: deep ? '+=780%' : '+=660%',
+      trigger:'.about', start:'top top', end: deep ? '+=1400%' : '+=1150%',
       pin:true, scrub:0.6, invalidateOnRefresh:true,
       onEnter:function(){ // pre-decode so the spin never hits decode jank
         document.querySelectorAll('.oc-in img').forEach(function(im){ if(im.decode) im.decode().catch(function(){}); });
@@ -1294,7 +1294,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     // 02 Experience — created here, AFTER the about pin and BEFORE the work pin,
     // so ScrollTrigger computes each pin's start with the previous pin-spacer applied
     gsap.set('.role',{visibility:'visible'});
-    var etl=gsap.timeline({scrollTrigger:{trigger:'.exp',start:'top top',end:'+=320%',pin:true,scrub:0.6,invalidateOnRefresh:true,
+    var etl=gsap.timeline({scrollTrigger:{trigger:'.exp',start:'top top',end:'+=620%',pin:true,scrub:0.6,invalidateOnRefresh:true,
       onRefresh:function(self){expScene.start=self.start;},
       onUpdate:function(self){expScene.p=self.progress;}}});
     etl.to('.rail .fill',{scaleY:1,ease:'none',duration:8},0);
@@ -1306,7 +1306,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       // Work corridor: cards sweep past the camera on a parabolic depth curve
       var wcards=gsap.utils.toArray('.card');
       wcards.forEach(function(c,i){gsap.set(c,{'--y':(i%2?1.4:-1.2)+'rem'})});
-      var wtl=gsap.timeline({scrollTrigger:{trigger:'.work',start:'top top',end:'+=300%',pin:true,scrub:0.6,invalidateOnRefresh:true}});
+      var wtl=gsap.timeline({scrollTrigger:{trigger:'.work',start:'top top',end:'+=560%',pin:true,scrub:0.6,invalidateOnRefresh:true}});
       wtl.fromTo('.track',{scale:.94},{scale:1,duration:.35,ease:'power2.out'},0);
       wcards.forEach(function(c,i){ // sweep in, crawl face-on, sweep out
         var t0=i*0.42;
@@ -1354,7 +1354,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       if(!pEl.dataset.orig)pEl.dataset.orig=pEl.innerHTML;
       skSplit(pEl);
     });
-    var stl=gsap.timeline({scrollTrigger:{trigger:'.skills',start:'top top',end:'+=320%',pin:true,scrub:0.6,invalidateOnRefresh:true}});
+    var stl=gsap.timeline({scrollTrigger:{trigger:'.skills',start:'top top',end:'+=580%',pin:true,scrub:0.6,invalidateOnRefresh:true}});
     stl.to('.sk-fillbar',{scaleY:1,ease:'none',duration:1.5},0.15)
        .fromTo('.sk-head',{autoAlpha:0,y:10},{autoAlpha:1,y:0,duration:.4},0.9);
     var rest=[-1.2,0.8,-0.6];
