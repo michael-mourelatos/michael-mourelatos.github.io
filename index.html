@@ -1103,7 +1103,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       [gT1,gT2].forEach(function(t){t.setAttribute('stroke','#FBF8F0');t.setAttribute('stroke-width',Math.max(.5,em*0.004))});
     }
     diveSetup(); // build-time measure; fonts.ready -> refresh re-measures with loaded Newsreader
-    var S1=16, hHidden=false;
+    var S1=16;
     var flight={z:0};
     var htl=gsap.timeline({scrollTrigger:{
       trigger:'.hero',start:'top top',end:deep?'+=320%':'+=240%',
@@ -1116,8 +1116,8 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
        .fromTo(flight,{z:0},{z:1,ease:'power2.in',duration:1.5,onUpdate:function(){
           var S=Math.exp(M.lnF*flight.z);
           gsap.set(gG,{scale:S});
-          if(S>S1){ if(!hHidden){hHidden=true;gsap.set(h1,{autoAlpha:0});gsap.set(mgate,{autoAlpha:1});} }
-          else    { gsap.set(h1,{scale:S}); if(hHidden){hHidden=false;gsap.set(h1,{autoAlpha:1});gsap.set(mgate,{autoAlpha:0});} }
+          if(S>S1){ gsap.set(h1,{autoAlpha:0}); gsap.set(mgate,{autoAlpha:1}); }
+          else    { gsap.set(h1,{scale:S,autoAlpha:1}); gsap.set(mgate,{autoAlpha:0}); }
        }},.25)
        .to(h1,{x:function(){return M.cx-M.pt.x},y:function(){return M.cy-M.pt.y},ease:'power2.in',duration:.9},.25)
        .to(gG,{x:function(){return M.cx-M.pt.x},y:function(){return M.cy-M.pt.y},ease:'power2.in',duration:.9},.25);
