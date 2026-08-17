@@ -67,9 +67,9 @@ html.js .intro{display:grid}
 html:not(.js) .cs-btn{display:none}
 dialog.cs{border:2px solid var(--black);background:var(--cream);color:var(--black);width:min(46rem,92vw);max-height:88vh;padding:2.4rem 2.6rem;font-family:var(--serif);box-shadow:14px 14px 0 var(--blue)}
 dialog.cs::backdrop{background:rgba(14,11,8,.74)}
-.cs-x{position:absolute;top:1rem;right:1rem;font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;background:none;border:2px solid var(--black);padding:.45rem .7rem;cursor:pointer}
+.cs-x{position:sticky;top:0;float:right;z-index:4;font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;background:var(--cream);border:2px solid var(--black);padding:.45rem .7rem;cursor:pointer}
 .cs-x:hover{background:var(--black);color:var(--signal)}
-.cs-num{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.26em;color:var(--blue);margin:0 0 .4rem}
+.cs-num{clear:both;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.26em;color:var(--blue);margin:0 0 .4rem}
 dialog.cs h3{font-weight:400;font-size:clamp(1.6rem,3vw,2.3rem);margin:0 0 .6rem}
 dialog.cs h4{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin:1.5rem 0 .45rem}
 dialog.cs ul{margin:0;padding-left:1.2rem}
@@ -320,7 +320,30 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
 
 @media (max-width:700px){
   .frame{inset:6px}
-  .hud.tr,.hud.br,.hud.bc{display:none}
+  .hud.br,.hud.bc{display:none}
+  /* display statements must fit the phone, not overflow it */
+  .big{font-size:clamp(1.6rem,7vw,2.4rem)}
+  .about .line .big{max-width:100%}
+  .hero .tag{font-size:1.05rem}
+  /* comfortable tap targets */
+  .card .tag.cs-btn{padding:.62rem .9rem;font-size:.62rem}
+  /* identity compresses to two lines to make room for the section nav */
+  .hud.tl{line-height:1.55;font-size:.62rem}
+  .hud.tl br.tl-brk{display:none}
+  .tl-sub.tl-role{display:none}
+  /* section nav becomes a full-width row under the identity line */
+  nav.hud.tr{display:flex;justify-content:space-between;align-items:center;
+    top:58px;left:22px;right:22px;text-align:left;gap:.2rem}
+  nav.hud.tr a{margin-left:0;font-size:.58rem;letter-spacing:.08em;padding:.55rem .1rem;flex:0 0 auto}
+  nav.hud.tr a::after{bottom:-1px}
+  /* content gets its width back */
+  .card{padding:1.15rem}
+  .work .head{padding:16vh 1.25rem 5vh}
+  dialog.cs{width:min(46rem,94vw);padding:1.5rem 1.15rem 1.8rem;max-height:86vh}
+  dialog.cs h3{font-size:clamp(1.35rem,5.6vw,1.9rem)}
+  dialog.cs ul{padding-left:1rem}
+  .cs-shot{margin:.5rem 0 .3rem}
+  .cs-x{font-size:.6rem}
   .exp .wrap{grid-template-columns:1fr}
   .rail{display:none}
   .track{flex-direction:column;padding:0 1.5rem 12vh}
@@ -400,7 +423,7 @@ html{scrollbar-color:var(--signal) var(--black);scrollbar-width:thin}
 <div class="frame" aria-hidden="true"></div>
 <canvas id="terrain" aria-hidden="true"></canvas>
 <div class="wipe wipe-rise" aria-hidden="true"></div>
-<div class="hud tl">Michael Mourelatos<br><span class="tl-sub">Data &amp; Analytics</span><br><span class="tl-sub"><i class="tl-dot"></i>Calgary · Open to work</span></div>
+<div class="hud tl">Michael Mourelatos<br class="tl-brk"><span class="tl-sub tl-role">Data &amp; Analytics</span><br><span class="tl-sub"><i class="tl-dot"></i>Calgary · Open to work</span></div>
 <nav class="hud tr" aria-label="Sections"><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
 <div class="hud bl" id="secnum">Intro</div>
 <div class="hud bc" aria-hidden="true"><span id="typer"></span><span class="caret">&#9612;</span></div>
@@ -1075,10 +1098,10 @@ html{scrollbar-color:var(--signal) var(--black);scrollbar-width:thin}
     var l2chars=abSplit('.about .l2 .big');
     atl.fromTo('.about .l1',{scale:1.12,opacity:0},{scale:1,opacity:1,duration:.35,ease:'power2.out'},.06)
        .fromTo(l1chars,{autoAlpha:0},{autoAlpha:1,duration:.01,stagger:1.15/l1chars.length},.3)
-       .to('.about .l1',{opacity:0,y:-60,scale:1.06,duration:1},2.55)
+       .to('.about .l1',{opacity:0,y:-60,scale:deep?1.06:1.0,duration:1},2.55)
        .set('.about .l2',{opacity:1,y:0,scale:1},3.45)
        .fromTo(l2chars,{autoAlpha:0},{autoAlpha:1,duration:.01,stagger:1.15/l2chars.length},3.5)
-       .to('.about .l2',{opacity:0,y:-60,scale:1.06,duration:1},5.8);
+       .to('.about .l2',{opacity:0,y:-60,scale:deep?1.06:1.0,duration:1},5.8);
 
     gsap.set('.y-disc',{xPercent:-50,yPercent:-50,scale:0});
     var FLOOD=6.4, L3=FLOOD+1.4;
