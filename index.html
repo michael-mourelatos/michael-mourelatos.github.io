@@ -354,11 +354,21 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   .sk-link{left:.9rem}
   .sk-main{font-size:clamp(1.1rem,4.6vw,1.5rem)}
   .sk-tick{width:13px}
-  .o-ring{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding:0 1.25rem}
-  .oc{min-width:0}
-  .oc-in,.oc-in.wide{width:100%;box-shadow:0 0 0 3px rgba(14,11,8,var(--ring,0)),6px 6px 0 var(--blue)}
-  .oc-in.wide{grid-column:1/-1}
-  .o-core{width:min(52vw,30vh)}
+  /* the l3 composition anchors to the top of the pinned window instead of
+     centring, so its head is never pushed off-screen */
+  .about .stage{align-items:start}
+  /* aside rides out of flow above the portrait; portrait then starts clear of the nav */
+  .orbit-stage{position:relative;padding-top:18.5rem}
+  .o-aside{position:absolute;top:6rem;left:1.15rem;right:1.15rem;margin:0;text-align:center;line-height:1.75}
+  .o-ring{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem .9rem;
+    max-width:19.5rem;margin:0 auto;padding:0 0 1.5rem;align-items:start}
+  .oc{min-width:0;margin:0}
+  .oc-in,.oc-in.wide{width:100%;box-shadow:0 0 0 3px rgba(14,11,8,var(--ring,0)),5px 5px 0 var(--blue)}
+  /* the landscape plate matches the others so rows line up instead of raggedly */
+  .oc-in.wide img{aspect-ratio:4/5}
+  .oc-in{padding:.35rem .35rem 1rem}
+  .oc-in figcaption{font-size:.48rem;letter-spacing:.08em;padding-top:.4rem}
+  .o-core{width:min(42vw,21vh);margin:0 auto 1.5rem}
   html.js .o-aside,html.js .o-core,html.js .oc-in{opacity:0}
 }
 /* ===== polish pass: hovers, focus, optics ===== */
