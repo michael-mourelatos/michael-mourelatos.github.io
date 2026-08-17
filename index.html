@@ -55,7 +55,6 @@ html.js .intro{display:grid}
 .in-kick{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.3em;color:var(--signal);margin:1.4rem 0 .6rem}
 .in-name{font-family:var(--serif);font-size:clamp(2.4rem,7vw,5rem);line-height:1.02;color:var(--cream);margin:0 0 1.4rem}
 .in-name em{font-style:italic;font-weight:300}
-.in-stamp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-4deg);font-family:var(--mono);font-weight:600;font-size:.8rem;letter-spacing:.3em;color:var(--red);border:3px double var(--red);padding:.7rem 1.2rem .6rem;white-space:nowrap;opacity:0}
 /* ===== status console ===== */
 .hud.bc{left:50%;transform:translateX(-50%);bottom:24px;color:var(--cream);opacity:.62;letter-spacing:.1em;text-transform:none;font-weight:400}
 .hud.bc .caret{color:var(--signal);animation:caret 1s steps(1) infinite}
@@ -321,7 +320,6 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     <p class="in-kick">FILE MM-2026 &middot; DATA &amp; ANALYTICS</p>
     <p class="in-name"><span>Michael</span> <span><em>Mourelatos</em></span></p>
     <span class="in-line in-b"></span>
-    <p class="in-stamp">CLEARED FOR REVIEW</p>
   </div>
 </div>
 <a class="skip" href="#about">Skip to content</a>
@@ -863,9 +861,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
          .fromTo('.in-b',{scaleX:0},{scaleX:1,duration:.55,ease:'power3.inOut'},.15)
          .fromTo('.in-kick',{opacity:0,y:14},{opacity:1,y:0,duration:.4},.45)
          .fromTo('.in-name span',{opacity:0,y:26},{opacity:1,y:0,duration:.55,stagger:.09,ease:'power3.out'},.55)
-         .fromTo('.in-stamp',{opacity:0,scale:2.4,rotation:5},{opacity:1,scale:1,rotation:-4,duration:.3,ease:'power4.in'},1.3)
-         .to('.in-core',{x:2,y:-3,duration:.05,yoyo:true,repeat:3},1.6)
-         .to(intro,{yPercent:-100,duration:.75,ease:'expo.inOut'},2.4);
+         .to(intro,{yPercent:-100,duration:.75,ease:'expo.inOut'},1.7);
       var skipIntro=function(){if(itl.progress()<1)itl.progress(1)};
       intro.addEventListener('pointerdown',skipIntro);
       addEventListener('keydown',skipIntro,{once:true});
