@@ -134,6 +134,8 @@ section{position:relative}
 .dark{background:var(--black);color:var(--cream)}
 .dark .kick{color:var(--signal)}
 .dark .big b{background:var(--signal);color:var(--black);font-weight:500;padding:0 .14em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.about .line .big b{background:none;padding:0}
+.about .line .big b .ch{background:var(--signal);color:var(--black)}
 
 .hero{min-height:100vh;display:grid;place-content:center;text-align:center;padding:0 1.5rem}
 .hero h1{font-weight:400;font-size:clamp(3rem,10.5vw,8rem);line-height:.98;letter-spacing:-.02em;margin:0}
@@ -1141,7 +1143,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     }
 
     var atl = gsap.timeline({scrollTrigger:{
-      trigger:'.about', start:'top top', end: deep ? '+=640%' : '+=560%',
+      trigger:'.about', start:'top top', end: deep ? '+=780%' : '+=660%',
       pin:true, scrub:0.6, invalidateOnRefresh:true,
       onEnter:function(){ // pre-decode so the spin never hits decode jank
         document.querySelectorAll('.oc-in img').forEach(function(im){ if(im.decode) im.decode().catch(function(){}); });
@@ -1156,10 +1158,37 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     }});
 
     atl.fromTo(mgate,{autoAlpha:1},{autoAlpha:0,duration:.02,immediateRender:false},.01);
-    atl.fromTo('.about .l1',{opacity:0,scale:2.6,y:0},{opacity:1,scale:1,y:0,duration:1,ease:'expo.out'},.06)
-       .to('.about .l1',{opacity:0,y:-60,scale:1.06,duration:1},'+=0.6')
-       .fromTo('.about .l2',{opacity:0,y:70,scale:.92},{opacity:1,y:0,scale:1,duration:1})
-       .to('.about .l2',{opacity:0,y:-60,scale:1.06,duration:1},'+=0.6');
+    // the about statements TYPE character by character (and untype in reverse)
+    var abRoots=[];
+    function abSplit(sel){
+      var out=[];
+      gsap.utils.toArray(sel).forEach(function(root){
+        if(!root.dataset.orig)root.dataset.orig=root.innerHTML;
+        abRoots.push(root);
+        (function walk(node){
+          [].slice.call(node.childNodes).forEach(function(n){
+            if(n.nodeType===3){
+              var frag=document.createDocumentFragment();
+              n.textContent.split('').forEach(function(chr){
+                if(chr===' '){frag.appendChild(document.createTextNode(' '));return}
+                var sp=document.createElement('span');sp.className='ch';sp.textContent=chr;
+                frag.appendChild(sp);out.push(sp);
+              });
+              node.replaceChild(frag,n);
+            }else if(n.nodeType===1){walk(n)}
+          });
+        })(root);
+      });
+      return out;
+    }
+    var l1chars=abSplit('.about .l1 .kick, .about .l1 .big');
+    var l2chars=abSplit('.about .l2 .big');
+    atl.fromTo('.about .l1',{scale:1.9,opacity:0},{scale:1,opacity:1,duration:.35,ease:'expo.out'},.06) // tunnel-exit brake
+       .fromTo(l1chars,{autoAlpha:0},{autoAlpha:1,duration:.01,stagger:1.15/l1chars.length},.3)
+       .to('.about .l1',{opacity:0,y:-60,scale:1.06,duration:1},1.75)
+       .set('.about .l2',{opacity:1,y:0,scale:1},2.95)
+       .fromTo(l2chars,{autoAlpha:0},{autoAlpha:1,duration:.01,stagger:1.15/l2chars.length},3.0)
+       .to('.about .l2',{opacity:0,y:-60,scale:1.06,duration:1},4.25);
 
     gsap.set('.y-disc',{xPercent:-50,yPercent:-50,scale:0});
     var FLOOD=5.3, L3=FLOOD+1.4;
@@ -1222,24 +1251,24 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       atl.to('.o-read',{autoAlpha:0,y:8,duration:.25},APEX+.1)
          .to(cards,{opacity:1,duration:.2},APEX+.15)
          .fromTo('.or-grav',{autoAlpha:0,scale:.6,rotation:6},{autoAlpha:1,scale:1,rotation:-2,duration:.3,ease:'back.out(2.5)'},APEX+.2);
-      [5,1,4,0,2].forEach(function(ci,k){ // plates blast out of the monitor; the dog (3) is withheld
+      [5,1,4,0,2].forEach(function(ci,k){ // plates blast out of the monitor, slow and heavy; the dog (3) is withheld
         atl.to(cards[ci],{keyframes:[
-          {scale:0.94,duration:.1,ease:'power1.out'},
-          {scale:6.5,rotation:'+='+(ci%2?-16:13),duration:.75,ease:'power3.in'},
-          {autoAlpha:0,duration:.12}
-        ]},DROP+k*.13);
+          {scale:0.94,duration:.2,ease:'power1.out'},
+          {scale:6.5,rotation:'+='+(ci%2?-16:13),duration:1.7,ease:'power2.in'},
+          {autoAlpha:0,duration:.22}
+        ]},DROP+k*.34);
       });
-      atl.to(cards[3],{scale:0.96,rotation:'-=1.5',duration:.16,ease:'power1.inOut'},DROP+.62)  // dog checks gravity...
-         .to(cards[3],{scale:6.5,rotation:'-=10',duration:.6,ease:'power4.in'},DROP+.9)          // ...then leaves flat
-         .to(cards[3],{autoAlpha:0,duration:.1},DROP+1.45)
-         .to('.o-aside',{autoAlpha:0,y:-24,duration:.4},DROP+.5);
-      // the headshot goes LAST: flips toward the lens, and behind it the room turns blue
-      var FLIP=DROP+1.65;
-      atl.to('.o-core',{rotationY:'+=540',scale:9,duration:1.0,ease:'power2.in'},FLIP)
-         .to('.y-disc',{backgroundColor:'#0022EE',duration:.55,ease:'power1.in'},FLIP+.3)
-         .to('.o-core',{autoAlpha:0,duration:.12},FLIP+.88)
-         .to('.or-grav',{autoAlpha:0,duration:.2},FLIP+.5)
-         .to(':root',Object.assign({duration:.3},CHROME0),FLIP+.55);
+      atl.to(cards[3],{scale:0.96,rotation:'-=1.5',duration:.3,ease:'power1.inOut'},DROP+1.9)  // dog checks gravity...
+         .to(cards[3],{scale:6.5,rotation:'-=10',duration:1.4,ease:'power3.in'},DROP+2.5)       // ...then leaves flat
+         .to(cards[3],{autoAlpha:0,duration:.2},DROP+3.7)
+         .to('.o-aside',{autoAlpha:0,y:-24,duration:.7},DROP+1.2);
+      // the headshot goes LAST: a long flip toward the lens, blue rising behind it
+      var FLIP=DROP+4.1;
+      atl.to('.o-core',{rotationY:'+=540',scale:9,duration:2.0,ease:'power2.in'},FLIP)
+         .to('.y-disc',{backgroundColor:'#0022EE',duration:1.0,ease:'power1.in'},FLIP+.7)
+         .to('.o-core',{autoAlpha:0,duration:.2},FLIP+1.8)
+         .to('.or-grav',{autoAlpha:0,duration:.3},FLIP+1.0)
+         .to(':root',Object.assign({duration:.5},CHROME0),FLIP+1.1);
     } else {
       // Mobile 4th beat: aside + portrait + 2-col plate grid, then the stack
       // slides up through the pinned window so every plate gets seen
@@ -1250,12 +1279,12 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
           return over > 0 ? -(over + 24) : 0;
         },ease:'none',duration:3},L3+1.2);
       var APEXm=L3+4.2;
-      atl.to(cards,{scale:5.5,rotation:function(i){return i%2?-14:12},autoAlpha:0,duration:.7,ease:'power3.in',stagger:.09},APEXm+.15)
-         .to('.o-aside',{autoAlpha:0,duration:.3},APEXm+.3)
-         .to('.o-core',{rotationY:'+=540',scale:8,duration:.9,ease:'power2.in'},APEXm+.85)
-         .to('.y-disc',{backgroundColor:'#0022EE',duration:.5,ease:'power1.in'},APEXm+1.1)
-         .to('.o-core',{autoAlpha:0,duration:.12},APEXm+1.62)
-         .to(':root',Object.assign({duration:.3},CHROME0),APEXm+1.3);
+      atl.to(cards,{scale:5.5,rotation:function(i){return i%2?-14:12},autoAlpha:0,duration:1.5,ease:'power2.in',stagger:.24},APEXm+.2)
+         .to('.o-aside',{autoAlpha:0,duration:.5},APEXm+.5)
+         .to('.o-core',{rotationY:'+=540',scale:8,duration:1.8,ease:'power2.in'},APEXm+2.6)
+         .to('.y-disc',{backgroundColor:'#0022EE',duration:.9,ease:'power1.in'},APEXm+3.2)
+         .to('.o-core',{autoAlpha:0,duration:.2},APEXm+4.2)
+         .to(':root',Object.assign({duration:.5},CHROME0),APEXm+3.4);
     }
     atl.fromTo('.fx-dots circle',{opacity:0,scale:0,transformOrigin:'center'},{opacity:.9,scale:1,duration:1,stagger:0.03},0)
        .fromTo('.fx-links line',{strokeDashoffset:1},{strokeDashoffset:0,duration:1.2,stagger:0.08},1.2)
@@ -1269,6 +1298,10 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
       onRefresh:function(self){expScene.start=self.start;},
       onUpdate:function(self){expScene.p=self.progress;}}});
     etl.to('.rail .fill',{scaleY:1,ease:'none',duration:8},0);
+    ['.r0','.r1','.r2','.r3'].forEach(function(sel,i){
+      etl.fromTo(sel,{opacity:0,y:50},{opacity:1,y:0,duration:1},i*2)
+         .to(sel,{opacity:i===3?1:0,y:i===3?0:-50,duration:1},i*2+1.5);
+    });
     if (deep) {
       // Work corridor: cards sweep past the camera on a parabolic depth curve
       var wcards=gsap.utils.toArray('.card');
@@ -1285,6 +1318,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
     }
 
     return function(){ // context revert: listeners + state the tweens don't own
+      abRoots.forEach(function(r){if(r.dataset.orig)r.innerHTML=r.dataset.orig});
       if(pmHandler) removeEventListener('pointermove', pmHandler);
       oScene.classList.remove('live');
       aboutSec.setAttribute('data-sec','About');
