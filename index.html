@@ -117,7 +117,6 @@ body.on-dark .hud{color:var(--hud-ink)}
 .hud.bl,body.on-dark .hud.bl{color:var(--hud-accent)}
 .hud.tl{line-height:1.9}
 .tl-sub{font-weight:600;opacity:.68;letter-spacing:.14em}
-.tl-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--signal);margin-right:.45rem;vertical-align:1px}
 
 main{position:relative;z-index:1}
 section{position:relative}
@@ -329,8 +328,7 @@ html.js .hero .rv.on{transition:opacity .85s cubic-bezier(.2,.7,.3,1)}
   .card .tag.cs-btn{padding:.62rem .9rem;font-size:.62rem}
   /* identity compresses to two lines to make room for the section nav */
   .hud.tl{line-height:1.55;font-size:.62rem}
-  .hud.tl br.tl-brk{display:none}
-  .tl-sub.tl-role{display:none}
+  .tl-sub.tl-place{display:none}
   /* section nav becomes a full-width row under the identity line */
   nav.hud.tr{display:flex;justify-content:space-between;align-items:center;
     top:58px;left:22px;right:22px;text-align:left;gap:.2rem}
@@ -401,9 +399,6 @@ html{scrollbar-color:var(--signal) var(--black);scrollbar-width:thin}
 ::-webkit-scrollbar-track{background:var(--black)}
 ::-webkit-scrollbar-thumb{background:var(--signal);border:2px solid var(--black)}
 ::-webkit-scrollbar-thumb:hover{background:var(--cream)}
-.tl-dot{position:relative}
-.tl-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid var(--signal);opacity:0;animation:ping 2.8s cubic-bezier(.2,.7,.3,1) infinite}
-@keyframes ping{0%{transform:scale(.5);opacity:.9}70%,100%{transform:scale(1.9);opacity:0}}
 .kick{text-indent:.24em}
 .eot{text-indent:.34em}
 .in-kick{text-indent:.3em}
@@ -411,7 +406,6 @@ html{scrollbar-color:var(--signal) var(--black);scrollbar-width:thin}
 .big,.role h3{text-wrap:balance}
 .role p,.card p{text-wrap:pretty}
 @media (prefers-reduced-motion:reduce){
-  .tl-dot::after{animation:none}
   dialog.cs[open],dialog.cs[open]::backdrop{animation:none}
 }
 </style>
@@ -433,7 +427,7 @@ html{scrollbar-color:var(--signal) var(--black);scrollbar-width:thin}
 <div class="frame" aria-hidden="true"></div>
 <canvas id="terrain" aria-hidden="true"></canvas>
 <div class="wipe wipe-rise" aria-hidden="true"></div>
-<div class="hud tl">Michael Mourelatos<br class="tl-brk"><span class="tl-sub tl-role">Data &amp; Analytics</span><br><span class="tl-sub"><i class="tl-dot"></i>Calgary · Open to work</span></div>
+<div class="hud tl">Michael Mourelatos<br class="tl-brk"><span class="tl-sub tl-role">Data &amp; Analytics</span><br><span class="tl-sub tl-place">Calgary</span></div>
 <nav class="hud tr" aria-label="Sections"><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
 <div class="hud bl" id="secnum">Intro</div>
 <div class="hud bc" aria-hidden="true"><span id="typer"></span><span class="caret">&#9612;</span></div>
